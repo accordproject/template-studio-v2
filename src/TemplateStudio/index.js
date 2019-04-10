@@ -1,4 +1,5 @@
 import React, { PureComponent } from 'react';
+import TemplateLibrary from 'cicero-ui';
 
 class TemplateStudio extends PureComponent {
   constructor(props) {
@@ -12,6 +13,7 @@ class TemplateStudio extends PureComponent {
     return (
       <div>
         <p>Success!</p>
+          <TemplateLibrary />
       </div>
     );
   }
