@@ -1,0 +1,12 @@
+{
+  "name": "template-studio-v2",
+  "version": "1.0.0",
+  "description": "A Web UI for creating, editing and testing Accord Project templates",
+  "main": "index.js",
+  "scripts": {
+    "test": "npm test"
+  },
+  "keywords": [],
+  "author": "accordproject.org",
+  "license": "Apache-2.0"
+}
