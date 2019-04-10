@@ -2,9 +2,11 @@
   "name": "template-studio-v2",
   "version": "1.0.0",
   "description": "A Web UI for creating, editing and testing Accord Project templates",
-  "main": "index.js",
+  "private": true,
   "scripts": {
-    "test": "npm test"
+    "start": "webpack-dev-server --config webpack.config.dev.js --mode development --watch ",
+    "build": "webpack --config webpack.config.prod.js --mode production",
+    "lint": "eslint --ext .js --ext .jsx --ignore-path .gitignore ./src"
   },
   "repository": {
     "type": "git",
