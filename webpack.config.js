@@ -1,4 +1,4 @@
-// const HtmlWebpackPlugin = require('html-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 // const CopyWebpackPlugin = require('copy-webpack-plugin');
 // const webpack = require('webpack');
 const path = require('path');
@@ -17,7 +17,21 @@ module.exports = {
             use: {
               loader: "babel-loader"
             }
+          },
+          {
+              test: /\.html$/,
+              use: [
+                  {
+                      loader: "html-loader"
+                  }
+              ]
           }
         ]
-      }
-  };
+    },
+    plugins: [
+        new HtmlWebpackPlugin({
+            template: "./src/index.html",
+            filename: "./index.html"
+        })
+    ]
+};

@@ -11,7 +11,7 @@ class TemplateStudio extends PureComponent {
   render() {
     return (
       <div>
-        <p>Hello There!</p>
+        <p>Success!</p>
       </div>
     );
   }
