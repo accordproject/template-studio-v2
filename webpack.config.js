@@ -60,5 +60,10 @@ module.exports = {
             filename: "./index.html"
         }),
         new CleanWebpackPlugin(),
-    ]
+    ],
+    node: {
+        fs: 'empty',
+        net: 'empty',
+        tls: 'empty'
+    }
 };
