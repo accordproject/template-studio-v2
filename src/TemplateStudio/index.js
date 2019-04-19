@@ -4,7 +4,7 @@ import TemplateLibrary from 'cicero-ui';
 import 'semantic-ui-css/semantic.min.css';
 import { connect } from 'react-redux';
 
-import { pushTemplatesToStore } from '../sagas';
+import { getTemplates } from '../actions';
 
 // const action = type => store.dispatch({type})
 
@@ -27,7 +27,6 @@ const TLWrapper = styled.div`
   }
 `;
 
-
 class TemplateStudio extends PureComponent {
   constructor(props) {
     super(props);
@@ -49,7 +48,7 @@ class TemplateStudio extends PureComponent {
             import={this.state.import}
             addTemp={this.state.addTemp}
             addToCont={this.state.addToCont} 
-            outputTemplates={pushTemplatesToStore}
+            outputTemplates={this.props.outputTemplates}
           />
         </TLWrapper>
       </div>
@@ -59,17 +58,15 @@ class TemplateStudio extends PureComponent {
 
 const mapStateToProps = state => {
   return {
-    templates: state.templates
+    templates: state.templatesAP
   };
 };
 
-const mapDispachToProps = dispatch => {
-  return {
-    // fetchLibrary: () => dispatch({ type: "FETCH_TEMPLATE_LIBRARY" })
-  };
-};
+const mapDispatchToProps = (dispatch) => ({
+  outputTemplates: (templates) => dispatch(getTemplates(templates)),
+})
 
 export default connect(
   mapStateToProps, 
-  mapDispachToProps
+  mapDispatchToProps
 )(TemplateStudio);
