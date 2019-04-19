@@ -65,5 +65,10 @@ module.exports = {
         fs: 'empty',
         net: 'empty',
         tls: 'empty'
+    },
+    resolve: {
+        alias: {
+            "styled-components": path.resolve(__dirname, "node_modules", "styled-components"),
+        }
     }
 };
