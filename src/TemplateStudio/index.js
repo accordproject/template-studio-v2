@@ -1,7 +1,10 @@
 import React, { PureComponent } from 'react';
+import styled from 'styled-components';
 import TemplateLibrary from 'cicero-ui';
 import 'semantic-ui-css/semantic.min.css';
-// import { connect } from 'react-redux';
+import { connect } from 'react-redux';
+
+import { pushTemplatesToStore } from '../sagas';
 
 // const action = type => store.dispatch({type})
 
@@ -9,6 +12,20 @@ const mockUpload = () => { console.log('upload'); };
 const mockImport = () => { console.log('import'); };
 const mockAddTemp = () => { console.log('addTemp'); };
 const mockAddToCont = (input) => { console.log('addToCont: ', input); };
+
+const TLWrapper = styled.div`
+  height: 700px;
+  width: 485px;
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  border: 2px solid #F9F9F9;
+  overflow-y: auto;
+  &::-webkit-scrollbar {
+    width: 4px;
+    background: transparent;
+  }
+`;
 
 
 class TemplateStudio extends PureComponent {
@@ -18,42 +35,41 @@ class TemplateStudio extends PureComponent {
       upload: mockUpload,
       import: mockImport,
       addTemp: mockAddTemp,
-      templates: templateArray,
-      addToCont: mockAddToCont
+      addToCont: mockAddToCont,
     };
   }
 
   render() {
     return (
       <div>
-        <p>Success!</p>
-        <TemplateLibrary
-          // templates={this.state.templates}
-          upload={this.state.upload}
-          import={this.state.import}
-          addTemp={this.state.addTemp}
-          addToCont={this.state.addToCont} 
-        />
+        <TLWrapper>
+          <TemplateLibrary
+            templates={this.props.templates}
+            upload={this.state.upload}
+            import={this.state.import}
+            addTemp={this.state.addTemp}
+            addToCont={this.state.addToCont} 
+            outputTemplates={pushTemplatesToStore}
+          />
+        </TLWrapper>
       </div>
     );
   }
 }
 
-// const mapStateToProps = state => {
-//   return {
-//     age: state.age
-//   };
-// };
+const mapStateToProps = state => {
+  return {
+    templates: state.templates
+  };
+};
 
-// const mapDispachToProps = dispatch => {
-//   return {
-//     actionOne: () => dispatch({ type: "ACTION_ONE", value: 1 }),
-//     actionTwo: () => dispatch({ type: "ACTION_TWO", value: 1 })
-//   };
-// };
+const mapDispachToProps = dispatch => {
+  return {
+    // fetchLibrary: () => dispatch({ type: "FETCH_TEMPLATE_LIBRARY" })
+  };
+};
 
-export default TemplateStudio;
-// connect(
-//   mapStateToProps, 
-//   mapDispachToProps
-// )(TemplateStudio);
+export default connect(
+  mapStateToProps, 
+  mapDispachToProps
+)(TemplateStudio);
