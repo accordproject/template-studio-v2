@@ -6,8 +6,6 @@ import { connect } from 'react-redux';
 
 import { getTemplates } from '../actions';
 
-// const action = type => store.dispatch({type})
-
 const mockUpload = () => { console.log('upload'); };
 const mockImport = () => { console.log('import'); };
 const mockAddTemp = () => { console.log('addTemp'); };
