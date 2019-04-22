@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import createSagaMiddleware from "redux-saga";
+import createSagaMiddleware from 'redux-saga';
 import { createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
 
@@ -12,11 +12,9 @@ const sagaMiddleware = createSagaMiddleware();
 
 const store = createStore(
   reducer,
-  applyMiddleware(sagaMiddleware)
+  applyMiddleware(sagaMiddleware),
 );
 sagaMiddleware.run(rootSaga);
-
-const action = type => store.dispatch({type});
 
 const wrapper = document.getElementById('root');
 wrapper ? ReactDOM.render(<Provider store={store}><TemplateStudio /></Provider>, wrapper) : false;
