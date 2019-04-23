@@ -25,6 +25,8 @@ const TLWrapper = styled.div`
   }
 `;
 
+/* eslint react/prop-types: 0 */
+/* This disables ESLint because Redux is handling props */
 class TemplateStudio extends PureComponent {
   constructor(props) {
     super(props);
@@ -45,7 +47,7 @@ class TemplateStudio extends PureComponent {
             upload={this.state.upload}
             import={this.state.import}
             addTemp={this.state.addTemp}
-            addToCont={this.state.addToCont} 
+            addToCont={this.state.addToCont}
             outputTemplates={this.props.outputTemplates}
           />
         </TLWrapper>
@@ -54,17 +56,15 @@ class TemplateStudio extends PureComponent {
   }
 }
 
-const mapStateToProps = state => {
-  return {
-    templates: state.templatesAP
-  };
-};
+const mapStateToProps = state => ({
+  templates: state.templatesAP,
+});
 
-const mapDispatchToProps = (dispatch) => ({
-  outputTemplates: (templates) => dispatch(getTemplates(templates)),
-})
+const mapDispatchToProps = dispatch => ({
+  outputTemplates: templates => dispatch(getTemplates(templates)),
+});
 
 export default connect(
-  mapStateToProps, 
-  mapDispatchToProps
+  mapStateToProps,
+  mapDispatchToProps,
 )(TemplateStudio);
