@@ -6,6 +6,7 @@ import 'semantic-ui-css/semantic.min.css';
 import { connect } from 'react-redux';
 
 import { getTemplates } from '../actions';
+import Header from './Header';
 
 const mockUpload = () => { console.log('upload'); };
 const mockImport = () => { console.log('import'); };
@@ -45,6 +46,7 @@ class TemplateStudio extends PureComponent {
   render() {
     return (
       <div>
+        <Header />
         <TLWrapper>
           <TemplateLibrary
             templates={this.props.templates}
