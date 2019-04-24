@@ -1,5 +1,6 @@
 import React, { PureComponent } from 'react';
 import styled from 'styled-components';
+import PropTypes from 'prop-types';
 import TemplateLibrary from 'cicero-ui';
 import 'semantic-ui-css/semantic.min.css';
 import { connect } from 'react-redux';
@@ -25,8 +26,6 @@ const TLWrapper = styled.div`
   }
 `;
 
-/* eslint react/prop-types: 0 */
-/* This disables ESLint because Redux is handling props */
 class TemplateStudio extends PureComponent {
   constructor(props) {
     super(props);
@@ -37,6 +36,11 @@ class TemplateStudio extends PureComponent {
       addToCont: mockAddToCont,
     };
   }
+
+  static propTypes = {
+    templates: PropTypes.array,
+    outputTemplates: PropTypes.func,
+  };
 
   render() {
     return (
