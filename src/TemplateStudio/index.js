@@ -1,11 +1,11 @@
 import React, { PureComponent } from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
-import TemplateLibrary from 'cicero-ui';
+import TemplateLibrary from '@accordproject/cicero-ui';
 import 'semantic-ui-css/semantic.min.css';
 import { connect } from 'react-redux';
 
-import { getTemplates } from '../actions';
+import { getTemplates, addNewTemplateAction } from '../actions';
 import Header from './Header';
 
 const mockUpload = () => { console.log('upload'); };
@@ -38,9 +38,14 @@ class TemplateStudio extends PureComponent {
     };
   }
 
+  componentDidMount() {
+    this.props.fetchAPTemplates();
+  }
+
   static propTypes = {
     templates: PropTypes.array,
-    outputTemplates: PropTypes.func,
+    fetchAPTemplates: PropTypes.func,
+    addNewTemplate: PropTypes.func,
   };
 
   render() {
@@ -52,9 +57,8 @@ class TemplateStudio extends PureComponent {
             templates={this.props.templates}
             upload={this.state.upload}
             import={this.state.import}
-            addTemp={this.state.addTemp}
+            addTemp={this.props.addNewTemplate}
             addToCont={this.state.addToCont}
-            outputTemplates={this.props.outputTemplates}
           />
         </TLWrapper>
       </div>
@@ -67,7 +71,8 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  outputTemplates: templates => dispatch(getTemplates(templates)),
+  fetchAPTemplates: () => dispatch(getTemplates()),
+  addNewTemplate: () => dispatch(addNewTemplateAction()),
 });
 
 export default connect(
