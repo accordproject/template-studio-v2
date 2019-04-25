@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
-import TemplateLibrary from '@accordproject/cicero-ui';
+import { TemplateLibrary } from '@accordproject/cicero-ui';
 import 'semantic-ui-css/semantic.min.css';
 import { connect } from 'react-redux';
 
