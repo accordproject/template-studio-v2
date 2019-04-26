@@ -1,0 +1,16 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<TemplateStudio /> on initialization renders page correctly 1`] = `
+<div>
+  <Header />
+  <styled.div>
+    <Component
+      addTemp={[Function]}
+      addToCont={[Function]}
+      import={[Function]}
+      templates={Array []}
+      upload={[Function]}
+    />
+  </styled.div>
+</div>
+`;
