@@ -4,7 +4,7 @@ import createSagaMiddleware from 'redux-saga';
 import { createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
 
-import TemplateStudio from './TemplateStudio';
+import App from './TemplateStudio';
 import reducer from './store/reducer';
 import rootSaga from './sagas';
 
@@ -17,4 +17,4 @@ const store = createStore(
 sagaMiddleware.run(rootSaga);
 
 const wrapper = document.getElementById('root');
-wrapper ? ReactDOM.render(<Provider store={store}><TemplateStudio /></Provider>, wrapper) : false;
+wrapper ? ReactDOM.render(<Provider store={store}><App /></Provider>, wrapper) : false;

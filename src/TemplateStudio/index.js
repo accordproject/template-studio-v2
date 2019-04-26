@@ -27,7 +27,7 @@ const TLWrapper = styled.div`
   }
 `;
 
-class TemplateStudio extends PureComponent {
+export class TemplateStudio extends PureComponent {
   constructor(props) {
     super(props);
     this.state = {
