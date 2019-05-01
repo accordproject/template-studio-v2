@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import createSagaMiddleware from 'redux-saga';
 import { createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
+import logger from 'redux-logger';
 
 import App from './TemplateStudio';
 import reducer from './store/reducer';
@@ -12,7 +13,7 @@ const sagaMiddleware = createSagaMiddleware();
 
 const store = createStore(
   reducer,
-  applyMiddleware(sagaMiddleware),
+  applyMiddleware(sagaMiddleware, logger),
 );
 sagaMiddleware.run(rootSaga);
 
