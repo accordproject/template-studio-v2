@@ -20,7 +20,7 @@ export function* addNewTemplateToStore() {
   yield put({
     type: 'ADD_NEW_TEMPLATE_SUCCEEDED',
     template: {
-      uri: 'Uri',
+      uri: `${Date.now()}`,
       name: 'Temporary New Template',
       version: '1.0.0',
       description: 'This is mock data to showcase an action to add a new template.',

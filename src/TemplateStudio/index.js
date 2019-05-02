@@ -75,7 +75,4 @@ const mapDispatchToProps = dispatch => ({
   addNewTemplate: () => dispatch(addNewTemplateAction()),
 });
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps,
-)(TemplateStudio);
+export default connect(mapStateToProps, mapDispatchToProps)(TemplateStudio);
