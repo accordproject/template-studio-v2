@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import image from '../../public/img/logo.png';
+import image from '../../../public/img/logo.png';
 
 const HeaderWrapper = styled.div`
     display: flex;

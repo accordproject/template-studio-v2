@@ -1,4 +1,3 @@
-
 import { TemplateLibrary } from '@accordproject/cicero-core';
 import { version as ciceroVersion } from '@accordproject/cicero-core/package.json';
 

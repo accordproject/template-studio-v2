@@ -5,8 +5,8 @@ import { TemplateLibrary } from '@accordproject/cicero-ui';
 import 'semantic-ui-css/semantic.min.css';
 import { connect } from 'react-redux';
 
-import { getTemplates, addNewTemplateAction } from '../actions';
-import Header from './Header';
+import { getTemplates, addNewTemplateAction } from '../../actions/templatesActions';
+import Header from '../Header';
 
 const mockUpload = () => { console.log('upload'); };
 const mockImport = () => { console.log('import'); };
@@ -27,7 +27,7 @@ const TLWrapper = styled.div`
   }
 `;
 
-export class TemplateStudio extends PureComponent {
+export class App extends PureComponent {
   constructor(props) {
     super(props);
     this.state = {
@@ -67,7 +67,7 @@ export class TemplateStudio extends PureComponent {
 }
 
 const mapStateToProps = state => ({
-  templates: state.templatesAP,
+  templates: state.templatesState.templatesAP,
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -75,4 +75,4 @@ const mapDispatchToProps = dispatch => ({
   addNewTemplate: () => dispatch(addNewTemplateAction()),
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(TemplateStudio);
+export default connect(mapStateToProps, mapDispatchToProps)(App);
