@@ -34,10 +34,18 @@ export function* updateModelOnStore(modelMockAction) {
   });
 }
 
+export function* updateLogicOnStore(logicMockAction) {
+  yield put({
+    type: 'UPDATE_LOGIC_MOCK_SUCCEEDED',
+    logic: logicMockAction.logic,
+  });
+}
+
 function* actionWatcher() {
   yield takeLatest('GET_AP_TEMPLATES', pushTemplatesToStore);
   yield takeLatest('ADD_NEW_TEMPLATE', addNewTemplateToStore);
   yield takeLatest('UPDATE_MODEL_MOCK', updateModelOnStore);
+  yield takeLatest('UPDATE_LOGIC_MOCK', updateLogicOnStore);
 }
 
 export default function* rootSaga() {

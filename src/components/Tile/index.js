@@ -9,7 +9,7 @@ const TileWrapper = styled.div`
   border: 2px solid #F9F9F9;
   margin: 10px;
   padding: 15px;
-  width: 400px;
+  width: 350px;
 `;
 
 function Tile(props) {

@@ -7,8 +7,9 @@ import { connect } from 'react-redux';
 
 import { getTemplates, addNewTemplateAction } from '../../actions/templatesActions';
 import { updateModelMockAction } from '../../actions/modelActions';
+import { updateLogicMockAction } from '../../actions/logicActions';
 import Header from '../Header';
-import ModelMock from '../ModelMock';
+import Tile from '../../components/Tile';
 
 const mockUpload = () => { console.log('upload'); };
 const mockImport = () => { console.log('import'); };
@@ -45,21 +46,33 @@ export class App extends PureComponent {
   }
 
   static propTypes = {
-    templates: PropTypes.array,
-    modelMockValue: PropTypes.string,
-    fetchAPTemplates: PropTypes.func.isRequired,
     addNewTemplate: PropTypes.func.isRequired,
+    fetchAPTemplates: PropTypes.func.isRequired,
+    logicMockValue: PropTypes.string,
+    modelMockValue: PropTypes.string,
+    templates: PropTypes.array,
     updateModelMock: PropTypes.func.isRequired,
+    updateLogicMock: PropTypes.func.isRequired,
   };
 
   render() {
     return (
       <div>
         <Header />
-        <ModelMock
-            updateModelMock={this.props.updateModelMock}
-            textValue={this.props.modelMockValue}
-          />
+        <Tile
+          handleSubmit={this.props.updateModelMock}
+          header='Model'
+          label='Model Mock: '
+          textValue={this.props.modelMockValue}
+          textLabel='Current Model Value: '
+        />
+        <Tile
+          handleSubmit={this.props.updateLogicMock}
+          header='Logic'
+          label='Logic Mock: '
+          textValue={this.props.logicMockValue}
+          textLabel='Current Logic Value: '
+        />
         <TLWrapper>
           <TemplateLibrary
             templates={this.props.templates}
@@ -77,12 +90,14 @@ export class App extends PureComponent {
 const mapStateToProps = state => ({
   templates: state.templatesState.templatesAP,
   modelMockValue: state.modelState.model,
+  logicMockValue: state.logicState.logic,
 });
 
 const mapDispatchToProps = dispatch => ({
   fetchAPTemplates: () => dispatch(getTemplates()),
   addNewTemplate: () => dispatch(addNewTemplateAction()),
   updateModelMock: value => dispatch(updateModelMockAction(value)),
+  updateLogicMock: value => dispatch(updateLogicMockAction(value)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);
