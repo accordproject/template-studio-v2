@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
-import { TemplateLibrary } from '@accordproject/cicero-ui';
+import { TemplateLibrary, Tile } from '@accordproject/cicero-ui';
 import 'semantic-ui-css/semantic.min.css';
 import { connect } from 'react-redux';
 
@@ -10,7 +10,6 @@ import { updateModelMockAction } from '../../actions/modelActions';
 import { updateLogicMockAction } from '../../actions/logicActions';
 import { updateSampleMockAction } from '../../actions/sampleActions';
 import Header from '../Header';
-import Tile from '../../components/Tile';
 
 const mockUpload = () => { console.log('upload'); };
 const mockImport = () => { console.log('import'); };
