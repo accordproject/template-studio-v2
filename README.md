@@ -9,7 +9,7 @@ In order to link another React component to template-studio-v2 for development, 
 4. Copy the `name` property of this React component from it's `package.json` file.
 5. In the root directory of template-studio-v2, run `npm link <INSERT NAME HERE>`.
 6. Refresh and ensure the `<NAME>` is in the `node_modules` directory.
-7. Run `npm run build` and `npm run start`.
+7. Run `npm run start`.
 
 (Adding `npm` modules to this repository will unlink anything linked by `npm link`.)
 

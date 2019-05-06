@@ -56,7 +56,7 @@
   },
   "dependencies": {
     "@accordproject/cicero-core": "^0.12.0",
-    "@accordproject/cicero-ui": "0.0.3",
+    "@accordproject/cicero-ui": "0.0.4",
     "babel-runtime": "^6.26.0",
     "prop-types": "^15.7.2",
     "react": "^16.8.6",

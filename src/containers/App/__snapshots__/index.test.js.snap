@@ -1,0 +1,46 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<App /> on initialization renders page correctly 1`] = `
+<div>
+  <Header />
+  <Tile
+    header="Model"
+    label="Model Mock: "
+    textLabel="Current Model Value: "
+  />
+  <Tile
+    header="Logic"
+    label="Logic Mock: "
+    textLabel="Current Logic Value: "
+  />
+  <Tile
+    header="Sample"
+    label="Sample Mock: "
+    textLabel="Current Sample Value: "
+  />
+  <styled.div>
+    <TemplateLibraryComponent
+      addTemp={[Function]}
+      addToCont={[Function]}
+      import={[Function]}
+      templates={Array []}
+      upload={[Function]}
+    />
+  </styled.div>
+</div>
+`;
+
+exports[`<TemplateStudio /> on initialization renders page correctly 1`] = `
+<div>
+  <Header />
+  <styled.div>
+    <Component
+      addTemp={[Function]}
+      addToCont={[Function]}
+      import={[Function]}
+      templates={Array []}
+      upload={[Function]}
+    />
+  </styled.div>
+</div>
+`;

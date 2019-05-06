@@ -1,8 +1,7 @@
-
 import { TemplateLibrary } from '@accordproject/cicero-core';
 import { version as ciceroVersion } from '@accordproject/cicero-core/package.json';
 
-import { all, takeLatest, put } from 'redux-saga/effects';
+import { takeLatest, put } from 'redux-saga/effects';
 
 export function* pushTemplatesToStore() {
   try {
@@ -28,11 +27,7 @@ export function* addNewTemplateToStore() {
   });
 }
 
-function* actionWatcher() {
-  yield takeLatest('GET_AP_TEMPLATES', pushTemplatesToStore);
-  yield takeLatest('ADD_NEW_TEMPLATE', addNewTemplateToStore);
-}
-
-export default function* rootSaga() {
-  yield all([actionWatcher()]);
-}
+export const templatesSaga = [
+  takeLatest('GET_AP_TEMPLATES', pushTemplatesToStore),
+  takeLatest('ADD_NEW_TEMPLATE', addNewTemplateToStore),
+];
