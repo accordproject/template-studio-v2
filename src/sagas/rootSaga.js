@@ -27,9 +27,17 @@ export function* addNewTemplateToStore() {
   });
 }
 
+export function* updateModelOnStore(modelMockAction) {
+  yield put({
+    type: 'UPDATE_MODEL_MOCK_SUCCEEDED',
+    model: modelMockAction.model,
+  });
+}
+
 function* actionWatcher() {
   yield takeLatest('GET_AP_TEMPLATES', pushTemplatesToStore);
   yield takeLatest('ADD_NEW_TEMPLATE', addNewTemplateToStore);
+  yield takeLatest('UPDATE_MODEL_MOCK', updateModelOnStore);
 }
 
 export default function* rootSaga() {

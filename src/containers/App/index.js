@@ -6,7 +6,9 @@ import 'semantic-ui-css/semantic.min.css';
 import { connect } from 'react-redux';
 
 import { getTemplates, addNewTemplateAction } from '../../actions/templatesActions';
+import { updateModelMockAction } from '../../actions/modelActions';
 import Header from '../Header';
+import ModelMock from '../ModelMock';
 
 const mockUpload = () => { console.log('upload'); };
 const mockImport = () => { console.log('import'); };
@@ -44,14 +46,20 @@ export class App extends PureComponent {
 
   static propTypes = {
     templates: PropTypes.array,
-    fetchAPTemplates: PropTypes.func,
-    addNewTemplate: PropTypes.func,
+    modelMockValue: PropTypes.string,
+    fetchAPTemplates: PropTypes.func.isRequired,
+    addNewTemplate: PropTypes.func.isRequired,
+    updateModelMock: PropTypes.func.isRequired,
   };
 
   render() {
     return (
       <div>
         <Header />
+        <ModelMock
+            updateModelMock={this.props.updateModelMock}
+            textValue={this.props.modelMockValue}
+          />
         <TLWrapper>
           <TemplateLibrary
             templates={this.props.templates}
@@ -68,11 +76,13 @@ export class App extends PureComponent {
 
 const mapStateToProps = state => ({
   templates: state.templatesState.templatesAP,
+  modelMockValue: state.modelState.model,
 });
 
 const mapDispatchToProps = dispatch => ({
   fetchAPTemplates: () => dispatch(getTemplates()),
   addNewTemplate: () => dispatch(addNewTemplateAction()),
+  updateModelMock: value => dispatch(updateModelMockAction(value)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);
