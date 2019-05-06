@@ -8,6 +8,7 @@ import { connect } from 'react-redux';
 import { getTemplates, addNewTemplateAction } from '../../actions/templatesActions';
 import { updateModelMockAction } from '../../actions/modelActions';
 import { updateLogicMockAction } from '../../actions/logicActions';
+import { updateSampleMockAction } from '../../actions/sampleActions';
 import Header from '../Header';
 import Tile from '../../components/Tile';
 
@@ -50,9 +51,11 @@ export class App extends PureComponent {
     fetchAPTemplates: PropTypes.func.isRequired,
     logicMockValue: PropTypes.string,
     modelMockValue: PropTypes.string,
+    sampleMockValue: PropTypes.string,
     templates: PropTypes.array,
-    updateModelMock: PropTypes.func.isRequired,
     updateLogicMock: PropTypes.func.isRequired,
+    updateModelMock: PropTypes.func.isRequired,
+    updateSampleMock: PropTypes.func.isRequired,
   };
 
   render() {
@@ -73,6 +76,13 @@ export class App extends PureComponent {
           textValue={this.props.logicMockValue}
           textLabel='Current Logic Value: '
         />
+        <Tile
+          handleSubmit={this.props.updateSampleMock}
+          header='Sample'
+          label='Sample Mock: '
+          textValue={this.props.sampleMockValue}
+          textLabel='Current Sample Value: '
+        />
         <TLWrapper>
           <TemplateLibrary
             templates={this.props.templates}
@@ -91,6 +101,7 @@ const mapStateToProps = state => ({
   templates: state.templatesState.templatesAP,
   modelMockValue: state.modelState.model,
   logicMockValue: state.logicState.logic,
+  sampleMockValue: state.sampleState.sample,
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -98,6 +109,7 @@ const mapDispatchToProps = dispatch => ({
   addNewTemplate: () => dispatch(addNewTemplateAction()),
   updateModelMock: value => dispatch(updateModelMockAction(value)),
   updateLogicMock: value => dispatch(updateLogicMockAction(value)),
+  updateSampleMock: value => dispatch(updateSampleMockAction(value)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);

@@ -5,6 +5,7 @@ import logger from 'redux-logger';
 import templatesReducer from './reducers/templatesReducer';
 import modelReducer from './reducers/modelReducer';
 import logicReducer from './reducers/logicReducer';
+import sampleReducer from './reducers/sampleReducer';
 import rootSaga from './sagas/rootSaga';
 
 const sagaMiddleware = createSagaMiddleware();
@@ -18,6 +19,7 @@ const rootReducer = combineReducers({
   templatesState: templatesReducer,
   modelState: modelReducer,
   logicState: logicReducer,
+  sampleState: sampleReducer,
 });
 
 const store = createStore(
