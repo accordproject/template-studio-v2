@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { ContractEditor } from '@accordproject/cicero-ui';
 
 const EditorWrapper = styled.div`
-height: 530px;
+height: 700px;
 width: calc(100vw - 485px);
 position: fixed;
 bottom: 0;
