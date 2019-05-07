@@ -1,9 +1,8 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import { ContractEditor, Tile } from '@accordproject/cicero-ui';
+import { Tile } from '@accordproject/cicero-ui';
 import 'semantic-ui-css/semantic.min.css';
 import { connect } from 'react-redux';
-import styled from 'styled-components';
 
 import { getTemplates, addNewTemplateAction } from '../../actions/templatesActions';
 import { updateModelMockAction } from '../../actions/modelActions';
@@ -11,25 +10,12 @@ import { updateLogicMockAction } from '../../actions/logicActions';
 import { updateSampleMockAction } from '../../actions/sampleActions';
 import Header from '../Header';
 import LibraryComponent from '../TemplateLibrary';
+import EditorComponent from '../ContractEditor';
 
 const mockUpload = () => { console.log('upload'); };
 const mockImport = () => { console.log('import'); };
 const mockAddTemp = () => { console.log('addTemp'); };
 const mockAddToCont = (input) => { console.log('addToCont: ', input); };
-
-const EditorWrapper = styled.div`
-height: 700px;
-width: 485px;
-position: fixed;
-bottom: 0;
-right: 0;
-border: 2px solid #F9F9F9;
-overflow-y: auto;
-&::-webkit-scrollbar {
-  width: 4px;
-  background: transparent;
-}
-`;
 
 export class App extends PureComponent {
   constructor(props) {
@@ -83,9 +69,7 @@ export class App extends PureComponent {
           textValue={this.props.sampleMockValue}
           textLabel='Current Sample Value: '
         />
-        <EditorWrapper>
-          <ContractEditor />
-        </EditorWrapper>
+        <EditorComponent />
         <LibraryComponent
           templatesArray={this.props.templates}
           uploadCTA={this.state.upload}
