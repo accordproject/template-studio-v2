@@ -1,33 +1,27 @@
 import React, { PureComponent } from 'react';
-import styled from 'styled-components';
 import PropTypes from 'prop-types';
-import { TemplateLibrary, Tile } from '@accordproject/cicero-ui';
+import { Tile } from '@accordproject/cicero-ui';
 import 'semantic-ui-css/semantic.min.css';
 import { connect } from 'react-redux';
+import styled from 'styled-components';
 
 import { getTemplates, addNewTemplateAction } from '../../actions/templatesActions';
 import { updateModelMockAction } from '../../actions/modelActions';
 import { updateLogicMockAction } from '../../actions/logicActions';
 import { updateSampleMockAction } from '../../actions/sampleActions';
 import Header from '../Header';
+import LibraryComponent from '../TemplateLibrary';
+import EditorComponent from '../ContractEditor';
 
 const mockUpload = () => { console.log('upload'); };
 const mockImport = () => { console.log('import'); };
 const mockAddTemp = () => { console.log('addTemp'); };
 const mockAddToCont = (input) => { console.log('addToCont: ', input); };
 
-const TLWrapper = styled.div`
-  height: 700px;
-  width: 485px;
-  position: fixed;
-  bottom: 0;
-  right: 0;
-  border: 2px solid #F9F9F9;
-  overflow-y: auto;
-  &::-webkit-scrollbar {
-    width: 4px;
-    background: transparent;
-  }
+const TileWrapper = styled.div`
+display: flex;
+width: 65vw;
+border: 2px solid #F9F9F9;
 `;
 
 export class App extends PureComponent {
@@ -61,36 +55,37 @@ export class App extends PureComponent {
     return (
       <div>
         <Header />
-        <Tile
-          handleSubmit={this.props.updateModelMock}
-          header='Model'
-          label='Model Mock: '
-          textValue={this.props.modelMockValue}
-          textLabel='Current Model Value: '
-        />
-        <Tile
-          handleSubmit={this.props.updateLogicMock}
-          header='Logic'
-          label='Logic Mock: '
-          textValue={this.props.logicMockValue}
-          textLabel='Current Logic Value: '
-        />
-        <Tile
-          handleSubmit={this.props.updateSampleMock}
-          header='Sample'
-          label='Sample Mock: '
-          textValue={this.props.sampleMockValue}
-          textLabel='Current Sample Value: '
-        />
-        <TLWrapper>
-          <TemplateLibrary
-            templates={this.props.templates}
-            upload={this.state.upload}
-            import={this.state.import}
-            addTemp={this.props.addNewTemplate}
-            addToCont={this.state.addToCont}
+        <TileWrapper>
+          <Tile
+            handleSubmit={this.props.updateModelMock}
+            header='Model'
+            label='Model Mock: '
+            textValue={this.props.modelMockValue}
+            textLabel='Current Model Value: '
           />
-        </TLWrapper>
+          <Tile
+            handleSubmit={this.props.updateLogicMock}
+            header='Logic'
+            label='Logic Mock: '
+            textValue={this.props.logicMockValue}
+            textLabel='Current Logic Value: '
+          />
+          <Tile
+            handleSubmit={this.props.updateSampleMock}
+            header='Sample'
+            label='Sample Mock: '
+            textValue={this.props.sampleMockValue}
+            textLabel='Current Sample Value: '
+          />
+        </TileWrapper>
+        <EditorComponent />
+        <LibraryComponent
+          templatesArray={this.props.templates}
+          uploadCTA={this.state.upload}
+          importTemplate={this.state.import}
+          addNewTemplate={this.props.addNewTemplate}
+          addToContract={this.state.addToCont}
+        />
       </div>
     );
   }
