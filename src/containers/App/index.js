@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { Tile } from '@accordproject/cicero-ui';
 import 'semantic-ui-css/semantic.min.css';
 import { connect } from 'react-redux';
+import styled from 'styled-components';
 
 import { getTemplates, addNewTemplateAction } from '../../actions/templatesActions';
 import { updateModelMockAction } from '../../actions/modelActions';
@@ -16,6 +17,12 @@ const mockUpload = () => { console.log('upload'); };
 const mockImport = () => { console.log('import'); };
 const mockAddTemp = () => { console.log('addTemp'); };
 const mockAddToCont = (input) => { console.log('addToCont: ', input); };
+
+const TileWrapper = styled.div`
+display: flex;
+width: 65vw;
+border: 2px solid #F9F9F9;
+`;
 
 export class App extends PureComponent {
   constructor(props) {
@@ -48,27 +55,29 @@ export class App extends PureComponent {
     return (
       <div>
         <Header />
-        <Tile
-          handleSubmit={this.props.updateModelMock}
-          header='Model'
-          label='Model Mock: '
-          textValue={this.props.modelMockValue}
-          textLabel='Current Model Value: '
-        />
-        <Tile
-          handleSubmit={this.props.updateLogicMock}
-          header='Logic'
-          label='Logic Mock: '
-          textValue={this.props.logicMockValue}
-          textLabel='Current Logic Value: '
-        />
-        <Tile
-          handleSubmit={this.props.updateSampleMock}
-          header='Sample'
-          label='Sample Mock: '
-          textValue={this.props.sampleMockValue}
-          textLabel='Current Sample Value: '
-        />
+        <TileWrapper>
+          <Tile
+            handleSubmit={this.props.updateModelMock}
+            header='Model'
+            label='Model Mock: '
+            textValue={this.props.modelMockValue}
+            textLabel='Current Model Value: '
+          />
+          <Tile
+            handleSubmit={this.props.updateLogicMock}
+            header='Logic'
+            label='Logic Mock: '
+            textValue={this.props.logicMockValue}
+            textLabel='Current Logic Value: '
+          />
+          <Tile
+            handleSubmit={this.props.updateSampleMock}
+            header='Sample'
+            label='Sample Mock: '
+            textValue={this.props.sampleMockValue}
+            textLabel='Current Sample Value: '
+          />
+        </TileWrapper>
         <EditorComponent />
         <LibraryComponent
           templatesArray={this.props.templates}
