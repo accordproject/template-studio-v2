@@ -7,11 +7,17 @@ import { App } from './index';
 const templates = [];
 const fetchAPTemplates = () => null;
 const addNewTemplate = () => null;
+const updateLogicMock = () => null;
+const updateModelMock = () => null;
+const updateSampleMock = () => null;
 
 const props = {
   templates,
   fetchAPTemplates,
   addNewTemplate,
+  updateLogicMock,
+  updateModelMock,
+  updateSampleMock,
 };
 
 describe('<App />', () => {
