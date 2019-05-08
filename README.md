@@ -1,5 +1,7 @@
 # Accord Project Template Studio (v2)
 
+[![Netlify Status](https://api.netlify.com/api/v1/badges/088bd784-321b-49d4-940b-8c1c0af6942f/deploy-status)](https://app.netlify.com/sites/happy-hawking-c2b795/deploys)
+
 ## Notes for development:
 
 In order to link another React component to template-studio-v2 for development, following these steps:
@@ -30,6 +32,7 @@ You will also see any lint errors in the console.
 ### `npm run test`
 
 Launches JEST over the repository.
+Current snapshot tests requires `npm test -- -u` in order to update when all changes are final.
 
 ### `npm run lint`
 
@@ -47,7 +50,7 @@ Your app is ready to be deployed!
 
 ## Redux Sagas
 
-Template Studio v2 is built with **Redux Sagas**, a good intro guide can be found [here](https://blog.logrocket.com/understanding-redux-saga-from-action-creators-to-sagas-2587298b5e71) and __official docs__ can be found [here](https://redux-saga.js.org/).
+Template Studio v2 is built with **Redux Sagas**, a good intro guide can be found [here][sagaGuide] and __official docs__ can be found [here][reduxSaga].
 
 ### Why Sagas vs. Thunks?
 
@@ -62,3 +65,11 @@ Template Studio v2 is built with **Redux Sagas**, a good intro guide can be foun
 - *Pros*: Test cases become fair and straight without necessity to mock the async behavior
 - *Cons*: Brings in more complexity to the code
 - *Implies*: Suited for complex async parts of the application that requires complex unit test cases
+
+---
+
+## License <a name="license"></a>
+Accord Project source code files are made available under the Apache License, Version 2.0 (Apache-2.0), located in the LICENSE file. Accord Project documentation files are made available under the Creative Commons Attribution 4.0 International License (CC-BY-4.0), available at http://creativecommons.org/licenses/by/4.0/.
+
+[sagaGuide]: https://blog.logrocket.com/understanding-redux-saga-from-action-creators-to-sagas-2587298b5e71
+[reduxSaga]: https://redux-saga.js.org/
