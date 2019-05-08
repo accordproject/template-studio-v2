@@ -5,6 +5,10 @@ import 'semantic-ui-css/semantic.min.css';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
 
+import {
+  Button, Tab, Segment, Sidebar,
+} from 'semantic-ui-react';
+
 import { getTemplates, addNewTemplateAction } from '../../actions/templatesActions';
 import { updateModelMockAction } from '../../actions/modelActions';
 import { updateLogicMockAction } from '../../actions/logicActions';
@@ -12,6 +16,8 @@ import { updateSampleMockAction } from '../../actions/sampleActions';
 import Header from '../Header';
 import LibraryComponent from '../TemplateLibrary';
 import EditorComponent from '../ContractEditor';
+import ModelEditorComponent from '../ModelEditor';
+import ErgoEditorComponent from '../ErgoEditor';
 
 const mockUpload = () => { console.log('upload'); };
 const mockImport = () => { console.log('import'); };
@@ -32,8 +38,15 @@ export class App extends PureComponent {
       import: mockImport,
       addTemp: mockAddTemp,
       addToCont: mockAddToCont,
+      templatesVisible: false,
     };
   }
+
+  handleHideClick = () => this.setState({ templatesVisible: false });
+
+  handleShowClick = () => this.setState({ templatesVisible: true });
+
+  handleSidebarHide = () => this.setState({ templatesVisible: false });
 
   componentDidMount() {
     this.props.fetchAPTemplates();
@@ -52,6 +65,29 @@ export class App extends PureComponent {
   };
 
   render() {
+    const { templatesVisible } = this.state;
+
+    const panes = [
+      {
+        menuItem: 'Text',
+        render: () => (
+          <EditorComponent />
+        ),
+      },
+      {
+        menuItem: 'Model',
+        render: () => (
+          <ModelEditorComponent textValue={this.props.modelMockValue} handleSubmit={this.props.updateModelMock}/>
+        ),
+      },
+      {
+        menuItem: 'Logic',
+        render: () => (
+          <ErgoEditorComponent textValue={this.props.logicMockValue} handleSubmit={this.props.updateLogicMock}/>
+        ),
+      },
+    ];
+
     return (
       <div>
         <Header />
@@ -78,14 +114,32 @@ export class App extends PureComponent {
             textLabel='Current Sample Value: '
           />
         </TileWrapper>
-        <EditorComponent />
-        <LibraryComponent
-          templatesArray={this.props.templates}
-          uploadCTA={this.state.upload}
-          importTemplate={this.state.import}
-          addNewTemplate={this.props.addNewTemplate}
-          addToContract={this.state.addToCont}
-        />
+        <Button.Group>
+          <Button disabled={templatesVisible} onClick={this.handleShowClick}>
+            Show Templates
+          </Button>
+          <Button disabled={!templatesVisible} onClick={this.handleHideClick}>
+            Hide Templates
+          </Button>
+        </Button.Group>
+        <Sidebar.Pushable as={Segment}>
+          <Sidebar as={Segment} onHide={this.handleSidebarHide} visible={templatesVisible} animation='uncover' width='very wide' direction='right'>
+          <Segment basic>
+            <LibraryComponent
+                  templatesArray={this.props.templates}
+                  uploadCTA={this.state.upload}
+                  importTemplate={this.state.import}
+                  addNewTemplate={this.props.addNewTemplate}
+                  addToContract={this.state.addToCont}
+                />
+          </Segment>
+          </Sidebar>
+          <Sidebar.Pusher>
+            <Segment basic>
+            <Tab menu={{ fluid: true, vertical: true, tabular: true }} panes={panes} />
+            </Segment>
+          </Sidebar.Pusher>
+        </Sidebar.Pushable>
       </div>
     );
   }

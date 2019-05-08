@@ -1,5 +1,7 @@
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const MonacoWebpackPlugin = require('monaco-editor-webpack-plugin');
+
 // const CopyWebpackPlugin = require('copy-webpack-plugin');
 // const webpack = require('webpack');
 const path = require('path');
@@ -60,6 +62,10 @@ module.exports = {
       filename: './index.html',
     }),
     new CleanWebpackPlugin(),
+    new MonacoWebpackPlugin({
+      // available options are documented at https://github.com/Microsoft/monaco-editor-webpack-plugin#options
+      languages: ['json'],
+    }),
   ],
   node: {
     fs: 'empty',
