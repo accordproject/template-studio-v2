@@ -17,9 +17,7 @@ overflow-y: auto;
 `;
 
 const EditorComponent = () => (
-    <EditorWrapper>
-      <ContractEditor />
-    </EditorWrapper>
+  <ContractEditor />
 );
 
 export default EditorComponent;
