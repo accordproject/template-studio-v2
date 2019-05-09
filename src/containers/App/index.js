@@ -47,8 +47,6 @@ export class App extends PureComponent {
 
   handleShowClick = () => this.setState({ templatesVisible: true });
 
-  handleSidebarHide = () => this.setState({ templatesVisible: false });
-
   componentDidMount() {
     this.props.fetchAPTemplates();
   }
@@ -69,13 +67,16 @@ export class App extends PureComponent {
   render() {
     const { templatesVisible } = this.state;
 
+    // console.log(`PROPS: ${JSON.stringify(this.props, null, 2)}`);
+    // console.log(`STATE: ${JSON.stringify(this.state, null, 2)}`);
+
     const panes = [
-      {
-        menuItem: 'Text',
-        render: () => (
-          <EditorComponent />
-        ),
-      },
+      // {
+      //   menuItem: 'Text',
+      //   render: () => (
+      //     <EditorComponent />
+      //   ),
+      // },
       {
         menuItem: 'Model',
         render: () => (
@@ -94,6 +95,13 @@ export class App extends PureComponent {
       <div>
         <Header />
         <TileWrapper>
+        <Tile
+            handleSubmit={this.props.updateModelFile}
+            header='Model'
+            label='Model: '
+            textValue={this.props.modelFileContents}
+            textLabel='Current Model: '
+          />
           <Tile
             handleSubmit={this.props.updateLogicMock}
             header='Logic'
@@ -118,7 +126,7 @@ export class App extends PureComponent {
           </Button>
         </Button.Group>
         <Sidebar.Pushable as={Segment}>
-          <Sidebar as={Segment} onHide={this.handleSidebarHide} visible={templatesVisible} animation='uncover' width='very wide' direction='right'>
+          <Sidebar as={Segment} onHide={this.handleHideClick} visible={templatesVisible} animation='uncover' width='very wide' direction='right'>
           <Segment basic>
             <LibraryComponent
                   templatesArray={this.props.templates}
@@ -143,7 +151,7 @@ export class App extends PureComponent {
 
 const mapStateToProps = state => ({
   templates: state.templatesState.templatesAP,
-  modelFileContents: state.modelState.modelFileText,
+  modelFileContents: state.modelState.modelFiles['test.cto'],
   errors: state.modelState.error ? [state.modelState.error] : [],
   logicMockValue: state.logicState.logic,
   sampleMockValue: state.sampleState.sample,

@@ -1,5 +1,24 @@
 const initialState = {
-  modelFiles: {},
+  modelFiles: {
+    'test.cto': `
+/**
+ * This is a comment
+ */
+   
+namespace test
+
+asset Vehicle identified by vin {
+  o String vin default="unknown"
+}
+
+// this is another comment
+participant Person identified by ssn {
+  o String name
+  o String ssn
+  o DateTime dob
+  --> Vehicle vehicle
+}`,
+  },
   modelManager: null,
   error: null,
 };
