@@ -8,7 +8,7 @@ const templates = [];
 const fetchAPTemplates = () => null;
 const addNewTemplate = () => null;
 const updateLogicMock = () => null;
-const updateModelMock = () => null;
+const updateModelFile = () => null;
 const updateSampleMock = () => null;
 
 const props = {
@@ -16,7 +16,7 @@ const props = {
   fetchAPTemplates,
   addNewTemplate,
   updateLogicMock,
-  updateModelMock,
+  updateModelFile,
   updateSampleMock,
 };
 

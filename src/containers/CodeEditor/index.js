@@ -35,7 +35,7 @@ class CodeEditor extends MonacoEditor {
     };
     return (
       <MonacoEditor
-        height="600"
+        height="300"
         language="javascript"
         theme="vs-dark"
         value={code}

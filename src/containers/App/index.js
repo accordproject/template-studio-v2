@@ -10,7 +10,7 @@ import {
 } from 'semantic-ui-react';
 
 import { getTemplates, addNewTemplateAction } from '../../actions/templatesActions';
-import { updateModelMockAction } from '../../actions/modelActions';
+import { updateModelFileAction } from '../../actions/modelActions';
 import { updateLogicMockAction } from '../../actions/logicActions';
 import { updateSampleMockAction } from '../../actions/sampleActions';
 import Header from '../Header';
@@ -18,6 +18,7 @@ import LibraryComponent from '../TemplateLibrary';
 import EditorComponent from '../ContractEditor';
 import ModelEditorComponent from '../ModelEditor';
 import ErgoEditorComponent from '../ErgoEditor';
+import ErrorComponent from '../Error';
 
 const mockUpload = () => { console.log('upload'); };
 const mockImport = () => { console.log('import'); };
@@ -56,12 +57,13 @@ export class App extends PureComponent {
     addNewTemplate: PropTypes.func.isRequired,
     fetchAPTemplates: PropTypes.func.isRequired,
     logicMockValue: PropTypes.string,
-    modelMockValue: PropTypes.string,
+    modelFileContents: PropTypes.string,
     sampleMockValue: PropTypes.string,
     templates: PropTypes.array,
     updateLogicMock: PropTypes.func.isRequired,
-    updateModelMock: PropTypes.func.isRequired,
+    updateModelFile: PropTypes.func.isRequired,
     updateSampleMock: PropTypes.func.isRequired,
+    errors: PropTypes.array.isRequired,
   };
 
   render() {
@@ -77,7 +79,7 @@ export class App extends PureComponent {
       {
         menuItem: 'Model',
         render: () => (
-          <ModelEditorComponent textValue={this.props.modelMockValue} handleSubmit={this.props.updateModelMock}/>
+          <ModelEditorComponent textValue={this.props.modelFileContents} handleSubmit={this.props.updateModelFile}/>
         ),
       },
       {
@@ -92,13 +94,6 @@ export class App extends PureComponent {
       <div>
         <Header />
         <TileWrapper>
-          <Tile
-            handleSubmit={this.props.updateModelMock}
-            header='Model'
-            label='Model Mock: '
-            textValue={this.props.modelMockValue}
-            textLabel='Current Model Value: '
-          />
           <Tile
             handleSubmit={this.props.updateLogicMock}
             header='Logic'
@@ -140,6 +135,7 @@ export class App extends PureComponent {
             </Segment>
           </Sidebar.Pusher>
         </Sidebar.Pushable>
+        <ErrorComponent errors={this.props.errors}/>
       </div>
     );
   }
@@ -147,7 +143,8 @@ export class App extends PureComponent {
 
 const mapStateToProps = state => ({
   templates: state.templatesState.templatesAP,
-  modelMockValue: state.modelState.model,
+  modelFileContents: state.modelState.modelFileText,
+  errors: state.modelState.error ? [state.modelState.error] : [],
   logicMockValue: state.logicState.logic,
   sampleMockValue: state.sampleState.sample,
 });
@@ -155,7 +152,7 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
   fetchAPTemplates: () => dispatch(getTemplates()),
   addNewTemplate: () => dispatch(addNewTemplateAction()),
-  updateModelMock: value => dispatch(updateModelMockAction(value)),
+  updateModelFile: value => dispatch(updateModelFileAction(value)),
   updateLogicMock: value => dispatch(updateLogicMockAction(value)),
   updateSampleMock: value => dispatch(updateSampleMockAction(value)),
 });

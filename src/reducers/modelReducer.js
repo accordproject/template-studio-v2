@@ -1,12 +1,17 @@
 const initialState = {
-  model: '',
+  modelFiles: {},
+  modelManager: null,
   error: null,
 };
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
-    case 'UPDATE_MODEL_MOCK_SUCCEEDED':
-      return { ...state, model: action.model };
+    case 'UPDATE_MODEL_FILE_SUCCEEDED':
+      return { ...state, modelFiles: { ...state.modelFiles, ...action.modelFile } };
+    case 'UPDATE_MODEL_MANAGER_SUCCEEDED':
+      return { ...state, modelManager: action.modelManager };
+    case 'UPDATE_MODEL_ERROR_SUCCEEDED':
+      return { ...state, error: action.error };
     default:
       return state;
   }
