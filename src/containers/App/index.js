@@ -18,7 +18,7 @@ import LibraryComponent from '../TemplateLibrary';
 import EditorComponent from '../ContractEditor';
 import ModelEditorComponent from '../ModelEditor';
 import ErgoEditorComponent from '../ErgoEditor';
-import ErrorComponent from '../Error';
+import ErrorContainer from '../Error';
 
 const mockUpload = () => { console.log('upload'); };
 const mockImport = () => { console.log('import'); };
@@ -143,7 +143,7 @@ export class App extends PureComponent {
             </Segment>
           </Sidebar.Pusher>
         </Sidebar.Pushable>
-        <ErrorComponent errors={this.props.errors}/>
+        <ErrorContainer errors={this.props.errors}/>
       </div>
     );
   }

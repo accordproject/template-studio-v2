@@ -1,78 +1,25 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import ReactTable from 'react-table';
+import styled from 'styled-components';
+import { connect } from 'react-redux';
+import { ErrorLogger } from '@accordproject/cicero-ui';
 
-class ErrorComponent extends React.Component {
-  static buildMessage(d, key) {
-    let result = 'Unknown';
+const ErrorWrapper = styled.div`
+  bottom: 0;
+  position: absolute;
+  width: 100%;
+`;
+const ErrorContainer = props => (
+  <ErrorWrapper>
+    <ErrorLogger errors={props.errors}/>
+  </ErrorWrapper>
+);
 
-    if (d.fileLocation) {
-      result = '';
-      if (d.fileLocation[key].line) {
-        result += `Line: ${d.fileLocation[key].line}`;
-      }
+ErrorContainer.propTypes = {
+  errors: PropTypes.array.isRequired,
+};
+const mapStateToProps = state => ({
+  errors: state.modelState.error ? [state.modelState.error] : [],
+});
 
-      if (d.fileLocation[key].column) {
-        result += ` Col: ${d.fileLocation[key].column}`;
-      }
-    }
-
-    return result;
-  }
-
-  static buildStartLocation(d) {
-    return ErrorComponent.buildMessage(d, 'start');
-  }
-
-  static buildEndLocation(d) {
-    return ErrorComponent.buildMessage(d, 'end');
-  }
-
-  render() {
-    const columns = [{
-      Header: 'Type',
-      accessor: 'type',
-      width: 100,
-    },
-    {
-      Header: 'Name',
-      accessor: 'name',
-      width: 200,
-    },
-    {
-      Header: 'File',
-      accessor: 'fileName',
-      width: 100,
-    },
-    {
-      id: 'startLocation',
-      Header: 'Start Location',
-      accessor: d => ErrorComponent.buildStartLocation(d),
-      width: 100,
-    },
-    {
-      id: 'endLocation',
-      Header: 'End Location',
-      accessor: d => ErrorComponent.buildEndLocation(d),
-      width: 100,
-    },
-    {
-      Header: 'Message',
-      accessor: 'shortMessage',
-      width: 600,
-    },
-    ];
-
-    return (<ReactTable
-          data={this.props.errors}
-          pageSize={5}
-          columns={columns}
-        />);
-  }
-
-  static propTypes = {
-    errors: PropTypes.array.isRequired,
-  };
-}
-
-export default ErrorComponent;
+export default connect(mapStateToProps)(ErrorContainer);
