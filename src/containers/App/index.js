@@ -143,7 +143,7 @@ export class App extends PureComponent {
             </Segment>
           </Sidebar.Pusher>
         </Sidebar.Pushable>
-        <ErrorContainer errors={this.props.errors}/>
+        <ErrorContainer/>
       </div>
     );
   }
@@ -152,7 +152,6 @@ export class App extends PureComponent {
 const mapStateToProps = state => ({
   templates: state.templatesState.templatesAP,
   modelFileContents: state.modelState.modelFiles['test.cto'],
-  errors: state.modelState.error ? [state.modelState.error] : [],
   logicMockValue: state.logicState.logic,
   sampleMockValue: state.sampleState.sample,
 });
