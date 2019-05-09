@@ -5,11 +5,10 @@
   "private": true,
   "scripts": {
     "start": "webpack-dev-server --config webpack.config.js --mode development --watch ",
-    "build": "webpack --config webpack.config.js --mode production",
+    "build": "LIMIT=2048 increase-memory-limit && webpack --config webpack.config.js --mode production",
     "lint": "eslint --ext .js --ext .jsx --ignore-path .gitignore ./src",
     "test": "jest",
-    "test:watch": "npm test -- --watch",
-    "fix-memory-limit": "cross-env LIMIT=2048 increase-memory-limit"
+    "test:watch": "npm test -- --watch"
   },
   "repository": {
     "type": "git",
