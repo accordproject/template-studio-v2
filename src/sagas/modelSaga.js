@@ -4,7 +4,8 @@ import * as selectors from '../selectors/modelSelectors';
 import * as actions from '../actions/modelActions';
 
 /**
- * saga to validate model and update model manager
+ * saga which yields to putting the successful model manager into the store
+ * and subsequently clears all model manager errors from the store
  */
 export function* validateModelFiles() {
   // get all the model files in the state
@@ -33,7 +34,8 @@ export function* validateModelFiles() {
 }
 
 /**
- * saga to update model file on store
+ * saga which yields to updating the model file and
+ * subsequently puts a valid model in the store
  */
 export function* updateModelFileOnStore(modelFileAction) {
   yield put(actions.updateModelFileSuccess(modelFileAction.modelFile));

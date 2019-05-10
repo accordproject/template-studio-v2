@@ -20,7 +20,8 @@ export function* pushTemplatesToStore() {
 }
 
 /**
- * saga to add new template to store
+ * saga which puts a mock template onto the array
+ * of templates in the store
  */
 export function* addNewTemplateToStore() {
   const newTemplate = {
