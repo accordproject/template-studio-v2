@@ -22,22 +22,13 @@ export function* validateModelFiles() {
     // validate the model manager
     modelManager.validateModelFiles();
 
-    yield put({
-      type: 'UPDATE_MODEL_MANAGER_SUCCEEDED',
-      modelManager,
-    });
+    yield put(actions.updateModelManagerSuccess(modelManager));
 
-    yield put({
-      type: 'UPDATE_MODEL_ERROR_SUCCEEDED',
-      error: null,
-    });
+    yield put(actions.updateModelManagerError(null));
   } catch (err) {
     err.type = 'Model';
     err.fileName = 'test.cto';
-    yield put({
-      type: 'UPDATE_MODEL_ERROR_SUCCEEDED',
-      error: err,
-    });
+    yield put(actions.updateModelManagerError(err));
   }
 }
 
@@ -45,10 +36,7 @@ export function* validateModelFiles() {
  * saga to update model file on store
  */
 export function* updateModelFileOnStore(modelFileAction) {
-  yield put({
-    type: 'UPDATE_MODEL_FILE_SUCCEEDED',
-    modelFile: modelFileAction.modelFile,
-  });
+  yield put(actions.updateModelFileSuccess(modelFileAction.modelFile));
 
   yield put(actions.validateModelFilesAction());
 }
