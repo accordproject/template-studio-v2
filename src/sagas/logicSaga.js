@@ -1,10 +1,8 @@
 import { takeLatest, put } from 'redux-saga/effects';
+import * as actions from '../actions/logicActions';
 
 export function* updateLogicOnStore(logicMockAction) {
-  yield put({
-    type: 'UPDATE_LOGIC_MOCK_SUCCEEDED',
-    logic: logicMockAction.logic,
-  });
+  yield put(actions.updateLogicMockSuccess(logicMockAction.logic));
 }
 
 export const logicSaga = [
