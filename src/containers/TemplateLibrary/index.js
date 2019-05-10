@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import { connect } from 'react-redux';
 import { TemplateLibrary } from '@accordproject/cicero-ui';
 
-import { getTemplates, addNewTemplateAction } from '../../actions/templatesActions';
+import { getTemplatesAction, addNewTemplateAction } from '../../actions/templatesActions';
 
 const TLWrapper = styled.div`
 height: 100%;
@@ -57,7 +57,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  fetchAPTemplates: () => dispatch(getTemplates()),
+  fetchAPTemplates: () => dispatch(getTemplatesAction()),
   addNewTemplate: () => dispatch(addNewTemplateAction()),
 });
 

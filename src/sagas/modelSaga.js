@@ -3,6 +3,9 @@ import { ModelManager } from 'composer-concerto';
 import * as selectors from '../selectors/modelSelectors';
 import * as actions from '../actions/modelActions';
 
+/**
+ * saga to validate model and update model manager
+ */
 export function* validateModelFiles() {
   // get all the model files in the state
   const modelFiles = yield select(selectors.modelFiles);
@@ -38,6 +41,9 @@ export function* validateModelFiles() {
   }
 }
 
+/**
+ * saga to update model file on store
+ */
 export function* updateModelFileOnStore(modelFileAction) {
   yield put({
     type: 'UPDATE_MODEL_FILE_SUCCEEDED',
