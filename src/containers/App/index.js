@@ -15,7 +15,7 @@ import { updateLogicMockAction } from '../../actions/logicActions';
 import { updateSampleMockAction } from '../../actions/sampleActions';
 import Header from '../Header';
 import LibraryComponent from '../TemplateLibrary';
-import EditorComponent from '../ContractEditor';
+// import EditorComponent from '../ContractEditor';
 import ModelEditorComponent from '../ModelEditor';
 import ErgoEditorComponent from '../ErgoEditor';
 import ErrorContainer from '../Error';
@@ -61,7 +61,7 @@ export class App extends PureComponent {
     updateLogicMock: PropTypes.func.isRequired,
     updateModelFile: PropTypes.func.isRequired,
     updateSampleMock: PropTypes.func.isRequired,
-    errors: PropTypes.array.isRequired,
+    errors: PropTypes.array,
   };
 
   render() {
@@ -80,13 +80,19 @@ export class App extends PureComponent {
       {
         menuItem: 'Model',
         render: () => (
-          <ModelEditorComponent textValue={this.props.modelFileContents} handleSubmit={this.props.updateModelFile}/>
+          <ModelEditorComponent
+            textValue={this.props.modelFileContents}
+            handleSubmit={this.props.updateModelFile}
+          />
         ),
       },
       {
         menuItem: 'Logic',
         render: () => (
-          <ErgoEditorComponent textValue={this.props.logicMockValue} handleSubmit={this.props.updateLogicMock}/>
+          <ErgoEditorComponent
+            textValue={this.props.logicMockValue}
+            handleSubmit={this.props.updateLogicMock}
+          />
         ),
       },
     ];
