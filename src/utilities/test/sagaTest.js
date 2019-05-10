@@ -4,10 +4,10 @@ export async function recordSaga(saga, initialAction) {
   const dispatched = [];
 
   await runSaga(
-    { dispatch: action => dispatched.push(action) },
+    { dispatch: (action) => { dispatched.push(action); } },
     saga,
     initialAction,
-  ).done;
+  ).toPromise();
 
   return dispatched;
 }
