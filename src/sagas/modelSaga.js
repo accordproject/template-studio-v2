@@ -3,6 +3,10 @@ import { ModelManager } from 'composer-concerto';
 import * as selectors from '../selectors/modelSelectors';
 import * as actions from '../actions/modelActions';
 
+/**
+ * saga which yields to putting the successful model manager into the store
+ * and subsequently clears all model manager errors from the store
+ */
 export function* validateModelFiles() {
   // get all the model files in the state
   const modelFiles = yield select(selectors.modelFiles);
@@ -19,30 +23,22 @@ export function* validateModelFiles() {
     // validate the model manager
     modelManager.validateModelFiles();
 
-    yield put({
-      type: 'UPDATE_MODEL_MANAGER_SUCCEEDED',
-      modelManager,
-    });
+    yield put(actions.updateModelManagerSuccess(modelManager));
 
-    yield put({
-      type: 'UPDATE_MODEL_ERROR_SUCCEEDED',
-      error: null,
-    });
+    yield put(actions.updateModelManagerError(null));
   } catch (err) {
     err.type = 'Model';
     err.fileName = 'test.cto';
-    yield put({
-      type: 'UPDATE_MODEL_ERROR_SUCCEEDED',
-      error: err,
-    });
+    yield put(actions.updateModelManagerError(err));
   }
 }
 
+/**
+ * saga which yields to updating the model file and
+ * subsequently puts a valid model in the store
+ */
 export function* updateModelFileOnStore(modelFileAction) {
-  yield put({
-    type: 'UPDATE_MODEL_FILE_SUCCEEDED',
-    modelFile: modelFileAction.modelFile,
-  });
+  yield put(actions.updateModelFileSuccess(modelFileAction.modelFile));
 
   yield put(actions.validateModelFilesAction());
 }

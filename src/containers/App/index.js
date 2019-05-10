@@ -9,21 +9,15 @@ import {
   Button, Tab, Segment, Sidebar,
 } from 'semantic-ui-react';
 
-import { getTemplates, addNewTemplateAction } from '../../actions/templatesActions';
 import { updateModelFileAction } from '../../actions/modelActions';
 import { updateLogicMockAction } from '../../actions/logicActions';
 import { updateSampleMockAction } from '../../actions/sampleActions';
 import Header from '../Header';
-import LibraryComponent from '../TemplateLibrary';
-// import EditorComponent from '../ContractEditor';
+import LibraryContainer from '../TemplateLibrary';
+import EditorComponent from '../ContractEditor';
 import ModelEditorComponent from '../ModelEditor';
 import ErgoEditorComponent from '../ErgoEditor';
 import ErrorContainer from '../Error';
-
-const mockUpload = () => { console.log('upload'); };
-const mockImport = () => { console.log('import'); };
-const mockAddTemp = () => { console.log('addTemp'); };
-const mockAddToCont = (input) => { console.log('addToCont: ', input); };
 
 const TileWrapper = styled.div`
 display: flex;
@@ -35,10 +29,6 @@ export class App extends PureComponent {
   constructor(props) {
     super(props);
     this.state = {
-      upload: mockUpload,
-      import: mockImport,
-      addTemp: mockAddTemp,
-      addToCont: mockAddToCont,
       templatesVisible: false,
     };
   }
@@ -47,21 +37,13 @@ export class App extends PureComponent {
 
   handleShowClick = () => this.setState({ templatesVisible: true });
 
-  componentDidMount() {
-    this.props.fetchAPTemplates();
-  }
-
   static propTypes = {
-    addNewTemplate: PropTypes.func.isRequired,
-    fetchAPTemplates: PropTypes.func.isRequired,
     logicMockValue: PropTypes.string,
     modelFileContents: PropTypes.string,
     sampleMockValue: PropTypes.string,
-    templates: PropTypes.array,
     updateLogicMock: PropTypes.func.isRequired,
     updateModelFile: PropTypes.func.isRequired,
     updateSampleMock: PropTypes.func.isRequired,
-    errors: PropTypes.array,
   };
 
   render() {
@@ -134,13 +116,7 @@ export class App extends PureComponent {
         <Sidebar.Pushable as={Segment}>
           <Sidebar as={Segment} onHide={this.handleHideClick} visible={templatesVisible} animation='uncover' width='very wide' direction='right'>
           <Segment basic>
-            <LibraryComponent
-                  templatesArray={this.props.templates}
-                  uploadCTA={this.state.upload}
-                  importTemplate={this.state.import}
-                  addNewTemplate={this.props.addNewTemplate}
-                  addToContract={this.state.addToCont}
-                />
+            <LibraryContainer />
           </Segment>
           </Sidebar>
           <Sidebar.Pusher>
@@ -156,15 +132,12 @@ export class App extends PureComponent {
 }
 
 const mapStateToProps = state => ({
-  templates: state.templatesState.templatesAP,
   modelFileContents: state.modelState.modelFiles['test.cto'],
   logicMockValue: state.logicState.logic,
   sampleMockValue: state.sampleState.sample,
 });
 
 const mapDispatchToProps = dispatch => ({
-  fetchAPTemplates: () => dispatch(getTemplates()),
-  addNewTemplate: () => dispatch(addNewTemplateAction()),
   updateModelFile: value => dispatch(updateModelFileAction(value)),
   updateLogicMock: value => dispatch(updateLogicMockAction(value)),
   updateSampleMock: value => dispatch(updateSampleMockAction(value)),

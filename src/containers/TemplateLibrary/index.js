@@ -1,10 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
+import { connect } from 'react-redux';
 import { TemplateLibrary } from '@accordproject/cicero-ui';
 
+import { getTemplatesAction, addNewTemplateAction } from '../../actions/templatesActions';
+
 const TLWrapper = styled.div`
-height: 700px;
+height: 100%;
 width: 485px;
 position: fixed;
 bottom: 0;
@@ -16,25 +19,46 @@ overflow-y: auto;
   background: transparent;
 }
 `;
+const mockAddToCont = (input) => { console.log('addToCont: ', input); };
+const mockImport = () => { console.log('import'); };
+const mockUpload = () => { console.log('upload'); };
 
-const LibraryComponent = props => (
-    <TLWrapper>
+export class LibraryComponent extends React.PureComponent {
+  componentDidMount() {
+    this.props.fetchAPTemplates();
+  }
+
+  render() {
+    return (
+      <TLWrapper>
         <TemplateLibrary
-        templates={props.templatesArray}
-        upload={props.uploadCTA}
-        import={props.importTemplate}
-        addTemp={props.addNewTemplate}
-        addToCont={props.addToContract}
+          templates={this.props.templates}
+          upload={mockUpload}
+          import={mockImport}
+          addTemp={this.props.addNewTemplate}
+          addToCont={mockAddToCont}
         />
-    </TLWrapper>
-);
+      </TLWrapper>
+    );
+  }
+}
 
 LibraryComponent.propTypes = {
-  templatesArray: PropTypes.array,
+  templates: PropTypes.array.isRequired,
   uploadCTA: PropTypes.func,
   importTemplate: PropTypes.func,
-  addNewTemplate: PropTypes.func,
   addToContract: PropTypes.func,
+  addNewTemplate: PropTypes.func.isRequired,
+  fetchAPTemplates: PropTypes.func.isRequired,
 };
 
-export default LibraryComponent;
+const mapStateToProps = state => ({
+  templates: state.templatesState.templatesAP,
+});
+
+const mapDispatchToProps = dispatch => ({
+  fetchAPTemplates: () => dispatch(getTemplatesAction()),
+  addNewTemplate: () => dispatch(addNewTemplateAction()),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(LibraryComponent);
