@@ -53,13 +53,7 @@ exports[`<App /> on initialization renders page correctly 1`] = `
       <Segment
         basic={true}
       >
-        <LibraryComponent
-          addNewTemplate={[Function]}
-          addToContract={[Function]}
-          importTemplate={[Function]}
-          templatesArray={Array []}
-          uploadCTA={[Function]}
-        />
+        <Connect(LibraryComponent) />
       </Segment>
     </Sidebar>
     <SidebarPusher>
