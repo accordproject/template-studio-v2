@@ -1,31 +1,25 @@
-// import {pushTemplatesToStore} from './sagas';
-// import * as selectors from './selectors';
-// import * as api from './api';
-// import {recordSaga} from './TestUtils';
-// import { loadProfileFailure, loadProfileSuccess } from './actionCreators';
-
 import { pushTemplatesToStore } from '../templatesSaga';
 import { recordSaga } from '../../utilities/test/sagaTest';
-// import { addNewTemplateAction } from '../../actions/templatesActions';
+import { getTemplatesSuccess } from '../../actions/templatesActions';
 
-describe('addNewTemplateToStore', () => {
+describe('pushTemplatesToStore', () => {
   //   beforeEach(() => {
   //     jest.resetAllMocks();
   //   });
 
-  it('should fail if not authenticated', async () => {
-    const spomething = [{
-      type: 'ADD_NEW_TEMPLATE_SUCCEEDED',
-      template: {
-        uri: `${Date.now()}`,
-        name: 'Temporary New Template',
-        version: '1.0.0',
-        description: 'This is mock data to showcase an action to add a new template.',
-      },
-    }];
+  it('should dispatch the action getTemplatesSuccess', async () => {
     const dispatched = await recordSaga(
       pushTemplatesToStore,
+      getTemplatesSuccess,
     );
-    expect(dispatched).toContainEqual(spomething);
+    expect(dispatched[0].type).toEqual('GET_AP_TEMPLATES_SUCEEDED');
+  });
+
+  it('should receive an array of templates from accordproject.org', async () => {
+    const dispatched = await recordSaga(
+      pushTemplatesToStore,
+      getTemplatesSuccess,
+    );
+    expect(dispatched[0].templates[0].url).toContain('templates.accordproject.org');
   });
 });
