@@ -11,7 +11,7 @@ describe('updateSampleOnStore', () => {
     expect(dispatched[0].type).toEqual('UPDATE_SAMPLE_MOCK_SUCCEEDED');
   });
 
-  it('should update logic with a logic value in the action', async () => {
+  it('should update sample with a sample value in the action', async () => {
     const dispatched = await recordSaga(
       updateSampleOnStore,
       updateSampleMockSuccess('Any sample value'),
