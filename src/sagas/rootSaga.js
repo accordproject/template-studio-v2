@@ -4,6 +4,9 @@ import { modelSaga } from './modelSaga';
 import { logicSaga } from './logicSaga';
 import { sampleSaga } from './sampleSaga';
 
+/**
+ * saga to yield all others
+ */
 export default function* rootSaga() {
   yield all([
     ...templatesSaga,
