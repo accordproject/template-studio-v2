@@ -10,7 +10,6 @@ describe('updateModelFileOnStore', () => {
       updateModelFileOnStore,
       updateModelFileSuccess,
     );
-    // console.log('DISPATCH: : ', dispatched);
     expect(dispatched[0].type).toEqual('UPDATE_MODEL_FILE_SUCCEEDED');
   });
 });
