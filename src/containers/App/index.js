@@ -14,7 +14,7 @@ import { updateLogicMockAction } from '../../actions/logicActions';
 import { updateSampleMockAction } from '../../actions/sampleActions';
 import Header from '../Header';
 import LibraryContainer from '../TemplateLibrary';
-import EditorComponent from '../ContractEditor';
+import EditorContainer from '../ContractEditor';
 import ModelEditorComponent from '../ModelEditor';
 import ErgoEditorComponent from '../ErgoEditor';
 import ErrorContainer from '../Error';
@@ -53,12 +53,12 @@ export class App extends PureComponent {
     // console.log(`STATE: ${JSON.stringify(this.state, null, 2)}`);
 
     const panes = [
-      // {
-      //   menuItem: 'Text',
-      //   render: () => (
-      //     <EditorComponent />
-      //   ),
-      // },
+      {
+        menuItem: 'Text',
+        render: () => (
+          <EditorContainer />
+        ),
+      },
       {
         menuItem: 'Model',
         render: () => (

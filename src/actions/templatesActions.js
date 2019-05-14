@@ -20,3 +20,7 @@ export const addNewTemplateSuccess = template => ({
   type: 'ADD_NEW_TEMPLATE_SUCCEEDED',
   template,
 });
+
+export const getTemplateFromUrlAction = () => ({
+  type: 'GET_TEMPLATE_FROM_URL_SUCCEEDED',
+});
