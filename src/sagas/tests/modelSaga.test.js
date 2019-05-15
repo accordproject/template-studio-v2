@@ -1,5 +1,5 @@
-import { expectSaga } from 'redux-saga-test-plan';
 import { select } from 'redux-saga/effects';
+import { expectSaga } from 'redux-saga-test-plan';
 import { ModelManager } from 'composer-concerto';
 import { updateModelFileOnStore, validateModelFiles } from '../modelSaga';
 import { recordSaga } from '../../utilities/test/sagaTest';
@@ -56,9 +56,8 @@ describe('validateModelFiles', () => {
     modelManager.updateExternalModels();
     modelManager.validateModelFiles();
 
-    expectSaga(validateModelFiles)
+    return expectSaga(validateModelFiles)
       .withState(state)
-      .provide([[select(state => state['test.cto']), modelFiles]])
       .put(updateModelManagerSuccess(modelManager))
       .run();
   });
