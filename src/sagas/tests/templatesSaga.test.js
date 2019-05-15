@@ -1,6 +1,8 @@
+import { call } from 'redux-saga/effects';
+import { expectSaga } from 'redux-saga-test-plan';
 import { addNewTemplateToStore, pushTemplatesToStore } from '../templatesSaga';
 import { recordSaga } from '../../utilities/test/sagaTest';
-import { addNewTemplateSuccess, getTemplatesSuccess } from '../../actions/templatesActions';
+import { getTemplatesError, addNewTemplateSuccess, getTemplatesSuccess } from '../../actions/templatesActions';
 
 describe('pushTemplatesToStore', () => {
   it('should dispatch the action getTemplatesSuccess', async () => {
@@ -36,4 +38,11 @@ describe('addNewTemplateToStore', () => {
     );
     expect(dispatched[0].template.name).toContain('Temporary New Template');
   });
+});
+
+describe('pushTemplatesToStore Error', () => {
+  it('should ERROR', async () => expectSaga(pushTemplatesToStore)
+    .provide([[call(pushTemplatesToStore), () => { throw new Error(); }]])
+    .put(getTemplatesError(() => { throw new Error(); }))
+    .run());
 });
