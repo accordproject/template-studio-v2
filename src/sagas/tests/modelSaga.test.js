@@ -1,4 +1,6 @@
+import { expectSaga } from 'redux-saga-test-plan';
 import { select } from 'redux-saga/effects';
+import { ModelManager } from 'composer-concerto';
 import { updateModelFileOnStore, validateModelFiles } from '../modelSaga';
 import { recordSaga } from '../../utilities/test/sagaTest';
 import { updateModelFileSuccess, updateModelManagerSuccess } from '../../actions/modelActions';
@@ -42,12 +44,22 @@ describe('validateModelFiles', () => {
                   --> Vehicle vehicle
                 }`,
     };
-    const state = { modelState: modelFiles };
-    const dispatched = await recordSaga(
-      validateModelFiles,
-      updateModelManagerSuccess,
-      state
-    );
-    expect(dispatched[0].error.fileName).toEqual('test.cto');
+    const state = {
+      modelState: {
+        modelFiles
+      }
+    };
+    const modelManager = new ModelManager();
+    Object.keys(modelFiles).forEach((fileName) => {
+      modelManager.addModelFile(modelFiles[fileName], fileName, true);
+    });
+    modelManager.updateExternalModels();
+    modelManager.validateModelFiles();
+
+    expectSaga(validateModelFiles)
+      .withState(state)
+      .provide([[select(state => state['test.cto']), modelFiles]])
+      .put(updateModelManagerSuccess(modelManager))
+      .run();
   });
 });
