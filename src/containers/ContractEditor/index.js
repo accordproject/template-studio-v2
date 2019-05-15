@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 // import { ContractEditor } from '@accordproject/cicero-ui';
 import TempEditor from './TemporaryEditor';
 import { loadTemplateObjectAction } from '../../actions/templatesActions';
+import parseClause from '../../utilities/parseClause';
 
 const EditorWrapper = styled.div`
 height: 700px;
@@ -21,16 +22,22 @@ const EditorContainer = props => (
   <EditorWrapper>
     <TempEditor
       loadTemplateObject={props.loadTemplateObject}
+      parseClause={(uri, text) => parseClause(props.templateObjs, uri, text)}
     />
   </EditorWrapper>
 );
 
 EditorContainer.propTypes = {
   loadTemplateObject: PropTypes.func.isRequired,
+  templateObjs: PropTypes.object,
 };
+
+const mapStateToProps = state => ({
+  templateObjs: state.templatesState.templateObjs,
+});
 
 const mapDispatchToProps = dispatch => ({
   loadTemplateObject: value => dispatch(loadTemplateObjectAction(value)),
 });
 
-export default connect(null, mapDispatchToProps)(EditorContainer);
+export default connect(mapStateToProps, mapDispatchToProps)(EditorContainer);
