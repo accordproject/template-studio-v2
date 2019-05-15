@@ -1,11 +1,13 @@
 const initialState = {
   templatesAP: [],
+  templateObjs: {},
   error: null,
 };
 
 const GET_AP_TEMPLATES_SUCEEDED = 'GET_AP_TEMPLATES_SUCEEDED';
 const AP_TEMPLATES_ERROR = 'AP_TEMPLATES_ERROR';
 const ADD_NEW_TEMPLATE_SUCCEEDED = 'ADD_NEW_TEMPLATE_SUCCEEDED';
+const LOAD_TEMPLATE_OBJECT_SUCCEEDED = 'LOAD_TEMPLATE_OBJECT_SUCCEEDED';
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
@@ -15,6 +17,8 @@ const reducer = (state = initialState, action) => {
       return { ...state, templatesAP: [...state.templatesAP, action.template] };
     case AP_TEMPLATES_ERROR:
       return { ...state, error: action.error };
+    case LOAD_TEMPLATE_OBJECT_SUCCEEDED:
+      return { ...state, templateObjs: { [action.url]: action.templateObj } };
     default:
       return state;
   }

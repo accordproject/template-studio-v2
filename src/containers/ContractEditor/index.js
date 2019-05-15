@@ -2,8 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
-import { ContractEditor } from '@accordproject/cicero-ui';
-import { getTemplateFromUrlAction } from '../../actions/templatesActions';
+// import { ContractEditor } from '@accordproject/cicero-ui';
+import TempEditor from './TemporaryEditor';
+import { loadTemplateObjectAction } from '../../actions/templatesActions';
 
 const EditorWrapper = styled.div`
 height: 700px;
@@ -18,18 +19,18 @@ overflow-y: auto;
 
 const EditorContainer = props => (
   <EditorWrapper>
-    <ContractEditor
-      getTemplateFromUrl={props.getTemplateFromUrl}
+    <TempEditor
+      loadTemplateObject={props.loadTemplateObject}
     />
   </EditorWrapper>
 );
 
 EditorContainer.propTypes = {
-  getTemplateFromUrl: PropTypes.func.isRequired,
+  loadTemplateObject: PropTypes.func.isRequired,
 };
 
 const mapDispatchToProps = dispatch => ({
-  getTemplateFromUrl: value => dispatch(getTemplateFromUrlAction(value)),
+  loadTemplateObject: value => dispatch(loadTemplateObjectAction(value)),
 });
 
 export default connect(null, mapDispatchToProps)(EditorContainer);
