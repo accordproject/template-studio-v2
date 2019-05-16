@@ -2,8 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
-// import { ContractEditor } from '@accordproject/cicero-ui';
-import TempEditor from './TemporaryEditor';
+import { ContractEditor } from '@accordproject/cicero-ui';
 import { loadTemplateObjectAction } from '../../actions/templatesActions';
 import parseClause from '../../utilities/parseClause';
 
@@ -20,7 +19,7 @@ overflow-y: auto;
 
 const EditorContainer = props => (
   <EditorWrapper>
-    <TempEditor
+    <ContractEditor
       loadTemplateObject={props.loadTemplateObject}
       parseClause={(uri, text) => parseClause(props.templateObjs, uri, text)}
     />

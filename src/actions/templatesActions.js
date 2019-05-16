@@ -21,13 +21,13 @@ export const addNewTemplateSuccess = template => ({
   template,
 });
 
-export const loadTemplateObjectAction = url => ({
+export const loadTemplateObjectAction = uri => ({
   type: 'LOAD_TEMPLATE_OBJECT',
-  url,
+  uri,
 });
 
-export const loadTemplateObjectSuccess = (url, templateObj) => ({
+export const loadTemplateObjectSuccess = (uri, templateObj) => ({
   type: 'LOAD_TEMPLATE_OBJECT_SUCCEEDED',
-  url,
+  uri,
   templateObj,
 });

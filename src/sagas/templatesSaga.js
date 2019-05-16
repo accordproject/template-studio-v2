@@ -38,12 +38,12 @@ export function* addNewTemplateToStore() {
  * saga which checks
  * of templates in the store
  */
-export function* addTemplateObjectToStore(modelFileAction) {
+export function* addTemplateObjectToStore(action) {
   const templateObjects = yield select(selectors.templateObjects);
 
-  if (!templateObjects || !templateObjects[modelFileAction.url]) {
-    const templateObj = yield Template.fromUrl(modelFileAction.url);
-    yield put(actions.loadTemplateObjectSuccess(modelFileAction.url, templateObj));
+  if (!templateObjects || !templateObjects[action.uri]) {
+    const templateObj = yield Template.fromUrl(action.uri);
+    yield put(actions.loadTemplateObjectSuccess(action.uri, templateObj));
   }
 }
 

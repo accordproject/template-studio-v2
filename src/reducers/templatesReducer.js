@@ -18,7 +18,7 @@ const reducer = (state = initialState, action) => {
     case AP_TEMPLATES_ERROR:
       return { ...state, error: action.error };
     case LOAD_TEMPLATE_OBJECT_SUCCEEDED:
-      return { ...state, templateObjs: { [action.url]: action.templateObj } };
+      return { ...state, templateObjs: { [action.uri]: action.templateObj } };
     default:
       return state;
   }
