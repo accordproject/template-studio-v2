@@ -1,1 +1,1 @@
-export const templateObjects = state => state.templatesState.templateObjects;
+export const templateObjects = state => state.templatesState.templateObjs;
