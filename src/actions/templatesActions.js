@@ -31,3 +31,8 @@ export const loadTemplateObjectSuccess = (uri, templateObj) => ({
   uri,
   templateObj,
 });
+
+export const loadTemplateObjectError = error => ({
+  type: 'LOAD_TEMPLATE_OBJECT_ERROR',
+  error
+});

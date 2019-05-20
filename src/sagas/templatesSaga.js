@@ -44,8 +44,12 @@ export function* addTemplateObjectToStore(action) {
   const templateObjects = yield select(selectors.templateObjects);
 
   if (!templateObjects || !templateObjects[action.uri]) {
-    const templateObj = yield Template.fromUrl(action.uri);
-    yield put(actions.loadTemplateObjectSuccess(action.uri, templateObj));
+    try {
+      const templateObj = yield Template.fromUrl(action.uri);
+      yield put(actions.loadTemplateObjectSuccess(action.uri, templateObj));
+    } catch (err) {
+      yield put(actions.loadTemplateObjectError(err));
+    }
   }
 }
 
