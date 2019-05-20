@@ -21,7 +21,7 @@ const EditorContainer = props => (
   <EditorWrapper>
     <ContractEditor
       loadTemplateObject={props.loadTemplateObject}
-      parseClause={(uri, text) => parseClause(props.templateObjs, uri, text)}
+      parseClause={(uri, text, clauseId) => parseClause(props.templateObjs, uri, text, clauseId)}
     />
   </EditorWrapper>
 );
