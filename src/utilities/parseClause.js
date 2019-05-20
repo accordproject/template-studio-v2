@@ -6,7 +6,7 @@ import { parseClauseSuccess, parseClauseError } from '../actions/clauseActions';
  * Parses user inputted text for a template using Cicero
  * @param {string} uri The uri of the template.
  * @param {string} text The user submitted text.
- * @returns {} The result of the parse or an error.
+ * @returns {Promise} The result of the parse or an error.
  */
 export default function parseClause(templateObjs, uri, text, clauseId) {
   try {

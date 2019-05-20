@@ -37,8 +37,8 @@ export function* addNewTemplateToStore() {
 }
 
 /**
- * saga which checks
- * of templates in the store
+ * saga which checks if template is in the store
+ * and loads the template if it is not
  */
 export function* addTemplateObjectToStore(action) {
   const templateObjects = yield select(selectors.templateObjects);
