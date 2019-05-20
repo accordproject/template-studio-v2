@@ -1,8 +1,11 @@
-import { TemplateLibrary } from '@accordproject/cicero-core';
+import { TemplateLibrary, Template } from '@accordproject/cicero-core';
 import { version as ciceroVersion } from '@accordproject/cicero-core/package.json';
 
-import { takeLatest, put } from 'redux-saga/effects';
+import {
+  takeLatest, put, select, takeEvery
+} from 'redux-saga/effects';
 import * as actions from '../actions/templatesActions';
+import * as selectors from '../selectors/templatesSelectors';
 
 /**
  * saga to populate store with templates
@@ -33,7 +36,25 @@ export function* addNewTemplateToStore() {
   yield put(actions.addNewTemplateSuccess(newTemplate));
 }
 
+/**
+ * saga which checks if template is in the store
+ * and loads the template if it is not
+ */
+export function* addTemplateObjectToStore(action) {
+  const templateObjects = yield select(selectors.templateObjects);
+
+  if (!templateObjects || !templateObjects[action.uri]) {
+    try {
+      const templateObj = yield Template.fromUrl(action.uri);
+      yield put(actions.loadTemplateObjectSuccess(action.uri, templateObj));
+    } catch (err) {
+      yield put(actions.loadTemplateObjectError(err));
+    }
+  }
+}
+
 export const templatesSaga = [
   takeLatest('GET_AP_TEMPLATES', pushTemplatesToStore),
   takeLatest('ADD_NEW_TEMPLATE', addNewTemplateToStore),
+  takeEvery('LOAD_TEMPLATE_OBJECT', addTemplateObjectToStore),
 ];

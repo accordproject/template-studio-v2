@@ -1,6 +1,7 @@
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MonacoWebpackPlugin = require('monaco-editor-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 // const CopyWebpackPlugin = require('copy-webpack-plugin');
 // const webpack = require('webpack');
@@ -39,11 +40,26 @@ module.exports = {
         }],
       },
       {
-        test: /\.(sa|sc|c)ss$/,
-        use: ['style-loader', 'css-loader', 'sass-loader'],
-        include: [
-          path.join(__dirname, 'src'),
-          /node_modules/,
+        test: /plugin\.css$/,
+        loaders: [
+          'style-loader',
+          'css-loader',
+        ],
+      },
+      {
+        test: /\.css$/,
+        use: [
+          MiniCssExtractPlugin.loader,
+          'css-loader',
+        ],
+      },
+      {
+        test: /\.styl$/,
+        exclude: /node_modules/,
+        use: [
+          MiniCssExtractPlugin.loader,
+          'css-loader',
+          'stylus-loader',
         ],
       },
       {
@@ -57,6 +73,7 @@ module.exports = {
     ],
   },
   plugins: [
+    new MiniCssExtractPlugin({ filename: '[name].css' }),
     new HtmlWebpackPlugin({
       template: './src/index.html',
       filename: './index.html',
