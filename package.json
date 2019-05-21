@@ -52,6 +52,7 @@
     "monaco-editor-webpack-plugin": "^1.7.0",
     "node-sass": "^4.12.0",
     "redux-devtools": "^3.5.0",
+    "redux-saga-test-plan": "^4.0.0-beta.2",
     "sass-loader": "^7.1.0",
     "style-loader": "^0.23.1",
     "url-loader": "^1.1.2",
@@ -61,8 +62,8 @@
   },
   "dependencies": {
     "@accordproject/cicero-core": "^0.12.0",
+    "@babel/runtime": "^7.4.4",
     "@accordproject/cicero-ui": "^0.0.13",
-    "babel-runtime": "^6.26.0",
     "composer-concerto": "^0.70.2",
     "monaco-editor": "^0.15.1",
     "prop-types": "^15.7.2",
@@ -90,7 +91,9 @@
     "moduleNameMapper": {
       "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/__mocks__/fileMock.js",
       "\\.(css|styl)$": "<rootDir>/__mocks__/styleMock.js",
-      "\\.worker.js": "<rootDir>/__mocks__/workerMock.js"
+      "\\.worker.js": "<rootDir>/__mocks__/workerMock.js",
+      "^.+\\.(css|scss)$": "identity-obj-proxy",
+      "monaco-editor": "<rootDir>/node_modules/react-monaco-editor"
     },
     "setupFiles": [
       "./src/utilities/test/jestEnzyme"

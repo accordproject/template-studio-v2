@@ -3,31 +3,94 @@
 exports[`<App /> on initialization renders page correctly 1`] = `
 <div>
   <Header />
-  <Tile
-    handleSubmit={[Function]}
-    header="Model"
-    label="Model Mock: "
-    textLabel="Current Model Value: "
-  />
-  <Tile
-    handleSubmit={[Function]}
-    header="Logic"
-    label="Logic Mock: "
-    textLabel="Current Logic Value: "
-  />
-  <Tile
-    handleSubmit={[Function]}
-    header="Sample"
-    label="Sample Mock: "
-    textLabel="Current Sample Value: "
-  />
-  <EditorComponent />
-  <LibraryComponent
-    addNewTemplate={[Function]}
-    addToContract={[Function]}
-    importTemplate={[Function]}
-    templatesArray={Array []}
-    uploadCTA={[Function]}
-  />
+  <styled.div>
+    <Tile
+      handleSubmit={[Function]}
+      header="Model"
+      label="Model: "
+      textLabel="Current Model: "
+    />
+    <Tile
+      handleSubmit={[Function]}
+      header="Logic"
+      label="Logic Mock: "
+      textLabel="Current Logic Value: "
+    />
+    <Tile
+      handleSubmit={[Function]}
+      header="Sample"
+      label="Sample Mock: "
+      textLabel="Current Sample Value: "
+    />
+  </styled.div>
+  <ButtonGroup>
+    <Button
+      as="button"
+      disabled={false}
+      onClick={[Function]}
+    >
+      Show Templates
+    </Button>
+    <Button
+      as="button"
+      disabled={true}
+      onClick={[Function]}
+    >
+      Hide Templates
+    </Button>
+  </ButtonGroup>
+  <SidebarPushable
+    as={[Function]}
+  >
+    <Sidebar
+      animation="uncover"
+      as={[Function]}
+      direction="right"
+      onHide={[Function]}
+      visible={false}
+      width="very wide"
+    >
+      <Segment
+        basic={true}
+      >
+        <Connect(LibraryComponent) />
+      </Segment>
+    </Sidebar>
+    <SidebarPusher>
+      <Segment
+        basic={true}
+      >
+        <Tab
+          grid={
+            Object {
+              "paneWidth": 12,
+              "tabWidth": 4,
+            }
+          }
+          menu={
+            Object {
+              "fluid": true,
+              "tabular": true,
+              "vertical": true,
+            }
+          }
+          panes={
+            Array [
+              Object {
+                "menuItem": "Model",
+                "render": [Function],
+              },
+              Object {
+                "menuItem": "Logic",
+                "render": [Function],
+              },
+            ]
+          }
+          renderActiveOnly={true}
+        />
+      </Segment>
+    </SidebarPusher>
+  </SidebarPushable>
+  <Connect(ErrorContainer) />
 </div>
 `;
