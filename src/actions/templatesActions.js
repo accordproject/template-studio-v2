@@ -20,3 +20,19 @@ export const addNewTemplateSuccess = template => ({
   type: 'ADD_NEW_TEMPLATE_SUCCEEDED',
   template,
 });
+
+export const loadTemplateObjectAction = uri => ({
+  type: 'LOAD_TEMPLATE_OBJECT',
+  uri,
+});
+
+export const loadTemplateObjectSuccess = (uri, templateObj) => ({
+  type: 'LOAD_TEMPLATE_OBJECT_SUCCEEDED',
+  uri,
+  templateObj,
+});
+
+export const loadTemplateObjectError = error => ({
+  type: 'LOAD_TEMPLATE_OBJECT_ERROR',
+  error
+});
