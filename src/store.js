@@ -7,6 +7,7 @@ import modelReducer from './reducers/modelReducer';
 import logicReducer from './reducers/logicReducer';
 import sampleReducer from './reducers/sampleReducer';
 import clauseReducer from './reducers/clauseReducer';
+import contractReducer from './reducers/contractReducer';
 import rootSaga from './sagas/rootSaga';
 
 const sagaMiddleware = createSagaMiddleware();
@@ -22,6 +23,7 @@ const rootReducer = combineReducers({
   logicState: logicReducer,
   sampleState: sampleReducer,
   clauseState: clauseReducer,
+  contractState: contractReducer,
 });
 
 const store = createStore(
