@@ -2,9 +2,6 @@ const CleanWebpackPlugin = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MonacoWebpackPlugin = require('monaco-editor-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-
-// const CopyWebpackPlugin = require('copy-webpack-plugin');
-// const webpack = require('webpack');
 const path = require('path');
 
 module.exports = {
@@ -92,6 +89,7 @@ module.exports = {
   resolve: {
     alias: {
       'styled-components': path.resolve(__dirname, 'node_modules', 'styled-components'),
+      react: path.resolve('./node_modules/react')
     },
   },
 };
