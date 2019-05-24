@@ -53,7 +53,7 @@ exports[`<App /> on initialization renders page correctly 1`] = `
       <Segment
         basic={true}
       >
-        <Connect(LibraryComponent) />
+        <ConnectFunction />
       </Segment>
     </Sidebar>
     <SidebarPusher>
@@ -77,6 +77,10 @@ exports[`<App /> on initialization renders page correctly 1`] = `
           panes={
             Array [
               Object {
+                "menuItem": "Text",
+                "render": [Function],
+              },
+              Object {
                 "menuItem": "Model",
                 "render": [Function],
               },
@@ -91,6 +95,6 @@ exports[`<App /> on initialization renders page correctly 1`] = `
       </Segment>
     </SidebarPusher>
   </SidebarPushable>
-  <Connect(ErrorContainer) />
+  <ConnectFunction />
 </div>
 `;
