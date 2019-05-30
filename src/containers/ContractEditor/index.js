@@ -25,6 +25,7 @@ const EditorContainer = props => (
       parseClause={(uri, text, clauseId) => parseClause(props.templateObjs, uri, text, clauseId)}
       onChange={props.onEditorChange}
       markdown={props.markdown}
+      lockText={false}
     />
   </EditorWrapper>
 );
