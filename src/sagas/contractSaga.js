@@ -2,7 +2,6 @@ import { takeLatest, select, put } from 'redux-saga/effects';
 import * as actions from '../actions/contractActions';
 import * as contractSelectors from '../selectors/contractSelectors';
 
-
 /**
  * saga to update the contract in the store if it has changed
  */

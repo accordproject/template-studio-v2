@@ -62,8 +62,8 @@
   },
   "dependencies": {
     "@accordproject/cicero-core": "^0.12.0",
+    "@accordproject/cicero-ui": "^0.0.14",
     "@babel/runtime": "^7.4.4",
-    "@accordproject/cicero-ui": "^0.0.13",
     "composer-concerto": "^0.70.2",
     "monaco-editor": "^0.15.1",
     "prop-types": "^15.7.2",

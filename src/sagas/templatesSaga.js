@@ -61,20 +61,39 @@ export function* addTemplateObjectToStore(action) {
 }
 
 /**
- * saga which calls the markdown changed action
- * with the updated markdown including a clause
+ * saga which adds a clause node to the current slate value
  */
 export function* addToContract(action) {
   const templateObj = yield call(addTemplateObjectToStore, action);
-  let markdown = yield select(contractSelectors.markdown);
+  let slateValue = yield select(contractSelectors.slateValue);
+  slateValue = slateValue.toJSON();
+  const { nodes } = slateValue.document;
+  const { metadata } = templateObj;
+  nodes.push({
+    object: 'block',
+    type: 'clause',
+    isVoid: false,
+    data: {
+      attributes: {
+        clauseId: 'clauseId-kjhdaks',
+        src: action.uri,
+      }
+    },
+    nodes: [{
+      object: 'text',
+      text: metadata.getSample(),
+      marks: [],
+    }],
+  });
   try {
-    const sampleText = templateObj.metadata.samples.default;
-    markdown += `
-    
-<clause src=${action.uri} id='aj47ggksff6538wjg'>
-  ${sampleText}
-  </clause>`;
-    yield put(contractActions.clauseAdded(markdown));
+    slateValue = {
+      ...slateValue,
+      document: {
+        ...slateValue.document,
+        nodes,
+      }
+    };
+    yield put(contractActions.clauseAdded(slateValue));
   } catch (err) {
     console.log('error? ', err);
   }
