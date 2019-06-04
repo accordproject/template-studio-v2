@@ -1,26 +1,28 @@
-export const markdownChanged = markdown => ({
-  type: 'MARKDOWN_CHANGED',
+export const documentEdited = (value, markdown) => ({
+  type: 'DOCUMENT_EDITED',
+  slateValue: value,
   markdown,
 });
 
-export const markdownChangedSuccess = markdown => ({
-  type: 'MARKDOWN_CHANGED_SUCCESS',
+export const documentEditedSuccess = (value, markdown) => ({
+  type: 'DOCUMENT_EDITED_SUCCESS',
+  slateValue: value,
   markdown,
 });
 
-export const markdownChangedError = error => ({
-  type: 'MARKDOWN_CHANGED_ERROR',
+export const documentEditedError = error => ({
+  type: 'DOCUMENT_EDITED_ERROR',
   error,
 });
 
-export const clauseAdded = markdown => ({
+export const clauseAdded = value => ({
   type: 'CLAUSE_ADDED',
-  markdown,
+  slateValue: value,
 });
 
-export const clauseAddedSuccess = markdown => ({
+export const clauseAddedSuccess = value => ({
   type: 'CLAUSE_ADDED_SUCCESS',
-  markdown,
+  slateValue: value,
 });
 
 export const clauseAddedError = error => ({
