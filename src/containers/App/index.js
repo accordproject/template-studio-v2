@@ -1,6 +1,5 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import { Tile } from '@accordproject/cicero-ui';
 import 'semantic-ui-css/semantic.min.css';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
@@ -19,10 +18,8 @@ import ModelEditorComponent from '../ModelEditor';
 import ErgoEditorComponent from '../ErgoEditor';
 import ErrorContainer from '../Error';
 
-const TileWrapper = styled.div`
-display: flex;
-width: 65vw;
-border: 2px solid #F9F9F9;
+const MainWrapper = styled.div`
+  padding: 10px;
 `;
 
 export class App extends PureComponent {
@@ -82,29 +79,7 @@ export class App extends PureComponent {
     return (
       <div>
         <Header />
-        <TileWrapper>
-        <Tile
-            handleSubmit={this.props.updateModelFile}
-            header='Model'
-            label='Model: '
-            textValue={this.props.modelFileContents}
-            textLabel='Current Model: '
-          />
-          <Tile
-            handleSubmit={this.props.updateLogicMock}
-            header='Logic'
-            label='Logic Mock: '
-            textValue={this.props.logicMockValue}
-            textLabel='Current Logic Value: '
-          />
-          <Tile
-            handleSubmit={this.props.updateSampleMock}
-            header='Sample'
-            label='Sample Mock: '
-            textValue={this.props.sampleMockValue}
-            textLabel='Current Sample Value: '
-          />
-        </TileWrapper>
+        <MainWrapper>
         <Button.Group>
           <Button disabled={templatesVisible} onClick={this.handleShowClick}>
             Show Templates
@@ -125,6 +100,7 @@ export class App extends PureComponent {
             </Segment>
           </Sidebar.Pusher>
         </Sidebar.Pushable>
+        </MainWrapper>
         <ErrorContainer/>
       </div>
     );
