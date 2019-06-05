@@ -1,9 +1,15 @@
 import { TemplateLibrary, Template } from '@accordproject/cicero-core';
 import { version as ciceroVersion } from '@accordproject/cicero-core/package.json';
+import PluginManager from '@accordproject/markdown-editor/dist/PluginManager';
+import ListPlugin from '@accordproject/markdown-editor/dist/plugins/list';
+import FromMarkdown from '@accordproject/markdown-editor/dist/markdown/fromMarkdown';
+import ClausePlugin from '@accordproject/cicero-ui/dist/plugins/ClausePlugin';
 
 import {
   takeLatest, put, select, takeEvery, call
 } from 'redux-saga/effects';
+// import parseClause from '../utilities/parseClause';
+
 import * as actions from '../actions/templatesActions';
 import * as contractActions from '../actions/contractActions';
 import * as selectors from '../selectors/templatesSelectors';
@@ -64,27 +70,24 @@ export function* addTemplateObjectToStore(action) {
  * saga which adds a clause node to the current slate value
  */
 export function* addToContract(action) {
+  const pluginManager = new PluginManager([ListPlugin(), ClausePlugin()]);
+  const fromMarkdown = new FromMarkdown(pluginManager);
   const templateObj = yield call(addTemplateObjectToStore, action);
+
   let slateValue = yield select(contractSelectors.slateValue);
+  const { metadata } = templateObj;
+
+  const clauseMd = `
+    
+  <clause src=${action.uri} id='placeholder'>
+    ${metadata.getSample()}
+    </clause>`;
+  const value = fromMarkdown.convert(clauseMd);
+  const clauseNode = value.toJSON().document.nodes[0];
+
   slateValue = slateValue.toJSON();
   const { nodes } = slateValue.document;
-  const { metadata } = templateObj;
-  nodes.push({
-    object: 'block',
-    type: 'clause',
-    isVoid: false,
-    data: {
-      attributes: {
-        clauseId: 'clauseId-kjhdaks',
-        src: action.uri,
-      }
-    },
-    nodes: [{
-      object: 'text',
-      text: metadata.getSample(),
-      marks: [],
-    }],
-  });
+  nodes.push(clauseNode);
   try {
     slateValue = {
       ...slateValue,
