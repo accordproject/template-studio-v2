@@ -45,7 +45,7 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
   loadTemplateObject: value => dispatch(loadTemplateObjectAction(value)),
   onEditorChange: (value, markdown) => {
-    console.log('markdown --', markdown);
+    console.log('value --', value.toJSON());
     return dispatch(documentEdited(value, markdown));
   }
 });

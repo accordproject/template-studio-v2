@@ -66,6 +66,7 @@
     "@accordproject/markdown-editor": "^0.4.14",
     "@babel/runtime": "^7.4.4",
     "composer-concerto": "^0.70.2",
+    "lodash": "^4.17.11",
     "monaco-editor": "^0.15.1",
     "prop-types": "^15.7.2",
     "react": "^16.8.6",
@@ -77,6 +78,7 @@
     "redux-saga": "^1.0.2",
     "semantic-ui-css": "^2.4.1",
     "semantic-ui-react": "^0.86.0",
+    "slate": "^0.47.3",
     "styled-components": "^4.2.0",
     "throttle-debounce": "^2.1.0"
   },

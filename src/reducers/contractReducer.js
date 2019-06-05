@@ -1,6 +1,24 @@
+import { Value } from 'slate';
+
 const initialState = {
   markdown: '',
-  slateValue: null,
+  slateValue: Value.fromJSON({
+    object: 'value',
+    document: {
+      object: 'document',
+      data: {},
+      nodes: [{
+        object: 'block',
+        type: 'paragraph',
+        data: {},
+        nodes: [{
+          object: 'text',
+          text: 'Welcome to Template Studio! Edit this text to get started.',
+          marks: []
+        }],
+      }]
+    }
+  }),
 };
 
 const reducer = (state = initialState, action) => {

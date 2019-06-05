@@ -74,7 +74,7 @@ export function* addToContract(action) {
   const fromMarkdown = new FromMarkdown(pluginManager);
   const templateObj = yield call(addTemplateObjectToStore, action);
 
-  let slateValue = yield select(contractSelectors.slateValue);
+  const slateValue = yield select(contractSelectors.slateValue);
   const { metadata } = templateObj;
 
   const clauseMd = `
@@ -85,18 +85,12 @@ export function* addToContract(action) {
   const value = fromMarkdown.convert(clauseMd);
   const clauseNode = value.toJSON().document.nodes[0];
 
-  slateValue = slateValue.toJSON();
-  const { nodes } = slateValue.document;
+  const newSlateValue = JSON.parse(JSON.stringify(slateValue.toJSON()));
+  console.log('this should be false --', newSlateValue === slateValue);
+  const { nodes } = newSlateValue.document;
   nodes.push(clauseNode);
   try {
-    slateValue = {
-      ...slateValue,
-      document: {
-        ...slateValue.document,
-        nodes,
-      }
-    };
-    yield put(contractActions.clauseAdded(slateValue));
+    yield put(contractActions.clauseAdded(newSlateValue));
   } catch (err) {
     console.log('error? ', err);
   }
