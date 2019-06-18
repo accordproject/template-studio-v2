@@ -44,10 +44,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   loadTemplateObject: value => dispatch(loadTemplateObjectAction(value)),
-  onEditorChange: (value, markdown) => {
-    console.log('value --', value.toJSON());
-    return dispatch(documentEdited(value, markdown));
-  }
+  onEditorChange: (value, markdown) => dispatch(documentEdited(value, markdown))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(React.memo(EditorContainer));
