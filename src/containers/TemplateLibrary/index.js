@@ -19,7 +19,6 @@ overflow-y: auto;
   background: transparent;
 }
 `;
-// const mockAddToCont = (input) => { console.log('addToCont: ', input); };
 const mockImport = () => { console.log('import'); };
 const mockUpload = () => { console.log('upload'); };
 

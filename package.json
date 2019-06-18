@@ -66,7 +66,6 @@
     "@accordproject/markdown-editor": "^0.4.15",
     "@babel/runtime": "^7.4.4",
     "composer-concerto": "^0.70.2",
-    "lodash": "^4.17.11",
     "monaco-editor": "^0.15.1",
     "prop-types": "^15.7.2",
     "react": "^16.8.6",

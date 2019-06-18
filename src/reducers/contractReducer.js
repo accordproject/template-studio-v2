@@ -29,11 +29,6 @@ const reducer = (state = initialState, action) => {
         markdown: action.markdown,
         slateValue: action.slateValue,
       };
-    case 'CLAUSE_ADDED_SUCCESS':
-      return {
-        ...state,
-        slateValue: action.slateValue,
-      };
     default:
       return state;
   }

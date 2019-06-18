@@ -14,18 +14,3 @@ export const documentEditedError = error => ({
   type: 'DOCUMENT_EDITED_ERROR',
   error,
 });
-
-export const clauseAdded = value => ({
-  type: 'CLAUSE_ADDED',
-  slateValue: value,
-});
-
-export const clauseAddedSuccess = value => ({
-  type: 'CLAUSE_ADDED_SUCCESS',
-  slateValue: value,
-});
-
-export const clauseAddedError = error => ({
-  type: 'CLAUSE_ADDED_ERROR',
-  error,
-});

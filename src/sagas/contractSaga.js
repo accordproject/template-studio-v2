@@ -11,7 +11,11 @@ export function* updateDocument(action) {
   const currentSlateValue = yield select(contractSelectors.slateValue);
   // only update the store if the slate value has changed
   if (currentSlateValue.equals(action.slateValue)) return;
-  yield put(actions.documentEditedSuccess(action.slateValue, action.markdown));
+  try {
+    yield put(actions.documentEditedSuccess(action.slateValue, action.markdown));
+  } catch (err) {
+    yield put(actions.documentEditedError(err));
+  }
 }
 
 export const contractSaga = [
