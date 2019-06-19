@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import { connect } from 'react-redux';
 import { ContractEditor } from '@accordproject/cicero-ui';
 import { loadTemplateObjectAction } from '../../actions/templatesActions';
-import { markdownChanged } from '../../actions/contractActions';
+import { documentEdited } from '../../actions/contractActions';
 import parseClause from '../../utilities/parseClause';
 
 const EditorWrapper = styled.div`
@@ -24,7 +24,8 @@ const EditorContainer = props => (
       loadTemplateObject={props.loadTemplateObject}
       parseClause={(uri, text, clauseId) => parseClause(props.templateObjs, uri, text, clauseId)}
       onChange={props.onEditorChange}
-      markdown={props.markdown}
+      value={props.value}
+      lockText={false}
     />
   </EditorWrapper>
 );
@@ -33,17 +34,17 @@ EditorContainer.propTypes = {
   loadTemplateObject: PropTypes.func.isRequired,
   templateObjs: PropTypes.object,
   onEditorChange: PropTypes.func.isRequired,
-  markdown: PropTypes.string,
+  value: PropTypes.object,
 };
 
 const mapStateToProps = state => ({
   templateObjs: state.templatesState.templateObjs,
-  markdown: state.contractState.markdown,
+  value: state.contractState.slateValue,
 });
 
 const mapDispatchToProps = dispatch => ({
   loadTemplateObject: value => dispatch(loadTemplateObjectAction(value)),
-  onEditorChange: (value, markdown) => dispatch(markdownChanged(markdown))
+  onEditorChange: (value, markdown) => dispatch(documentEdited(value, markdown))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(React.memo(EditorContainer));

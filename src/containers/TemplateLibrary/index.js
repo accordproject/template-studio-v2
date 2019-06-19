@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import { connect } from 'react-redux';
 import { TemplateLibrary } from '@accordproject/cicero-ui';
 
-import { getTemplatesAction, addNewTemplateAction } from '../../actions/templatesActions';
+import { getTemplatesAction, addNewTemplateAction, addToContractAction } from '../../actions/templatesActions';
 
 const TLWrapper = styled.div`
 height: 100%;
@@ -19,7 +19,6 @@ overflow-y: auto;
   background: transparent;
 }
 `;
-const mockAddToCont = (input) => { console.log('addToCont: ', input); };
 const mockImport = () => { console.log('import'); };
 const mockUpload = () => { console.log('upload'); };
 
@@ -36,7 +35,7 @@ export class LibraryComponent extends React.PureComponent {
           upload={mockUpload}
           import={mockImport}
           addTemp={this.props.addNewTemplate}
-          addToCont={mockAddToCont}
+          addToCont={this.props.addToContract}
         />
       </TLWrapper>
     );
@@ -59,6 +58,7 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
   fetchAPTemplates: () => dispatch(getTemplatesAction()),
   addNewTemplate: () => dispatch(addNewTemplateAction()),
+  addToContract: value => dispatch(addToContractAction(value)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(LibraryComponent);

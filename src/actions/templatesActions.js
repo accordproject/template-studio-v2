@@ -36,3 +36,8 @@ export const loadTemplateObjectError = error => ({
   type: 'LOAD_TEMPLATE_OBJECT_ERROR',
   error
 });
+
+export const addToContractAction = uri => ({
+  type: 'ADD_TO_CONTRACT',
+  uri,
+});
