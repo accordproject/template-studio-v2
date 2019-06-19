@@ -21,7 +21,7 @@ In order to link another React component to template-studio-v2 for development, 
 
 In the project directory, you can run:
 
-### `npm run start`
+#### `npm run start`
 
 Runs the app in the development mode.<br>
 Open [http://localhost:8080](http://localhost:8080) to view it in the browser.
@@ -29,16 +29,16 @@ Open [http://localhost:8080](http://localhost:8080) to view it in the browser.
 The page will reload if you make edits.<br>
 You will also see any lint errors in the console.
 
-### `npm run test`
+#### `npm run test`
 
 Launches JEST over the repository.
 Current snapshot tests requires `npm test -- -u` in order to update when all changes are final.
 
-### `npm run lint`
+#### `npm run lint`
 
 Runs ESLint.
 
-### `npm run build`
+#### `npm run build`
 
 Builds the app for production to the `dist` folder.<br>
 It correctly bundles React in production mode and optimizes the build for the best performance.
@@ -68,8 +68,83 @@ Template Studio v2 is built with **Redux Sagas**, a good intro guide can be foun
 
 ---
 
-## License <a name="license"></a>
-Accord Project source code files are made available under the Apache License, Version 2.0 (Apache-2.0), located in the LICENSE file. Accord Project documentation files are made available under the Creative Commons Attribution 4.0 International License (CC-BY-4.0), available at http://creativecommons.org/licenses/by/4.0/.
+<a href="https://docs.accordproject.org/">
+	<img src="assets/APLogo.png" alt="Accord Project Logo" />
+</a>
+
+Accord Project is an open source, non-profit, initiative working to transform contract management and contract automation by digitizing contracts.
+
+## Contributing
+
+Read our [contributing guide][contribute] and information for [developers][developer]. Find out what’s coming on our [blog][apblog].
+
+## Getting Started
+
+### Learn About Accord Project
+* [Welcome][welcome]
+* [Concepts and High-level Architecture][highlevel]
+* [Ergo Language][ergolanguage]
+
+### Try Accord Project
+* [Using a Template with Cicero][usingcicero]
+* [Authoring in Template Studio][authoring]
+
+### Technical Reads
+* [Ergo Compiler][ergocompiler]
+
+### Blog
+* [Accord Project News][apnews]
+
+### Accord Project Codebase
+* [Cicero][cicero]
+* [Ergo][ergo]
+* [Cicero Template Library][CTL]
+* [Models][models]
+
+* [Template Studio][tsv2]
+* [Cicero UI][ciceroui]
+* [Concerto UI][concertoui]
+* [Markdown Editor][mdeditor]
+
+## Community
+
+The Accord Project technology is being developed as open source. All the software packages are being actively maintained on GitHub and we encourage organizations and individuals to contribute requirements, documentation, issues, new templates, and code.
+
+Join the Accord Project Technology Working Group [Slack channel][slack] to get involved!
+
+## License <a name="license"></a> Cicero
+
+Accord Project source code files are made available under the [Apache License, Version 2.0][apache].
+
+Accord Project documentation files are made available under the [Creative Commons Attribution 4.0 International License][creativecommons] (CC-BY-4.0).
 
 [sagaGuide]: https://blog.logrocket.com/understanding-redux-saga-from-action-creators-to-sagas-2587298b5e71
 [reduxSaga]: https://redux-saga.js.org/
+
+[contribute]: https://github.com/accordproject/template-studio-v2/blob/master/CONTRIBUTING.md
+[developer]: https://github.com/accordproject/template-studio-v2/blob/master/DEVELOPERS.md
+[apblog]: (https://medium.com/@accordhq)
+
+[welcome]: https://docs.accordproject.org/docs/accordproject.html#what-is-accord-project
+[highlevel]: https://docs.accordproject.org/docs/spec-concepts.html
+[ergolanguage]: https://docs.accordproject.org/docs/logic-ergo.html
+
+[usingcicero]: https://docs.accordproject.org/docs/basic-use.html
+[authoring]: https://docs.accordproject.org/docs/advanced-latedelivery.html
+
+[ergocompiler]: https://docs.accordproject.org/docs/ref-logic-specification.html
+
+[apnews]: https://www.accordproject.org/news/
+[cicero]: https://github.com/accordproject/cicero
+[ergo]: https://github.com/accordproject/ergo
+[CTL]: https://github.com/accordproject/cicero-template-library
+[models]: https://github.com/accordproject/models
+
+[tsv2]: https://github.com/accordproject/template-studio-v2
+[ciceroui]: https://github.com/accordproject/cicero-ui
+[concertoui]: https://github.com/accordproject/concerto-ui
+[mdeditor]: https://github.com/accordproject/markdown-editor
+
+[slack]: https://accord-project-slack-signup.herokuapp.com
+[apache]: https://github.com/accordproject/template-studio-v2/blob/master/LICENSE
+[creativecommons]: http://creativecommons.org/licenses/by/4.0/
