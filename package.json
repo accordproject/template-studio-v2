@@ -5,7 +5,7 @@
   "private": true,
   "scripts": {
     "start": "webpack-dev-server --config webpack.config.js --mode development --watch ",
-    "build": "webpack --config webpack.config.js --mode production --log-level=debug",
+    "build": "NODE_OPTIONS=--max_old_space_size=4096 webpack --config webpack.config.js --mode production",
     "lint": "eslint --ext .js --ext .jsx --ignore-path .gitignore ./src",
     "test": "jest",
     "test:watch": "npm test -- --watch"
