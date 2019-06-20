@@ -7,7 +7,6 @@ export const addAppError = (errorDescription, error) => ({
   }
 });
 
-export const removeAppError = error => ({
+export const removeAppError = () => ({
   type: 'REMOVE_APP_ERROR',
-  error,
 });
