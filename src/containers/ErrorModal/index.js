@@ -11,7 +11,7 @@ const StyledContent = styled(Modal.Content)`
 
 export const ErrorModal = props => (
   <Modal
-    open={props.errorDescription}
+    open={!!props.errorDescription}
     onClose={props.closeErrorModal}
     size="small"
   >
