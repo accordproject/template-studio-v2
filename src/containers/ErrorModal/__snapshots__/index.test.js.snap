@@ -8,7 +8,7 @@ exports[`<ErrorModal /> on initialization renders page correctly 1`] = `
   dimmer={true}
   eventPool="Modal"
   onClose={[Function]}
-  open="Unexpected error"
+  open={true}
   size="small"
 >
   <Header
