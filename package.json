@@ -62,8 +62,8 @@
   },
   "dependencies": {
     "@accordproject/cicero-core": "^0.12.4",
-    "@accordproject/cicero-ui": "^0.0.15",
-    "@accordproject/markdown-editor": "^0.4.15",
+    "@accordproject/cicero-ui": "^0.0.16",
+    "@accordproject/markdown-editor": "^0.4.20",
     "@babel/runtime": "^7.4.4",
     "composer-concerto": "^0.70.5",
     "monaco-editor": "^0.15.1",
@@ -79,7 +79,8 @@
     "semantic-ui-react": "^0.86.0",
     "slate": "^0.47.3",
     "styled-components": "^4.2.0",
-    "throttle-debounce": "^2.1.0"
+    "throttle-debounce": "^2.1.0",
+    "uuidv4": "^4.0.0"
   },
   "jest": {
     "moduleFileExtensions": [
