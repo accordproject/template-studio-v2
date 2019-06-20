@@ -6,6 +6,7 @@ import FromMarkdown from '@accordproject/markdown-editor/dist/markdown/fromMarkd
 import ToMarkdown from '@accordproject/markdown-editor/dist/markdown/toMarkdown';
 import ClausePlugin from '@accordproject/cicero-ui/dist/plugins/ClausePlugin';
 import { Value } from 'slate';
+import uuidv4 from 'uuidv4';
 
 import {
   takeLatest, put, select, takeEvery, call
@@ -80,11 +81,9 @@ export function* addToContract(action) {
   const slateValue = yield select(contractSelectors.slateValue);
   const { metadata } = templateObj;
 
-  const clauseMd = `
-    
-  <clause src=${action.uri} id='placeholder'>
-    ${metadata.getSample()}
-    </clause>`;
+  const clauseMd = `\`\`\` <clause src=${action.uri} id=${uuidv4()}>
+  ${metadata.getSample()}
+  \`\`\``;
   const value = fromMarkdown.convert(clauseMd);
   const clauseNode = value.toJSON().document.nodes[0];
 
