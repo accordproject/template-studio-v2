@@ -17,7 +17,7 @@ import EditorContainer from '../ContractEditor';
 import ModelEditorComponent from '../ModelEditor';
 import ErgoEditorComponent from '../ErgoEditor';
 import ErrorContainer from '../Error';
-import ErrorModal from '../ErrorModal';
+import ErrorModalComponent from '../ErrorModal';
 
 const MainWrapper = styled.div`
   padding: 10px;
@@ -79,7 +79,7 @@ export class App extends PureComponent {
 
     return (
       <div>
-        <ErrorModal />
+        <ErrorModalComponent />
         <Header />
         <MainWrapper>
         <Button.Group>

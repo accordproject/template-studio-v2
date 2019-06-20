@@ -1,0 +1,32 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<ErrorModal /> on initialization renders page correctly 1`] = `
+<Modal
+  centered={true}
+  closeOnDimmerClick={true}
+  closeOnDocumentClick={false}
+  dimmer={true}
+  eventPool="Modal"
+  onClose={[Function]}
+  open="Unexpected error"
+  size="small"
+>
+  <Header
+    content="Error"
+  />
+  <Styled(ModalContent)>
+    Unexpected error
+Error message
+  </Styled(ModalContent)>
+  <ModalActions>
+    <Button
+      as="button"
+      color="blue"
+      id="errorCloseBtn"
+      onClick={[Function]}
+    >
+      Close
+    </Button>
+  </ModalActions>
+</Modal>
+`;

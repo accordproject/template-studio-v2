@@ -9,7 +9,7 @@ const StyledContent = styled(Modal.Content)`
   white-space: pre;
 `;
 
-const ErrorModal = props => (
+export const ErrorModal = props => (
   <Modal
     open={props.errorDescription}
     onClose={props.closeErrorModal}
