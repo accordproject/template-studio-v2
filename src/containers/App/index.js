@@ -20,15 +20,23 @@ import JsonEditor from '../JsonEditor';
 import ErrorContainer from '../Error';
 import ErrorModalComponent from '../ErrorModal';
 
+const AppWrapper = styled.div`
+  height: 100%;
+`;
+
 const MainWrapper = styled.div`
+  height: 100%;
+  display: grid;
+  grid-template-rows: 37px calc(100vh - 265px) 228px;
+`;
+
+const ContentWrapper = styled.div`
   padding: 10px;
+  display: grid;
+  grid-template-columns: auto 355px;
 `;
 
 export const App = (props) => { {
-  const [templatesVisible, setTemplatesVisible] = useState(false);
-  const handleHideClick = () => setTemplatesVisible(false);
-  const handleShowClick = () => setTemplatesVisible(true);
-
   const panes = [
     {
       menuItem: 'Text',
@@ -66,33 +74,17 @@ export const App = (props) => { {
   ];
 
     return (
-      <div>
+      <AppWrapper>
         <ErrorModalComponent />
-        <Header />
         <MainWrapper>
-        <Button.Group>
-          <Button disabled={templatesVisible} onClick={handleShowClick}>
-            Show Templates
-          </Button>
-          <Button disabled={!templatesVisible} onClick={handleHideClick}>
-            Hide Templates
-          </Button>
-        </Button.Group>
-        <Sidebar.Pushable as={Segment}>
-          <Sidebar as={Segment} onHide={handleHideClick} visible={templatesVisible} animation='uncover' width='very wide' direction='right'>
-          <Segment basic>
-            <LibraryContainer />
-          </Segment>
-          </Sidebar>
-          <Sidebar.Pusher>
-            <Segment basic>
-            <Tab menu={{ fluid: true, vertical: true, tabular: true }} panes={panes} />
-            </Segment>
-          </Sidebar.Pusher>
-        </Sidebar.Pushable>
-        </MainWrapper>
+        <Header />
+        <ContentWrapper>
+          <Tab menu={{ fluid: true, vertical: true, tabular: true }} panes={panes} />
+          <LibraryContainer />
+        </ContentWrapper>
         <ErrorContainer/>
-      </div>
+        </MainWrapper>
+      </AppWrapper>
     );
   }
 }
