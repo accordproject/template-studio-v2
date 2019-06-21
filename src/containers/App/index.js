@@ -1,12 +1,10 @@
-import React, { useState } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import 'semantic-ui-css/semantic.min.css';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
 
-import {
-  Button, Tab, Segment, Sidebar,
-} from 'semantic-ui-react';
+import { Tab } from 'semantic-ui-react';
 
 import { updateModelFileAction } from '../../actions/modelActions';
 import { updateLogicMockAction } from '../../actions/logicActions';
@@ -36,42 +34,43 @@ const ContentWrapper = styled.div`
   grid-template-columns: auto 355px;
 `;
 
-export const App = (props) => { {
-  const panes = [
-    {
-      menuItem: 'Text',
-      render: () => (
+export const App = (props) => {
+  {
+    const panes = [
+      {
+        menuItem: 'Text',
+        render: () => (
         <EditorContainer />
-      ),
-    },
-    {
-      menuItem: 'Model',
-      render: () => (
+        ),
+      },
+      {
+        menuItem: 'Model',
+        render: () => (
         <ConcertoEditor
           textValue={props.modelFileContents}
           handleSubmit={props.updateModelFile}
         />
-      ),
-    },
-    {
-      menuItem: 'Logic',
-      render: () => (
+        ),
+      },
+      {
+        menuItem: 'Logic',
+        render: () => (
         <ErgoEditor
           textValue={props.logicMockValue}
           handleSubmit={props.updateLogicMock}
         />
-      ),
-    },
-    {
-      menuItem: 'Metadata',
-      render: () => (
+        ),
+      },
+      {
+        menuItem: 'Metadata',
+        render: () => (
         <JsonEditor
           jsonObject={props.sampleMockValue}
           handleSubmit={props.updateSampleMock}
         />
-      ),
-    },
-  ];
+        ),
+      },
+    ];
 
     return (
       <AppWrapper>
@@ -87,7 +86,7 @@ export const App = (props) => { {
       </AppWrapper>
     );
   }
-}
+};
 
 App.propTypes = {
   logicMockValue: PropTypes.string,

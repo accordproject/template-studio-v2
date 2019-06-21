@@ -25,28 +25,29 @@ export const LibraryComponent = (props) => {
   const handleHideClick = () => setTemplatesVisible(false);
   const handleShowClick = () => setTemplatesVisible(true);
 
+  const { fetchAPTemplates } = props;
   useEffect(() => {
-    props.fetchAPTemplates();
-  }, []);
+    fetchAPTemplates();
+  }, [fetchAPTemplates]);
 
-    return (
-      <TLWrapper>
-        <Button disabled={templatesVisible} onClick={handleShowClick}>
-          Show Templates
-        </Button>
-        <Button disabled={!templatesVisible} onClick={handleHideClick}>
-          Hide Templates
-        </Button>
-        { templatesVisible && <TemplateLibrary
-          templates={props.templates}
-          upload={mockUpload}
-          import={mockImport}
-          addTemp={props.addNewTemplate}
-          addToCont={props.addToContract}
-        /> }
-      </TLWrapper>
-    );
-}
+  return (
+    <TLWrapper>
+      <Button disabled={templatesVisible} onClick={handleShowClick}>
+        Show Templates
+      </Button>
+      <Button disabled={!templatesVisible} onClick={handleHideClick}>
+        Hide Templates
+      </Button>
+      { templatesVisible && <TemplateLibrary
+        templates={props.templates}
+        upload={mockUpload}
+        import={mockImport}
+        addTemp={props.addNewTemplate}
+        addToCont={props.addToContract}
+      /> }
+    </TLWrapper>
+  );
+};
 
 LibraryComponent.propTypes = {
   templates: PropTypes.array.isRequired,
