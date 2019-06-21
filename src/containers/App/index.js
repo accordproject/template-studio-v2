@@ -1,4 +1,4 @@
-import React, { PureComponent } from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import 'semantic-ui-css/semantic.min.css';
 import { connect } from 'react-redux';
@@ -24,68 +24,46 @@ const MainWrapper = styled.div`
   padding: 10px;
 `;
 
-export class App extends PureComponent {
-  constructor(props) {
-    super(props);
-    this.state = {
-      templatesVisible: false,
-    };
-  }
+export const App = (props) => { {
+  const [templatesVisible, setTemplatesVisible] = useState(false);
+  const handleHideClick = () => setTemplatesVisible(false);
+  const handleShowClick = () => setTemplatesVisible(true);
 
-  handleHideClick = () => this.setState({ templatesVisible: false });
-
-  handleShowClick = () => this.setState({ templatesVisible: true });
-
-  static propTypes = {
-    logicMockValue: PropTypes.string,
-    modelFileContents: PropTypes.string,
-    sampleMockValue: PropTypes.string,
-    updateLogicMock: PropTypes.func.isRequired,
-    updateModelFile: PropTypes.func.isRequired,
-    updateSampleMock: PropTypes.func.isRequired,
-  };
-
-  render() {
-    const { templatesVisible } = this.state;
-
-    // console.log(`PROPS: ${JSON.stringify(this.props, null, 2)}`);
-    // console.log(`STATE: ${JSON.stringify(this.state, null, 2)}`);
-
-    const panes = [
-      {
-        menuItem: 'Text',
-        render: () => (
-          <EditorContainer />
-        ),
-      },
-      {
-        menuItem: 'Model',
-        render: () => (
-          <ConcertoEditor
-            textValue={this.props.modelFileContents}
-            handleSubmit={this.props.updateModelFile}
-          />
-        ),
-      },
-      {
-        menuItem: 'Logic',
-        render: () => (
-          <ErgoEditor
-            textValue={this.props.logicMockValue}
-            handleSubmit={this.props.updateLogicMock}
-          />
-        ),
-      },
-      {
-        menuItem: 'Metadata',
-        render: () => (
-          <JsonEditor
-            jsonObject={this.props.sampleMockValue}
-            handleSubmit={this.props.updateSampleMock}
-          />
-        ),
-      },
-    ];
+  const panes = [
+    {
+      menuItem: 'Text',
+      render: () => (
+        <EditorContainer />
+      ),
+    },
+    {
+      menuItem: 'Model',
+      render: () => (
+        <ConcertoEditor
+          textValue={props.modelFileContents}
+          handleSubmit={props.updateModelFile}
+        />
+      ),
+    },
+    {
+      menuItem: 'Logic',
+      render: () => (
+        <ErgoEditor
+          textValue={props.logicMockValue}
+          handleSubmit={props.updateLogicMock}
+        />
+      ),
+    },
+    {
+      menuItem: 'Metadata',
+      render: () => (
+        <JsonEditor
+          jsonObject={props.sampleMockValue}
+          handleSubmit={props.updateSampleMock}
+        />
+      ),
+    },
+  ];
 
     return (
       <div>
@@ -93,15 +71,15 @@ export class App extends PureComponent {
         <Header />
         <MainWrapper>
         <Button.Group>
-          <Button disabled={templatesVisible} onClick={this.handleShowClick}>
+          <Button disabled={templatesVisible} onClick={handleShowClick}>
             Show Templates
           </Button>
-          <Button disabled={!templatesVisible} onClick={this.handleHideClick}>
+          <Button disabled={!templatesVisible} onClick={handleHideClick}>
             Hide Templates
           </Button>
         </Button.Group>
         <Sidebar.Pushable as={Segment}>
-          <Sidebar as={Segment} onHide={this.handleHideClick} visible={templatesVisible} animation='uncover' width='very wide' direction='right'>
+          <Sidebar as={Segment} onHide={handleHideClick} visible={templatesVisible} animation='uncover' width='very wide' direction='right'>
           <Segment basic>
             <LibraryContainer />
           </Segment>
@@ -118,6 +96,15 @@ export class App extends PureComponent {
     );
   }
 }
+
+App.propTypes = {
+  logicMockValue: PropTypes.string,
+  modelFileContents: PropTypes.string,
+  sampleMockValue: PropTypes.string,
+  updateLogicMock: PropTypes.func.isRequired,
+  updateModelFile: PropTypes.func.isRequired,
+  updateSampleMock: PropTypes.func.isRequired,
+};
 
 const mapStateToProps = state => ({
   modelFileContents: state.modelState.modelFiles['test.cto'],
