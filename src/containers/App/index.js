@@ -14,8 +14,9 @@ import { updateSampleMockAction } from '../../actions/sampleActions';
 import Header from '../Header';
 import LibraryContainer from '../TemplateLibrary';
 import EditorContainer from '../ContractEditor';
-import ModelEditorComponent from '../ModelEditor';
-import ErgoEditorComponent from '../ErgoEditor';
+import ConcertoEditor from '../ConcertoEditor';
+import ErgoEditor from '../ErgoEditor';
+import JsonEditor from '../JsonEditor';
 import ErrorContainer from '../Error';
 
 const MainWrapper = styled.div`
@@ -59,7 +60,7 @@ export class App extends PureComponent {
       {
         menuItem: 'Model',
         render: () => (
-          <ModelEditorComponent
+          <ConcertoEditor
             textValue={this.props.modelFileContents}
             handleSubmit={this.props.updateModelFile}
           />
@@ -68,9 +69,18 @@ export class App extends PureComponent {
       {
         menuItem: 'Logic',
         render: () => (
-          <ErgoEditorComponent
+          <ErgoEditor
             textValue={this.props.logicMockValue}
             handleSubmit={this.props.updateLogicMock}
+          />
+        ),
+      },
+      {
+        menuItem: 'Metadata',
+        render: () => (
+          <JsonEditor
+            jsonObject={this.props.sampleMockValue}
+            handleSubmit={this.props.updateSampleMock}
           />
         ),
       },
