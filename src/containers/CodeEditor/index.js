@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback } from 'react';
 import MonacoEditor from 'react-monaco-editor';
 import PropTypes from 'prop-types';
 import { debounce } from 'throttle-debounce';
@@ -10,13 +10,6 @@ import { debounce } from 'throttle-debounce';
 function CodeEditor(props) {
   const [code, setCode] = useState(props.textValue);
 
-  /**
-   * Debounce calling props.handleSubmit with code
-   */
-  const updateContent = debounce(props.debounceInterval, () => {
-    props.handleSubmit(code);
-  });
-
   const editorWillMount = ((monaco) => {
     monaco.languages.register({ id: props.languageId });
     monaco.languages.setMonarchTokensProvider(props.languageId, props.languageFormat);
@@ -27,10 +20,10 @@ function CodeEditor(props) {
     editor.focus();
   });
 
-  const onChange = ((newValue, e) => {
+  const onChange = (newValue, e) => {
     setCode(newValue);
-    updateContent();
-  });
+    props.handleSubmit(newValue);
+    };
 
   return (
       <MonacoEditor
