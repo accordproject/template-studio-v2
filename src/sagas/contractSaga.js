@@ -2,6 +2,7 @@ import {
   takeLatest, select, put
 } from 'redux-saga/effects';
 import * as actions from '../actions/contractActions';
+import * as appActions from '../actions/appActions';
 import * as contractSelectors from '../selectors/contractSelectors';
 
 /**
@@ -14,7 +15,7 @@ export function* updateDocument(action) {
   try {
     yield put(actions.documentEditedSuccess(action.slateValue, action.markdown));
   } catch (err) {
-    yield put(actions.documentEditedError(err));
+    yield put(appActions.addAppError('Failed to update document', err));
   }
 }
 

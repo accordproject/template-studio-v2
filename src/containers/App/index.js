@@ -18,6 +18,7 @@ import ConcertoEditor from '../ConcertoEditor';
 import ErgoEditor from '../ErgoEditor';
 import JsonEditor from '../JsonEditor';
 import ErrorContainer from '../Error';
+import ErrorModalComponent from '../ErrorModal';
 
 const MainWrapper = styled.div`
   padding: 10px;
@@ -88,6 +89,7 @@ export class App extends PureComponent {
 
     return (
       <div>
+        <ErrorModalComponent />
         <Header />
         <MainWrapper>
         <Button.Group>

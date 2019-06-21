@@ -7,11 +7,6 @@ export const getTemplatesSuccess = templateIndexArray => ({
   templates: templateIndexArray,
 });
 
-export const getTemplatesError = error => ({
-  type: 'AP_TEMPLATES_ERROR',
-  error,
-});
-
 export const addNewTemplateAction = () => ({
   type: 'ADD_NEW_TEMPLATE',
 });
@@ -30,11 +25,6 @@ export const loadTemplateObjectSuccess = (uri, templateObj) => ({
   type: 'LOAD_TEMPLATE_OBJECT_SUCCEEDED',
   uri,
   templateObj,
-});
-
-export const loadTemplateObjectError = error => ({
-  type: 'LOAD_TEMPLATE_OBJECT_ERROR',
-  error
 });
 
 export const addToContractAction = uri => ({

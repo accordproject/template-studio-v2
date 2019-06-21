@@ -48,7 +48,7 @@ describe('pushTemplatesToStore', () => {
     const dispatched = await recordSaga(
       pushTemplatesToStore,
     );
-    expect(dispatched[0].type).toContain('AP_TEMPLATES_ERROR');
+    expect(dispatched[0].type).toContain('ADD_APP_ERROR');
   });
 });
 
