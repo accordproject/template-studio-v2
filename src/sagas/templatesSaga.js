@@ -81,6 +81,7 @@ export function* addToContract(action) {
   const slateValue = yield select(contractSelectors.slateValue);
   const { metadata } = templateObj;
 
+  const currentPosition = slateValue.selection.anchor.path.get(0);
   const clauseMd = `\`\`\` <clause src=${action.uri} clauseId=${uuidv4()}>
   ${metadata.getSample()}
   \`\`\``;
@@ -90,7 +91,7 @@ export function* addToContract(action) {
   const newSlateValue = JSON.parse(JSON.stringify(slateValue.toJSON()));
   const newMd = toMarkdown.convert(newSlateValue);
   const { nodes } = newSlateValue.document;
-  nodes.push(clauseNode);
+  nodes.splice(currentPosition, 0, clauseNode);
   yield put(contractActions.documentEdited(Value.fromJSON(newSlateValue), newMd));
 }
 
