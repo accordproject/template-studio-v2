@@ -13,6 +13,7 @@ import {
 } from 'redux-saga/effects';
 
 import * as actions from '../actions/templatesActions';
+import * as appActions from '../actions/appActions';
 import * as contractActions from '../actions/contractActions';
 import * as selectors from '../selectors/templatesSelectors';
 import * as contractSelectors from '../selectors/contractSelectors';
@@ -29,7 +30,7 @@ export function* pushTemplatesToStore() {
     const templateIndexArray = Object.values(templateIndex);
     yield put(actions.getTemplatesSuccess(templateIndexArray));
   } catch (err) {
-    yield put(actions.getTemplatesError(err));
+    yield put(appActions.addAppError('Failed to load templates', err));
   }
 }
 
@@ -60,7 +61,7 @@ export function* addTemplateObjectToStore(action) {
       yield put(actions.loadTemplateObjectSuccess(action.uri, templateObj));
       return templateObj;
     } catch (err) {
-      yield put(actions.loadTemplateObjectError(err));
+      yield put(appActions.addAppError('Failed to load template object', err));
       return err;
     }
   }

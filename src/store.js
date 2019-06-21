@@ -2,6 +2,7 @@ import { combineReducers, createStore, applyMiddleware } from 'redux';
 import createSagaMiddleware from 'redux-saga';
 import logger from 'redux-logger';
 
+import appReducer from './reducers/appReducer';
 import templatesReducer from './reducers/templatesReducer';
 import modelReducer from './reducers/modelReducer';
 import logicReducer from './reducers/logicReducer';
@@ -18,6 +19,7 @@ if (process.env.NODE_ENV === 'development') {
 }
 
 const rootReducer = combineReducers({
+  appState: appReducer,
   templatesState: templatesReducer,
   modelState: modelReducer,
   logicState: logicReducer,

@@ -9,8 +9,3 @@ export const documentEditedSuccess = (value, markdown) => ({
   slateValue: value,
   markdown,
 });
-
-export const documentEditedError = error => ({
-  type: 'DOCUMENT_EDITED_ERROR',
-  error,
-});
