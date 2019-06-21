@@ -14,10 +14,10 @@ exports[`<ErrorModal /> on initialization renders page correctly 1`] = `
   <Header
     content="Error"
   />
-  <Styled(ModalContent)>
+  <ErrorModal__StyledContent>
     Unexpected error
 Error message
-  </Styled(ModalContent)>
+  </ErrorModal__StyledContent>
   <ModalActions>
     <Button
       as="button"

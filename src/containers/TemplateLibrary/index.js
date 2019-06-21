@@ -8,6 +8,7 @@ import { Button } from 'semantic-ui-react';
 import { getTemplatesAction, addNewTemplateAction, addToContractAction } from '../../actions/templatesActions';
 
 const TLWrapper = styled.div`
+height: fill-available;
 width: 355px;
 border: 2px solid #F9F9F9;
 overflow-y: scroll;

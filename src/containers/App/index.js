@@ -27,7 +27,7 @@ const AppWrapper = styled.div`
 const MainWrapper = styled.div`
   height: 100%;
   display: grid;
-  grid-template-rows: 37px calc(100vh - 265px) 228px;
+  grid-template-rows: 37px auto 228px;
 `;
 
 const ContentWrapper = styled.div`

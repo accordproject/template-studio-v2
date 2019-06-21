@@ -1,83 +1,50 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`<App /> on initialization renders page correctly 1`] = `
-<div>
-  <ConnectFunction />
-  <Header />
-  <styled.div>
-    <ButtonGroup>
-      <Button
-        as="button"
-        disabled={false}
-        onClick={[Function]}
-      >
-        Show Templates
-      </Button>
-      <Button
-        as="button"
-        disabled={true}
-        onClick={[Function]}
-      >
-        Hide Templates
-      </Button>
-    </ButtonGroup>
-    <SidebarPushable
-      as={[Function]}
-    >
-      <Sidebar
-        animation="uncover"
-        as={[Function]}
-        direction="right"
-        onHide={[Function]}
-        visible={false}
-        width="very wide"
-      >
-        <Segment
-          basic={true}
-        >
-          <ConnectFunction />
-        </Segment>
-      </Sidebar>
-      <SidebarPusher>
-        <Segment
-          basic={true}
-        >
-          <Tab
-            grid={
-              Object {
-                "paneWidth": 12,
-                "tabWidth": 4,
-              }
-            }
-            menu={
-              Object {
-                "fluid": true,
-                "tabular": true,
-                "vertical": true,
-              }
-            }
-            panes={
-              Array [
-                Object {
-                  "menuItem": "Text",
-                  "render": [Function],
-                },
-                Object {
-                  "menuItem": "Model",
-                  "render": [Function],
-                },
-                Object {
-                  "menuItem": "Logic",
-                  "render": [Function],
-                },
-              ]
-            }
-            renderActiveOnly={true}
-          />
-        </Segment>
-      </SidebarPusher>
-    </SidebarPushable>
-  </styled.div>
-  <ConnectFunction />
-</div>
+<App__AppWrapper>
+  <Connect(Component) />
+  <App__MainWrapper>
+    <Header />
+    <App__ContentWrapper>
+      <Tab
+        grid={
+          Object {
+            "paneWidth": 12,
+            "tabWidth": 4,
+          }
+        }
+        menu={
+          Object {
+            "fluid": true,
+            "tabular": true,
+            "vertical": true,
+          }
+        }
+        panes={
+          Array [
+            Object {
+              "menuItem": "Text",
+              "render": [Function],
+            },
+            Object {
+              "menuItem": "Model",
+              "render": [Function],
+            },
+            Object {
+              "menuItem": "Logic",
+              "render": [Function],
+            },
+            Object {
+              "menuItem": "Metadata",
+              "render": [Function],
+            },
+          ]
+        }
+        renderActiveOnly={true}
+      />
+      <Connect(LibraryComponent) />
+    </App__ContentWrapper>
+    <Connect(ErrorContainer) />
+  </App__MainWrapper>
+</App__AppWrapper>
 `;
