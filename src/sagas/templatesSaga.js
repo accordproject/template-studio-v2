@@ -1,9 +1,8 @@
 import { TemplateLibrary, Template } from '@accordproject/cicero-core';
 import { version as ciceroVersion } from '@accordproject/cicero-core/package.json';
-import PluginManager from '@accordproject/markdown-editor/dist/PluginManager';
-import ListPlugin from '@accordproject/markdown-editor/dist/plugins/list';
-import FromMarkdown from '@accordproject/markdown-editor/dist/markdown/fromMarkdown';
-import ToMarkdown from '@accordproject/markdown-editor/dist/markdown/toMarkdown';
+import {
+  PluginManager, List, FromMarkdown, ToMarkdown
+} from '@accordproject/markdown-editor';
 import ClausePlugin from '@accordproject/cicero-ui/dist/plugins/ClausePlugin';
 import { Value } from 'slate';
 import uuidv4 from 'uuidv4';
@@ -73,7 +72,7 @@ export function* addTemplateObjectToStore(action) {
  * saga which adds a clause node to the current slate value
  */
 export function* addToContract(action) {
-  const pluginManager = new PluginManager([ListPlugin(), ClausePlugin()]);
+  const pluginManager = new PluginManager([List(), ClausePlugin()]);
   const fromMarkdown = new FromMarkdown(pluginManager);
   const toMarkdown = new ToMarkdown(pluginManager);
 
@@ -82,7 +81,7 @@ export function* addToContract(action) {
   const slateValue = yield select(contractSelectors.slateValue);
   const { metadata } = templateObj;
 
-  const clauseMd = `\`\`\` <clause src=${action.uri} id=${uuidv4()}>
+  const clauseMd = `\`\`\` <clause src=${action.uri} clauseId=${uuidv4()}>
   ${metadata.getSample()}
   \`\`\``;
   const value = fromMarkdown.convert(clauseMd);
