@@ -1,12 +1,10 @@
-import React, { PureComponent } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import 'semantic-ui-css/semantic.min.css';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
 
-import {
-  Button, Tab, Segment, Sidebar,
-} from 'semantic-ui-react';
+import { Tab } from 'semantic-ui-react';
 
 import { updateModelFileAction } from '../../actions/modelActions';
 import { updateLogicMockAction } from '../../actions/logicActions';
@@ -20,104 +18,84 @@ import JsonEditor from '../JsonEditor';
 import ErrorContainer from '../Error';
 import ErrorModalComponent from '../ErrorModal';
 
-const MainWrapper = styled.div`
-  padding: 10px;
+const AppWrapper = styled.div`
+  height: 100%;
 `;
 
-export class App extends PureComponent {
-  constructor(props) {
-    super(props);
-    this.state = {
-      templatesVisible: false,
-    };
-  }
+const MainWrapper = styled.div`
+  height: 100%;
+  display: grid;
+  grid-template-rows: 37px auto 228px;
+`;
 
-  handleHideClick = () => this.setState({ templatesVisible: false });
+const ContentWrapper = styled.div`
+  padding: 10px;
+  display: grid;
+  grid-template-columns: auto 355px;
+`;
 
-  handleShowClick = () => this.setState({ templatesVisible: true });
-
-  static propTypes = {
-    logicMockValue: PropTypes.string,
-    modelFileContents: PropTypes.string,
-    sampleMockValue: PropTypes.string,
-    updateLogicMock: PropTypes.func.isRequired,
-    updateModelFile: PropTypes.func.isRequired,
-    updateSampleMock: PropTypes.func.isRequired,
-  };
-
-  render() {
-    const { templatesVisible } = this.state;
-
-    // console.log(`PROPS: ${JSON.stringify(this.props, null, 2)}`);
-    // console.log(`STATE: ${JSON.stringify(this.state, null, 2)}`);
-
+export const App = (props) => {
+  {
     const panes = [
       {
         menuItem: 'Text',
         render: () => (
-          <EditorContainer />
+        <EditorContainer />
         ),
       },
       {
         menuItem: 'Model',
         render: () => (
-          <ConcertoEditor
-            textValue={this.props.modelFileContents}
-            handleSubmit={this.props.updateModelFile}
-          />
+        <ConcertoEditor
+          textValue={props.modelFileContents}
+          handleSubmit={props.updateModelFile}
+        />
         ),
       },
       {
         menuItem: 'Logic',
         render: () => (
-          <ErgoEditor
-            textValue={this.props.logicMockValue}
-            handleSubmit={this.props.updateLogicMock}
-          />
+        <ErgoEditor
+          textValue={props.logicMockValue}
+          handleSubmit={props.updateLogicMock}
+        />
         ),
       },
       {
         menuItem: 'Metadata',
         render: () => (
-          <JsonEditor
-            jsonObject={this.props.sampleMockValue}
-            handleSubmit={this.props.updateSampleMock}
-          />
+        <JsonEditor
+          jsonObject={props.sampleMockValue}
+          handleSubmit={props.updateSampleMock}
+        />
         ),
       },
     ];
 
     return (
-      <div>
+      <AppWrapper>
         <ErrorModalComponent />
-        <Header />
         <MainWrapper>
-        <Button.Group>
-          <Button disabled={templatesVisible} onClick={this.handleShowClick}>
-            Show Templates
-          </Button>
-          <Button disabled={!templatesVisible} onClick={this.handleHideClick}>
-            Hide Templates
-          </Button>
-        </Button.Group>
-        <Sidebar.Pushable as={Segment}>
-          <Sidebar as={Segment} onHide={this.handleHideClick} visible={templatesVisible} animation='uncover' width='very wide' direction='right'>
-          <Segment basic>
-            <LibraryContainer />
-          </Segment>
-          </Sidebar>
-          <Sidebar.Pusher>
-            <Segment basic>
-            <Tab menu={{ fluid: true, vertical: true, tabular: true }} panes={panes} />
-            </Segment>
-          </Sidebar.Pusher>
-        </Sidebar.Pushable>
-        </MainWrapper>
+        <Header />
+        <ContentWrapper>
+          <Tab menu={{ fluid: true, vertical: true, tabular: true }} panes={panes} />
+          <LibraryContainer />
+        </ContentWrapper>
         <ErrorContainer/>
-      </div>
+        </MainWrapper>
+      </AppWrapper>
     );
   }
-}
+};
+
+App.propTypes = {
+  logicMockValue: PropTypes.string,
+  modelFileContents: PropTypes.string,
+  sampleMockValue: PropTypes.string,
+  updateLogicMock: PropTypes.func.isRequired,
+  updateModelFile: PropTypes.func.isRequired,
+  updateSampleMock: PropTypes.func.isRequired,
+};
 
 const mapStateToProps = state => ({
   modelFileContents: state.modelState.modelFiles['test.cto'],
