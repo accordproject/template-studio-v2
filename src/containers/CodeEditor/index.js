@@ -8,7 +8,7 @@ import { debounce } from 'throttle-debounce';
  * @param {*} props the properties for the component
  */
 function CodeEditor(props) {
-  const [code, setCode] = useState(props.textValue);
+  const [code, setCode] = useState(null);
 
   const editorWillMount = ((monaco) => {
     monaco.languages.register({ id: props.languageId });
@@ -30,7 +30,7 @@ function CodeEditor(props) {
         options={props.monacoOptions}
         language={props.languageId}
         theme={props.themeId}
-        value={code}
+        value={code ? code : props.textValue}
         onChange={onChange}
         editorDidMount={editorDidMount}
         editorWillMount={editorWillMount}
