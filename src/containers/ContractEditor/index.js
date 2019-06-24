@@ -15,6 +15,7 @@ const EditorWrapper = styled.div`
     background: transparent;
   };
   justify-self: center;
+  width: 594px;
 `;
 
 const EditorContainer = props => (

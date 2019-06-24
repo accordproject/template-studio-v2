@@ -16,6 +16,7 @@ const TLWrapper = styled.div`
     background: transparent;
   };
   display: grid;
+  grid-template-rows: 18px auto;
 `;
 
 const TemplatesBtn = styled(TextButton)`

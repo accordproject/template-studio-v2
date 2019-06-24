@@ -1,24 +1,38 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
+import { Icon } from 'semantic-ui-react';
+import styled from 'styled-components';
 import SubHeading from './SubHeadingBtn';
 
 const ClauseNav = (props) => {
   const {
     id, onClauseClick, src, showExpandedClause, setCurrentEditor
   } = props;
+
+  const [clauseOpen, setClauseOpen] = useState(false);
+
+  const ClauseNavOption = styled(SubHeading)`
+    padding-left: 10px;
+  `;
+
   return (
     <React.Fragment>
       <SubHeading
-        onClick={() => onClauseClick(id)}
+        onClick={() => {
+          onClauseClick(id);
+          setClauseOpen(!clauseOpen);
+        }}
       >
+        <Icon name={clauseOpen ? 'caret down' : 'caret right'} style={{ textDecoration: 'none' }} />
         {src}
       </SubHeading>
       {
       showExpandedClause[id]
       && <React.Fragment>
-        <SubHeading onClick={() => setCurrentEditor('contract')}>> ClauseTemplate</SubHeading>
-        <SubHeading onClick={() => setCurrentEditor('contract')}>> Example Text</SubHeading>
-        <SubHeading onClick={() => setCurrentEditor('model')}>> Model</SubHeading>
+        <ClauseNavOption onClick={() => setCurrentEditor('metadata')}>Metadata</ClauseNavOption>
+        <ClauseNavOption onClick={() => setCurrentEditor('contract')}>ClauseTemplate</ClauseNavOption>
+        <ClauseNavOption onClick={() => setCurrentEditor('contract')}>Example Text</ClauseNavOption>
+        <ClauseNavOption onClick={() => setCurrentEditor('model')}>Model</ClauseNavOption>
       </React.Fragment>
       }
     </React.Fragment>);

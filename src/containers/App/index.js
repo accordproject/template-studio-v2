@@ -13,7 +13,7 @@ import EditorContainer from '../ContractEditor';
 import ConcertoEditor from '../ConcertoEditor';
 import ErgoEditor from '../ErgoEditor';
 import JsonEditor from '../JsonEditor';
-import ErrorContainer from '../Error';
+// import ErrorContainer from '../Error';
 import ErrorModalComponent from '../ErrorModal';
 import LeftNavContainer from '../LeftNav';
 
@@ -28,6 +28,7 @@ const MainWrapper = styled.div`
 `;
 
 const ContentWrapper = styled.div`
+  height: calc(100vh - 37px);
   display: grid;
   grid-template-columns: 204px auto 355px;
 `;
