@@ -4,8 +4,6 @@ import 'semantic-ui-css/semantic.min.css';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
 
-import { Tab } from 'semantic-ui-react';
-
 import { updateModelFileAction } from '../../actions/modelActions';
 import { updateLogicMockAction } from '../../actions/logicActions';
 import { updateSampleMockAction } from '../../actions/sampleActions';

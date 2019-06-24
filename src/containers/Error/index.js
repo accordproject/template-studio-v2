@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import { ErrorLogger } from '@accordproject/cicero-ui';
 
 const ErrorWrapper = styled.div`
-  width: 100%;
+  width: 600px;
 `;
 const ErrorContainer = props => (
   <ErrorWrapper>

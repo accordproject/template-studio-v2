@@ -16,7 +16,6 @@ const HeaderTitle = styled.div`
     align-items: center;
     margin-left: 30px;
     padding-right: 20px;
-    border-right: 1px solid #2D2E2E;
     text-align: center;
     font-weight: bold;
 `;

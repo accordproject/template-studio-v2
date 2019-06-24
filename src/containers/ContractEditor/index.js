@@ -9,12 +9,12 @@ import parseClause from '../../utilities/parseClause';
 
 const EditorWrapper = styled.div`
   overflow-y: auto;
+  overflow-x: hidden;
   &::-webkit-scrollbar {
     width: 6px;
     background: transparent;
   };
   justify-self: center;
-  width: 594px;
 `;
 
 const EditorContainer = props => (
