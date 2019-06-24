@@ -5,6 +5,24 @@ import styled from 'styled-components';
 import TextButton from '../../components/TextButton';
 
 const LeftNavWrapper = styled.div`
+  padding: 15px;
+`;
+
+const Heading = styled.h2`
+  height: 14px;
+  width: 136px;
+  color: #B9BCC4;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 14px;
+`;
+
+const SubHeading = styled.p`
+  height: 24px;
+  width: 136px;
+  color: #B9BCC4;
+  font-size: 16px;
+  line-height: 24px;
 `;
 
 export const LeftNav = (props) => {
@@ -27,10 +45,11 @@ export const LeftNav = (props) => {
       { navVisible ? '< Hide Navigation' : 'Show Navigation >'}
     </TextButton>
     { navVisible && <div>
-      <h2>Contract</h2>
-      <h3>Contract Template</h3>
+      <Heading>CONTRACT</Heading>
+      <SubHeading>Contract Template</SubHeading>
+      <SubHeading>Contract Text</SubHeading>
       <br />
-      <h2>Clauses</h2>
+      <Heading>CLAUSES</Heading>
     </div> }
   </LeftNavWrapper>
   );

@@ -17,7 +17,7 @@ import ErgoEditor from '../ErgoEditor';
 import JsonEditor from '../JsonEditor';
 import ErrorContainer from '../Error';
 import ErrorModalComponent from '../ErrorModal';
-import LeftNav from '../LeftNav';
+import LeftNavContainer from '../LeftNav';
 
 const AppWrapper = styled.div`
   height: 100%;
@@ -26,7 +26,7 @@ const AppWrapper = styled.div`
 const MainWrapper = styled.div`
   height: 100%;
   display: grid;
-  grid-template-rows: 37px auto 228px;
+  grid-template-rows: 37px auto;
 `;
 
 const ContentWrapper = styled.div`
@@ -73,11 +73,10 @@ export const App = (props) => {
       <MainWrapper>
       <Header />
       <ContentWrapper>
-        <LeftNav setCurrentEditor={setCurrentEditor} />
+        <LeftNavContainer setCurrentEditor={setCurrentEditor} />
         {renderEditor()}
         <LibraryContainer />
       </ContentWrapper>
-      <ErrorContainer/>
       </MainWrapper>
     </AppWrapper>
   );

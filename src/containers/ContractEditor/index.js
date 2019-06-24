@@ -8,14 +8,13 @@ import { documentEdited } from '../../actions/contractActions';
 import parseClause from '../../utilities/parseClause';
 
 const EditorWrapper = styled.div`
-height: 700px;
-bottom: 0;
-left: 0;
-overflow-y: auto;
-&::-webkit-scrollbar {
-  width: 6px;
-  background: transparent;
-}
+  overflow-y: auto;
+  &::-webkit-scrollbar {
+    width: 6px;
+    background: transparent;
+  };
+  justify-self: center;
+  width: 594px;
 `;
 
 const EditorContainer = props => (
