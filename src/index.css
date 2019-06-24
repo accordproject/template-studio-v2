@@ -1,7 +1,9 @@
 body, html, h1, h2, h3, h4, h5, h6, p, a {
-  font-family: 'IBM Plex Sans', sans-serif
+  font-family: 'IBM Plex Sans', sans-serif;
+  height: 100%;
+  margin: 0;
 }
 
 .Site-content, #root {
-  height: 100%
+  height: 100%;
 }

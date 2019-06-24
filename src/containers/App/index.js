@@ -29,7 +29,6 @@ const MainWrapper = styled.div`
 `;
 
 const ContentWrapper = styled.div`
-  padding: 10px;
   display: grid;
   grid-template-columns: auto 355px;
 `;

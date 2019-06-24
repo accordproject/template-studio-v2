@@ -23,14 +23,14 @@ function CodeEditor(props) {
   const onChange = (newValue, e) => {
     setCode(newValue);
     props.handleSubmit(newValue);
-    };
+  };
 
   return (
       <MonacoEditor
         options={props.monacoOptions}
         language={props.languageId}
         theme={props.themeId}
-        value={code ? code : props.textValue}
+        value={code || props.textValue}
         onChange={onChange}
         editorDidMount={editorDidMount}
         editorWillMount={editorWillMount}

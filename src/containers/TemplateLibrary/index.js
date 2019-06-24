@@ -3,27 +3,32 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
 import { TemplateLibrary } from '@accordproject/cicero-ui';
-import { Button } from 'semantic-ui-react';
+import TextButton from '../../components/TextButton';
 
 import { getTemplatesAction, addNewTemplateAction, addToContractAction } from '../../actions/templatesActions';
 
 const TLWrapper = styled.div`
-height: fill-available;
-width: 355px;
-border: 2px solid #F9F9F9;
-overflow-y: scroll;
-&::-webkit-scrollbar {
-  width: 4px;
-  background: transparent;
-}
+  height: fill-available;
+  width: 355px;
+  border: 2px solid #F9F9F9;
+  overflow-y: scroll;
+  &::-webkit-scrollbar {
+    width: 4px;
+    background: transparent;
+  };
+  display: grid;
 `;
+
+const TemplatesBtn = styled(TextButton)`
+  justify-self: end;
+`;
+
 const mockImport = () => { console.log('import'); };
 const mockUpload = () => { console.log('upload'); };
 
 export const LibraryComponent = (props) => {
   const [templatesVisible, setTemplatesVisible] = useState(true);
-  const handleHideClick = () => setTemplatesVisible(false);
-  const handleShowClick = () => setTemplatesVisible(true);
+  const handleClick = () => setTemplatesVisible(!templatesVisible);
 
   const { fetchAPTemplates } = props;
   useEffect(() => {
@@ -32,12 +37,9 @@ export const LibraryComponent = (props) => {
 
   return (
     <TLWrapper>
-      <Button disabled={templatesVisible} onClick={handleShowClick}>
-        Show Templates
-      </Button>
-      <Button disabled={!templatesVisible} onClick={handleHideClick}>
-        Hide Templates
-      </Button>
+      <TemplatesBtn onClick={handleClick} display={'block'}>
+        { templatesVisible ? 'Hide Clause Templates >' : '< Show Clause Templates'}
+      </TemplatesBtn>
       { templatesVisible && <TemplateLibrary
         templates={props.templates}
         upload={mockUpload}
