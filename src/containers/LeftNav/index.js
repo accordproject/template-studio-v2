@@ -8,10 +8,12 @@ import SubHeading from './SubHeadingBtn';
 
 const LeftNavWrapper = styled.div`
   padding: 15px;
+  overflow-x: hidden;
+  background-color: #141F3C;
 `;
 
 const NavWrapper = styled.div`
-  padding: 10px;
+  padding-top: 10px;
 `;
 
 const Heading = styled.h2`
