@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
@@ -28,7 +28,12 @@ const mockUpload = () => { console.log('upload'); };
 
 export const LibraryComponent = (props) => {
   const [templatesVisible, setTemplatesVisible] = useState(true);
-  const handleClick = () => setTemplatesVisible(!templatesVisible);
+  const buttonRef = useRef(null);
+
+  const handleClick = () => {
+    setTemplatesVisible(!templatesVisible);
+    buttonRef.current.blur();
+  };
 
   const { fetchAPTemplates } = props;
   useEffect(() => {
@@ -37,7 +42,11 @@ export const LibraryComponent = (props) => {
 
   return (
     <TLWrapper>
-      <TemplatesBtn onClick={handleClick} display={'block'}>
+      <TemplatesBtn
+        ref={buttonRef}
+        onClick={handleClick}
+        display={'block'}
+      >
         { templatesVisible ? 'Hide Clause Templates >' : '< Show Clause Templates'}
       </TemplatesBtn>
       { templatesVisible && <TemplateLibrary

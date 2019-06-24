@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import 'semantic-ui-css/semantic.min.css';
 import { connect } from 'react-redux';
@@ -17,6 +17,7 @@ import ErgoEditor from '../ErgoEditor';
 import JsonEditor from '../JsonEditor';
 import ErrorContainer from '../Error';
 import ErrorModalComponent from '../ErrorModal';
+import LeftNav from '../LeftNav';
 
 const AppWrapper = styled.div`
   height: 100%;
@@ -30,61 +31,56 @@ const MainWrapper = styled.div`
 
 const ContentWrapper = styled.div`
   display: grid;
-  grid-template-columns: auto 355px;
+  grid-template-columns: 204px auto 355px;
 `;
 
 export const App = (props) => {
-  {
-    const panes = [
-      {
-        menuItem: 'Text',
-        render: () => (
-        <EditorContainer />
-        ),
-      },
-      {
-        menuItem: 'Model',
-        render: () => (
-        <ConcertoEditor
-          textValue={props.modelFileContents}
-          handleSubmit={props.updateModelFile}
-        />
-        ),
-      },
-      {
-        menuItem: 'Logic',
-        render: () => (
+  const [currentEditor, setCurrentEditor] = useState('contract');
+
+  const renderEditor = () => {
+    switch (currentEditor) {
+      case 'contract':
+        return (<EditorContainer />);
+      case 'model':
+        return (
+          <ConcertoEditor
+            textValue={props.modelFileContents}
+            handleSubmit={props.updateModelFile}
+          />
+        );
+      case 'logic':
+        return (
         <ErgoEditor
           textValue={props.logicMockValue}
           handleSubmit={props.updateLogicMock}
         />
-        ),
-      },
-      {
-        menuItem: 'Metadata',
-        render: () => (
-        <JsonEditor
-          jsonObject={props.sampleMockValue}
-          handleSubmit={props.updateSampleMock}
-        />
-        ),
-      },
-    ];
+        );
+      case 'metadata':
+        return (
+          <JsonEditor
+            jsonObject={props.sampleMockValue}
+            handleSubmit={props.updateSampleMock}
+          />
+        );
+      default:
+        return <EditorContainer />;
+    }
+  };
 
-    return (
-      <AppWrapper>
-        <ErrorModalComponent />
-        <MainWrapper>
-        <Header />
-        <ContentWrapper>
-          <Tab menu={{ fluid: true, vertical: true, tabular: true }} panes={panes} />
-          <LibraryContainer />
-        </ContentWrapper>
-        <ErrorContainer/>
-        </MainWrapper>
-      </AppWrapper>
-    );
-  }
+  return (
+    <AppWrapper>
+      <ErrorModalComponent />
+      <MainWrapper>
+      <Header />
+      <ContentWrapper>
+        <LeftNav setCurrentEditor={setCurrentEditor} />
+        {renderEditor()}
+        <LibraryContainer />
+      </ContentWrapper>
+      <ErrorContainer/>
+      </MainWrapper>
+    </AppWrapper>
+  );
 };
 
 App.propTypes = {
