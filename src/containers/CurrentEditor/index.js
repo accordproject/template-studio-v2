@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import { updateModelFileAction } from '../../actions/modelActions';
 import { updateLogicMockAction } from '../../actions/logicActions';
 import { updateSampleMockAction } from '../../actions/sampleActions';
-import ClauseEditor from '../ClauseEditor';
+import ClauseTemplateEditor from '../ClauseTemplateEditor';
 import ContractEditor from '../ContractEditor';
 import ConcertoEditor from '../ConcertoEditor';
 import ErgoEditor from '../ErgoEditor';
@@ -16,7 +16,7 @@ const CurrentEditor = (props) => {
     case 'contract':
       return (<ContractEditor />);
     case 'clause':
-      return (<ClauseEditor />);
+      return (<ClauseTemplateEditor />);
     case 'model':
       return (
         <ConcertoEditor

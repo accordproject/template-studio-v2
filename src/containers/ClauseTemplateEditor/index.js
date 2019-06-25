@@ -17,7 +17,7 @@ const EditorWrapper = styled.div`
   width: 594px;
 `;
 
-const ClauseEditorContainer = props => (
+const ClauseTemplateEditor = props => (
   <EditorWrapper>
     <ClauseEditor
       loadTemplateObject={props.loadTemplateObject}
@@ -29,16 +29,17 @@ const ClauseEditorContainer = props => (
   </EditorWrapper>
 );
 
-ClauseEditorContainer.propTypes = {
+ClauseTemplateEditor.propTypes = {
   loadTemplateObject: PropTypes.func.isRequired,
   templateObjs: PropTypes.object,
   onClauseTemplateChange: PropTypes.func.isRequired,
   value: PropTypes.object,
 };
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state, ownProps) => ({
   templateObjs: state.templatesState.templateObjs,
   value: state.contractState.slateValue,
+  // value: state.clauseState[ownProps.clauseId].slateValue,
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -46,4 +47,4 @@ const mapDispatchToProps = dispatch => ({
   onClauseTemplateChange: (value, markdown) => console.log('clause template edited')
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(React.memo(ClauseEditorContainer));
+export default connect(mapStateToProps, mapDispatchToProps)(React.memo(ClauseTemplateEditor));
