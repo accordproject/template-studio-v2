@@ -6,7 +6,7 @@ import image from '../../../public/img/logo.png';
 const HeaderWrapper = styled.div`
     display: flex;
     height: 37px;
-    width: 100vw;
+    width: 100%;
     background-color: #1B1C1C;
     color: white;
 `;

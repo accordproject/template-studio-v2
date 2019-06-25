@@ -30,6 +30,7 @@ body, html {
   font-family: 'Graphik', sans-serif;
   height: 100%;
   margin: 0;
+  overflow-x: auto;
 }
 
 h1, h2, h3, h4, h5, h6, p, a, button {
