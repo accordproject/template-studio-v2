@@ -5,7 +5,8 @@ import { connect } from 'react-redux';
 import { TemplateLibrary } from '@accordproject/cicero-ui';
 import TextButton from '../../components/TextButton';
 
-import { getTemplatesAction, addNewTemplateAction, addToContractAction } from '../../actions/templatesActions';
+import { getTemplatesAction, addNewTemplateAction } from '../../actions/templatesActions';
+import { addToContractAction } from '../../actions/contractActions';
 
 const TLWrapper = styled.div`
   width: 355px;

@@ -9,3 +9,8 @@ export const documentEditedSuccess = (value, markdown) => ({
   slateValue: value,
   markdown,
 });
+
+export const addToContractAction = uri => ({
+  type: 'ADD_TO_CONTRACT',
+  uri,
+});

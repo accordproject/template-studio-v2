@@ -26,8 +26,3 @@ export const loadTemplateObjectSuccess = (uri, templateObj) => ({
   uri,
   templateObj,
 });
-
-export const addToContractAction = uri => ({
-  type: 'ADD_TO_CONTRACT',
-  uri,
-});
