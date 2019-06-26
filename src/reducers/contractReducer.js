@@ -1,6 +1,7 @@
 import { Value } from 'slate';
 
 const initialState = {
+  contractTemplateRef: null,
   markdown: '',
   slateValue: Value.fromJSON({
     object: 'value',

@@ -10,6 +10,7 @@ import uuidv4 from 'uuidv4';
 
 import * as actions from '../actions/contractActions';
 import * as appActions from '../actions/appActions';
+import * as clauseTemplatesActions from '../actions/clauseTemplatesActions';
 import * as contractSelectors from '../selectors/contractSelectors';
 import { addTemplateObjectToStore } from './templatesSaga';
 
@@ -31,27 +32,35 @@ export function* updateDocument(action) {
  * saga which adds a clause node to the current slate value
  */
 export function* addToContract(action) {
-  const pluginManager = new PluginManager([List(), ClausePlugin()]);
-  const fromMarkdown = new FromMarkdown(pluginManager);
-  const toMarkdown = new ToMarkdown(pluginManager);
+  try {
+    const pluginManager = new PluginManager([List(), ClausePlugin()]);
+    const fromMarkdown = new FromMarkdown(pluginManager);
+    const toMarkdown = new ToMarkdown(pluginManager);
 
-  const templateObj = yield call(addTemplateObjectToStore, action);
+    const templateObj = yield call(addTemplateObjectToStore, action);
 
-  const slateValue = yield select(contractSelectors.slateValue);
-  const { metadata } = templateObj;
+    const slateValue = yield select(contractSelectors.slateValue);
+    const { metadata } = templateObj;
 
-  const currentPosition = slateValue.selection.anchor.path.get(0);
-  const clauseMd = `\`\`\` <clause src=${action.uri} clauseId=${uuidv4()}>
+    const currentPosition = slateValue.selection.anchor.path.get(0);
+    const clauseMd = `\`\`\` <clause src=${action.uri} clauseId=${uuidv4()}>
   ${metadata.getSample()}
   \`\`\``;
-  const value = fromMarkdown.convert(clauseMd);
-  const clauseNode = value.toJSON().document.nodes[0];
+    const value = fromMarkdown.convert(clauseMd);
+    const clauseNode = value.toJSON().document.nodes[0];
 
-  const newSlateValue = JSON.parse(JSON.stringify(slateValue.toJSON()));
-  const newMd = toMarkdown.convert(newSlateValue);
-  const { nodes } = newSlateValue.document;
-  nodes.splice(currentPosition, 0, clauseNode);
-  yield put(actions.documentEdited(Value.fromJSON(newSlateValue), newMd));
+    const newSlateValue = JSON.parse(JSON.stringify(slateValue.toJSON()));
+    const newMd = toMarkdown.convert(newSlateValue);
+    const { nodes } = newSlateValue.document;
+    nodes.splice(currentPosition, 0, clauseNode);
+    yield put(actions.documentEdited(Value.fromJSON(newSlateValue), newMd));
+    const grammar = templateObj.parserManager.getTemplatizedGrammar();
+    const clauseTemplateId = uuidv4();
+    // TODO: add other necessary props besides grammar
+    yield put(clauseTemplatesActions.addClauseTemplate({ grammar, id: clauseTemplateId }));
+  } catch (err) {
+    yield put(appActions.addAppError('Failed to add clause to contract', err));
+  }
 }
 
 export const contractSaga = [
