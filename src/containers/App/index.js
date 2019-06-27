@@ -20,9 +20,11 @@ const MainWrapper = styled.div`
 `;
 
 const ContentWrapper = styled.div`
+  background-color: #141F3C;
   height: calc(100vh - 37px);
   display: grid;
   grid-template-columns: 204px auto 355px;
+  overflow-y: hidden;
 `;
 
 export const App = () => {
