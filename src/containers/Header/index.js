@@ -6,7 +6,7 @@ import image from '../../../public/img/logo.png';
 const HeaderWrapper = styled.div`
     display: flex;
     height: 37px;
-    width: 100vw;
+    width: 100%;
     background-color: #1B1C1C;
     color: white;
 `;
@@ -16,7 +16,6 @@ const HeaderTitle = styled.div`
     align-items: center;
     margin-left: 30px;
     padding-right: 20px;
-    border-right: 1px solid #2D2E2E;
     text-align: center;
     font-weight: bold;
 `;

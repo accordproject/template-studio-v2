@@ -1,6 +1,6 @@
 import { Clause } from '@accordproject/cicero-core';
 import store from '../store';
-import { parseClauseSuccess, parseClauseError } from '../actions/clauseActions';
+import { parseClauseSuccess, parseClauseError } from '../actions/contractActions';
 
 /**
  * Parses user inputted text for a template using Cicero

@@ -2,9 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
-import { ContractEditor } from '@accordproject/cicero-ui';
+import { ClauseEditor } from '@accordproject/cicero-ui';
 import { loadTemplateObjectAction } from '../../actions/templatesActions';
-import { documentEdited } from '../../actions/contractActions';
 import parseClause from '../../utilities/parseClause';
 
 const EditorWrapper = styled.div`
@@ -18,33 +17,34 @@ const EditorWrapper = styled.div`
   width: 594px;
 `;
 
-const EditorContainer = props => (
+const ClauseTemplateEditor = props => (
   <EditorWrapper>
-    <ContractEditor
+    <ClauseEditor
       loadTemplateObject={props.loadTemplateObject}
       parseClause={(uri, text, clauseId) => parseClause(props.templateObjs, uri, text, clauseId)}
-      onChange={props.onEditorChange}
+      onChange={props.onClauseTemplateChange}
       value={props.value}
       lockText={false}
     />
   </EditorWrapper>
 );
 
-EditorContainer.propTypes = {
+ClauseTemplateEditor.propTypes = {
   loadTemplateObject: PropTypes.func.isRequired,
   templateObjs: PropTypes.object,
-  onEditorChange: PropTypes.func.isRequired,
+  onClauseTemplateChange: PropTypes.func.isRequired,
   value: PropTypes.object,
 };
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state, ownProps) => ({
   templateObjs: state.templatesState.templateObjs,
   value: state.contractState.slateValue,
+  // value: state.clauseState[ownProps.clauseId].slateValue,
 });
 
 const mapDispatchToProps = dispatch => ({
   loadTemplateObject: value => dispatch(loadTemplateObjectAction(value)),
-  onEditorChange: (value, markdown) => dispatch(documentEdited(value, markdown))
+  onClauseTemplateChange: (value, markdown) => console.log('clause template edited')
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(React.memo(EditorContainer));
+export default connect(mapStateToProps, mapDispatchToProps)(React.memo(ClauseTemplateEditor));

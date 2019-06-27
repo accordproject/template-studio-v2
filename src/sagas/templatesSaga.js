@@ -1,21 +1,13 @@
 import { TemplateLibrary, Template } from '@accordproject/cicero-core';
 import { version as ciceroVersion } from '@accordproject/cicero-core/package.json';
-import {
-  PluginManager, List, FromMarkdown, ToMarkdown
-} from '@accordproject/markdown-editor';
-import ClausePlugin from '@accordproject/cicero-ui/dist/plugins/ClausePlugin';
-import { Value } from 'slate';
-import uuidv4 from 'uuidv4';
 
 import {
-  takeLatest, put, select, takeEvery, call
+  takeLatest, put, select, takeEvery
 } from 'redux-saga/effects';
 
 import * as actions from '../actions/templatesActions';
 import * as appActions from '../actions/appActions';
-import * as contractActions from '../actions/contractActions';
 import * as selectors from '../selectors/templatesSelectors';
-import * as contractSelectors from '../selectors/contractSelectors';
 
 
 /**
@@ -68,36 +60,8 @@ export function* addTemplateObjectToStore(action) {
   return templateObjects[action.uri];
 }
 
-/**
- * saga which adds a clause node to the current slate value
- */
-export function* addToContract(action) {
-  const pluginManager = new PluginManager([List(), ClausePlugin()]);
-  const fromMarkdown = new FromMarkdown(pluginManager);
-  const toMarkdown = new ToMarkdown(pluginManager);
-
-  const templateObj = yield call(addTemplateObjectToStore, action);
-
-  const slateValue = yield select(contractSelectors.slateValue);
-  const { metadata } = templateObj;
-
-  const currentPosition = slateValue.selection.anchor.path.get(0);
-  const clauseMd = `\`\`\` <clause src=${action.uri} clauseId=${uuidv4()}>
-  ${metadata.getSample()}
-  \`\`\``;
-  const value = fromMarkdown.convert(clauseMd);
-  const clauseNode = value.toJSON().document.nodes[0];
-
-  const newSlateValue = JSON.parse(JSON.stringify(slateValue.toJSON()));
-  const newMd = toMarkdown.convert(newSlateValue);
-  const { nodes } = newSlateValue.document;
-  nodes.splice(currentPosition, 0, clauseNode);
-  yield put(contractActions.documentEdited(Value.fromJSON(newSlateValue), newMd));
-}
-
 export const templatesSaga = [
   takeLatest('GET_AP_TEMPLATES', pushTemplatesToStore),
   takeLatest('ADD_NEW_TEMPLATE', addNewTemplateToStore),
   takeEvery('LOAD_TEMPLATE_OBJECT', addTemplateObjectToStore),
-  takeEvery('ADD_TO_CONTRACT', addToContract)
 ];

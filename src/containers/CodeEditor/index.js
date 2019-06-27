@@ -1,7 +1,6 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState } from 'react';
 import MonacoEditor from 'react-monaco-editor';
 import PropTypes from 'prop-types';
-import { debounce } from 'throttle-debounce';
 
 /**
  * A code editing component which wraps the Monaco editor
@@ -23,14 +22,14 @@ function CodeEditor(props) {
   const onChange = (newValue, e) => {
     setCode(newValue);
     props.handleSubmit(newValue);
-    };
+  };
 
   return (
       <MonacoEditor
         options={props.monacoOptions}
         language={props.languageId}
         theme={props.themeId}
-        value={code ? code : props.textValue}
+        value={code || props.textValue}
         onChange={onChange}
         editorDidMount={editorDidMount}
         editorWillMount={editorWillMount}
