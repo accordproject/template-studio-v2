@@ -15,7 +15,8 @@ const EditorWrapper = styled.div`
     background: transparent;
   };
   justify-self: center;
-  width: 594px;
+  width: 100%;
+  height: inherit;
 `;
 
 const EditorContainer = props => (
