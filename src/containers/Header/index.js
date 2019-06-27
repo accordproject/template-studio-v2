@@ -7,7 +7,7 @@ const HeaderWrapper = styled.div`
     display: flex;
     height: 37px;
     width: 100%;
-    background-color: #1B1C1C;
+    background-color: #141F3C;
     color: white;
 `;
 
@@ -17,7 +17,6 @@ const HeaderTitle = styled.div`
     margin-left: 30px;
     padding-right: 20px;
     text-align: center;
-    font-weight: bold;
 `;
 
 const HeaderImage = styled.img`
