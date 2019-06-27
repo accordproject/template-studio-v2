@@ -6,10 +6,45 @@ import TextButton from '../../components/TextButton';
 import ClauseNav from './ClauseNav';
 import SubHeading from './SubHeadingBtn';
 
+const LeftSidebar = styled.div`
+  background-color: #141F3C;
+  height: inherit;
+`;
+
 const LeftNavWrapper = styled.div`
   padding: 15px;
   overflow-x: hidden;
   background-color: #141F3C;
+`;
+
+const FileOptions = styled.div`
+  height: 36px;
+  padding-left: 5px;
+  background-color: #1E2D53;
+`;
+
+const FileOptionButtons = styled.button`
+  margin: 8px;
+  border: 0;
+  background: transparent;
+  font-size: #inherit;
+  color: #fff;
+  display: inline-block;
+  cursor: pointer;
+  text-decoration: underline;
+  &:hover {
+    color: #19C6C7;
+    text-decoration: underline;
+  }
+  &:focus {
+    outline: none;
+    color: #19C6C7;
+    text-decoration: underline;
+  }
+  &:active {
+    color: #19C6C7;
+    text-decoration: underline;
+  }
 `;
 
 const NavWrapper = styled.div`
@@ -44,7 +79,12 @@ export const LeftNav = (props) => {
 
   const clauseNodes = slateValue.toJSON().document.nodes.filter(node => node.type === 'clause');
   return (
-  <LeftNavWrapper>
+    <LeftSidebar>
+      <FileOptions>
+        <FileOptionButtons>File</FileOptionButtons>
+        <FileOptionButtons>Help</FileOptionButtons>
+      </FileOptions>
+      <LeftNavWrapper>
     <TextButton
       ref={buttonRef}
       onClick={handleClick}
@@ -75,7 +115,8 @@ export const LeftNav = (props) => {
         }
       </React.Fragment> }
     </NavWrapper>
-  </LeftNavWrapper>
+    </LeftNavWrapper>
+  </LeftSidebar>
   );
 };
 
