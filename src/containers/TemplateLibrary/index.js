@@ -8,14 +8,16 @@ import TextButton from '../../components/TextButton';
 import { getTemplatesAction, addNewTemplateAction } from '../../actions/templatesActions';
 import { addToContractAction } from '../../actions/contractActions';
 
+import { AP_THEME, TEMPLATE_LIBRARY } from '../App/themeConstants';
+
 const RightSidebar = styled.div`
-  background-color: #141F3C;
+  background-color: ${AP_THEME.DARK_BLUE};
   height: inherit;
 `;
 
 const FileBar = styled.div`
   height: 36px;
-  background-color: #1E2D53;
+  background-color: ${AP_THEME.DARK_BLUE_LIGHT};
 `;
 
 const TLWrapper = styled.div`
@@ -36,14 +38,14 @@ const TemplatesBtn = styled(TextButton)`
   justify-self: end;
 `;
 
-const templateProps = {
-  headerTitleColor: '#939EBA',
-  actionBtnColor: '#19C6C7',
-  actionBtnBkgrd: '#182444',
-  actionBtnBorder: '#50637F',
-  templateBackground: '#1E2D53',
-  templateTitle: '#B9BCC4',
-  templateDescription: '#FFFFFF',
+const colorThemeProps = {
+  headerTitleColor: TEMPLATE_LIBRARY.HEADER_TITLE,
+  actionBtnColor: TEMPLATE_LIBRARY.ACTION_BUTTON,
+  actionBtnBkgrd: TEMPLATE_LIBRARY.ACTION_BUTTON_BACKGROUND,
+  actionBtnBorder: TEMPLATE_LIBRARY.ACTION_BUTTON_BORDER,
+  templatebackground: TEMPLATE_LIBRARY.TEMPLATE_BACKGROUND,
+  templateTitle: TEMPLATE_LIBRARY.TEMPLATE_TITLE,
+  templatedescription: TEMPLATE_LIBRARY.TEMPLATE_DESCRIPTION,
 };
 
 const mockImport = () => { console.log('import'); };
@@ -80,13 +82,7 @@ export const LibraryComponent = (props) => {
           import={mockImport}
           addTemp={props.addNewTemplate}
           addToCont={props.addToContract}
-          headerTitleColor="#939EBA"
-          actionBtnColor="#19C6C7"
-          actionBtnBkgrd="#182444"
-          actionBtnBorder="#50637F"
-          templateBackground="#1E2D53"
-          templateTitle="#B9BCC4"
-          templateDescription="#FFFFFF"
+          {...colorThemeProps}
 
         /> }
       </TLWrapper>

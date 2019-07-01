@@ -3,11 +3,13 @@ import styled from 'styled-components';
 
 import image from '../../../public/img/logo.png';
 
+import { AP_THEME } from '../App/themeConstants';
+
 const HeaderWrapper = styled.div`
     display: flex;
     height: 37px;
     width: 100%;
-    background-color: #141F3C;
+    background-color: ${AP_THEME.DARK_BLUE};
     color: white;
 `;
 

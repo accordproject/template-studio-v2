@@ -5,22 +5,23 @@ import styled from 'styled-components';
 import TextButton from '../../components/TextButton';
 import ClauseNav from './ClauseNav';
 import SubHeading from './SubHeadingBtn';
+import { AP_THEME, FILE_BAR, LEFT_NAV } from '../App/themeConstants';
 
 const LeftSidebar = styled.div`
-  background-color: #141F3C;
+  background-color: ${AP_THEME.DARK_BLUE};
   height: inherit;
 `;
 
 const LeftNavWrapper = styled.div`
   padding: 15px;
   overflow-x: hidden;
-  background-color: #141F3C;
+  background-color: ${AP_THEME.DARK_BLUE};
 `;
 
 const FileOptions = styled.div`
   height: 36px;
   padding-left: 5px;
-  background-color: #1E2D53;
+  background-color: ${FILE_BAR.BACKGROUND};
 `;
 
 const FileOptionButtons = styled.button`
@@ -28,21 +29,21 @@ const FileOptionButtons = styled.button`
   border: 0;
   background: transparent;
   font-size: #inherit;
-  color: #fff;
+  color: ${FILE_BAR.OPTION_BUTTONS};
   display: inline-block;
   cursor: pointer;
   text-decoration: underline;
   &:hover {
-    color: #19C6C7;
+    color: ${FILE_BAR.OPTION_BUTTONS_HOVER};
     text-decoration: underline;
   }
   &:focus {
     outline: none;
-    color: #19C6C7;
+    color: ${FILE_BAR.OPTION_BUTTONS_HOVER};
     text-decoration: underline;
   }
   &:active {
-    color: #19C6C7;
+    color: ${FILE_BAR.OPTION_BUTTONS_HOVER};
     text-decoration: underline;
   }
 `;
@@ -52,7 +53,7 @@ const NavWrapper = styled.div`
 `;
 
 const Heading = styled.h2`
-  color: #B9BCC4;
+  color: ${LEFT_NAV.HEADING};
   font-size: 14px;
   font-weight: 600;
   line-height: 14px;
