@@ -2,7 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
-import { loadTemplateObjectAction } from '../../actions/templatesActions';
+import { TextArea } from 'semantic-ui-react';
+import { editClauseSampleAction } from '../../actions/clauseTemplatesActions';
 
 const EditorWrapper = styled.div`
   overflow-y: auto;
@@ -17,25 +18,26 @@ const EditorWrapper = styled.div`
 
 const ClauseExampleTextEditor = props => (
   <EditorWrapper>
-    <textarea
-      onChange={props.onClauseExampleTextChange}
+    <TextArea
+      onChange={(event, data) => props.onClauseSampleChange(props.clauseTemplateid, data.value)}
       value={props.value}
     />
   </EditorWrapper>
 );
 
 ClauseExampleTextEditor.propTypes = {
-  onClauseExampleTextChange: PropTypes.func.isRequired,
+  onClauseSampleChange: PropTypes.func.isRequired,
   value: PropTypes.string,
+  clauseTemplateid: PropTypes.string,
 };
 
 const mapStateToProps = state => ({
   value: state.clauseTemplatesState[state.appState.id].sampleText,
+  clauseTemplateid: state.appState.id,
 });
 
 const mapDispatchToProps = dispatch => ({
-  loadTemplateObject: value => dispatch(loadTemplateObjectAction(value)),
-  onClauseExampleTextChange: (event, data) => console.log('clauseTemplateEdited', data)
+  onClauseSampleChange: (...args) => dispatch(editClauseSampleAction(...args))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(React.memo(ClauseExampleTextEditor));

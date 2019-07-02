@@ -2,7 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
-import { loadTemplateObjectAction } from '../../actions/templatesActions';
+import { TextArea } from 'semantic-ui-react';
+import { editClauseGrammarAction } from '../../actions/clauseTemplatesActions';
 
 const EditorWrapper = styled.div`
   overflow-y: auto;
@@ -17,8 +18,8 @@ const EditorWrapper = styled.div`
 
 const ClauseGrammarEditor = props => (
   <EditorWrapper>
-    <textarea
-      onChange={props.onClauseGrammarChange}
+    <TextArea
+      onChange={(event, data) => props.onClauseGrammarChange(props.clauseTemplateid, data.value)}
       value={props.value}
     />
   </EditorWrapper>
@@ -27,15 +28,16 @@ const ClauseGrammarEditor = props => (
 ClauseGrammarEditor.propTypes = {
   onClauseGrammarChange: PropTypes.func.isRequired,
   value: PropTypes.string,
+  clauseTemplateid: PropTypes.string,
 };
 
 const mapStateToProps = state => ({
   value: state.clauseTemplatesState[state.appState.id].grammar,
+  clauseTemplateid: state.appState.id,
 });
 
 const mapDispatchToProps = dispatch => ({
-  loadTemplateObject: value => dispatch(loadTemplateObjectAction(value)),
-  onClauseGrammarChange: (event, data) => console.log('clauseTemplateEdited', data)
+  onClauseGrammarChange: (...args) => dispatch(editClauseGrammarAction(...args))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(React.memo(ClauseGrammarEditor));
