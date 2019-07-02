@@ -10,3 +10,9 @@ export const addAppError = (errorDescription, error) => ({
 export const removeAppError = () => ({
   type: 'REMOVE_APP_ERROR',
 });
+
+export const setCurrentEditorAction = (id, editor) => ({
+  type: 'SET_CURRENT_EDITOR',
+  id,
+  editor,
+});

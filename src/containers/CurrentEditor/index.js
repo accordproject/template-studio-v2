@@ -12,7 +12,7 @@ import ErgoEditor from '../ErgoEditor';
 import JsonEditor from '../JsonEditor';
 
 const CurrentEditor = (props) => {
-  switch (props.type) {
+  switch (props.editor) {
     case 'contract':
       return (<ContractEditor />);
     case 'clause':
@@ -44,7 +44,7 @@ const CurrentEditor = (props) => {
 };
 
 CurrentEditor.propTypes = {
-  type: PropTypes.string.isRequired,
+  editor: PropTypes.string.isRequired,
   logicMockValue: PropTypes.string,
   modelFileContents: PropTypes.string,
   sampleMockValue: PropTypes.string,
@@ -57,6 +57,7 @@ const mapStateToProps = state => ({
   modelFileContents: state.modelState.modelFiles['test.cto'],
   logicMockValue: state.logicState.logic,
   sampleMockValue: state.sampleState.sample,
+  editor: state.appState.editor,
 });
 
 const mapDispatchToProps = dispatch => ({

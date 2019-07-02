@@ -40,7 +40,7 @@ export function* addToContract(action) {
     const templateObj = yield call(addTemplateObjectToStore, action);
 
     const slateValue = yield select(contractSelectors.slateValue);
-    const { metadata } = templateObj;
+    const metadata = templateObj.getMetadata();
 
     const currentPosition = slateValue.selection.anchor.path.get(0);
     const clauseId = uuidv4();
@@ -60,7 +60,7 @@ export function* addToContract(action) {
     const model = templateObj.getModelManager().getModels();
     const clauseTemplateId = uuidv4();
     yield put(clauseTemplatesActions.addClauseTemplate({
-      model, sampleText, grammar, id: clauseTemplateId
+      metadata, model, sampleText, grammar, id: clauseTemplateId
     }));
     yield put(actions.addToContractSuccess(clauseId, clauseTemplateId));
   } catch (err) {
