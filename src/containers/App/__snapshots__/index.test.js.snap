@@ -6,45 +6,14 @@ exports[`<App /> on initialization renders page correctly 1`] = `
   <App__MainWrapper>
     <Header />
     <App__ContentWrapper>
-      <Tab
-        grid={
-          Object {
-            "paneWidth": 12,
-            "tabWidth": 4,
-          }
-        }
-        menu={
-          Object {
-            "fluid": true,
-            "tabular": true,
-            "vertical": true,
-          }
-        }
-        panes={
-          Array [
-            Object {
-              "menuItem": "Text",
-              "render": [Function],
-            },
-            Object {
-              "menuItem": "Model",
-              "render": [Function],
-            },
-            Object {
-              "menuItem": "Logic",
-              "render": [Function],
-            },
-            Object {
-              "menuItem": "Metadata",
-              "render": [Function],
-            },
-          ]
-        }
-        renderActiveOnly={true}
+      <Connect(LeftNav)
+        setCurrentEditor={[Function]}
+      />
+      <Connect(CurrentEditor)
+        type="contract"
       />
       <Connect(LibraryComponent) />
     </App__ContentWrapper>
-    <Connect(ErrorContainer) />
   </App__MainWrapper>
 </App__AppWrapper>
 `;
