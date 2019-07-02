@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import { updateModelFileAction } from '../../actions/modelActions';
 import { updateLogicMockAction } from '../../actions/logicActions';
 import { updateSampleMockAction } from '../../actions/sampleActions';
+
 import ClauseTemplateEditor from '../ClauseTemplateEditor';
 import ContractEditor from '../ContractEditor';
 import ConcertoEditor from '../ConcertoEditor';

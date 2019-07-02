@@ -38,14 +38,14 @@ const TemplatesBtn = styled(TextButton)`
   justify-self: end;
 `;
 
-const colorThemeProps = {
-  headerTitleColor: TEMPLATE_LIBRARY.HEADER_TITLE,
-  actionBtnColor: TEMPLATE_LIBRARY.ACTION_BUTTON,
-  actionBtnBkgrd: TEMPLATE_LIBRARY.ACTION_BUTTON_BACKGROUND,
-  actionBtnBorder: TEMPLATE_LIBRARY.ACTION_BUTTON_BORDER,
-  templatebackground: TEMPLATE_LIBRARY.TEMPLATE_BACKGROUND,
-  templateTitle: TEMPLATE_LIBRARY.TEMPLATE_TITLE,
-  templatedescription: TEMPLATE_LIBRARY.TEMPLATE_DESCRIPTION,
+const libraryProps = {
+  HEADER_TITLE: TEMPLATE_LIBRARY.HEADER_TITLE,
+  ACTION_BUTTON: TEMPLATE_LIBRARY.ACTION_BUTTON,
+  ACTION_BUTTON_BG: TEMPLATE_LIBRARY.ACTION_BUTTON_BACKGROUND,
+  ACTION_BUTTON_BORDER: TEMPLATE_LIBRARY.ACTION_BUTTON_BORDER,
+  TEMPLATE_BACKGROUND: TEMPLATE_LIBRARY.TEMPLATE_BACKGROUND,
+  TEMPLATE_TITLE: TEMPLATE_LIBRARY.TEMPLATE_TITLE,
+  TEMPLATE_DESCRIPTION: TEMPLATE_LIBRARY.TEMPLATE_DESCRIPTION,
 };
 
 const mockImport = () => { console.log('import'); };
@@ -82,7 +82,7 @@ export const LibraryComponent = (props) => {
           import={mockImport}
           addTemp={props.addNewTemplate}
           addToCont={props.addToContract}
-          {...colorThemeProps}
+          libraryProps={libraryProps}
 
         /> }
       </TLWrapper>

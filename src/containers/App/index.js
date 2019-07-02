@@ -8,7 +8,8 @@ import LibraryContainer from '../TemplateLibrary';
 import ErrorModalComponent from '../ErrorModal';
 import LeftNavContainer from '../LeftNav';
 import CurrentEditorContainer from '../CurrentEditor';
-import { AP_THEME } from './themeConstants';
+
+import { CONTENT_BACKGROUND } from './themeConstants';
 
 const AppWrapper = styled.div`
   height: 100%;
@@ -21,7 +22,7 @@ const MainWrapper = styled.div`
 `;
 
 const ContentWrapper = styled.div`
-  background-color: ${AP_THEME.DARK_BLUE};
+  background-color: ${CONTENT_BACKGROUND};
   height: calc(100vh - 37px);
   display: grid;
   grid-template-columns: 204px auto 355px;

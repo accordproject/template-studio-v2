@@ -2,9 +2,11 @@ import React, { useState, useRef, useCallback } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
+
 import TextButton from '../../components/TextButton';
 import ClauseNav from './ClauseNav';
 import SubHeading from './SubHeadingBtn';
+
 import { AP_THEME, FILE_BAR, LEFT_NAV } from '../App/themeConstants';
 
 const LeftSidebar = styled.div`
