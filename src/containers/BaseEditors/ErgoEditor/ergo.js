@@ -3,12 +3,17 @@ export const ERGO_FORMAT = {
   // defaultToken: 'invalid',
 
   keywords: [
-    'abstract', 'enum', 'asset', 'participant', 'transaction',
-    'concept', 'true', 'false',
+    'function', 'with', 'match', 'none',
+    'namespace', 'enforce', 'if', 'then', 'else', 'let',
+    'foreach', 'import', 'where', 'return', 'constant',
+    'section', 'contract', 'clause', 'over', 'define',
+    'set', 'state', 'emit', 'throw',
+    'extends', 'event', 'asset', 'enum', 'concept',
+    'participant', 'transaction', 'abstract', 'true', 'false',
   ],
 
   typeKeywords: [
-    'Boolean', 'Double', 'Integer', 'DateTime', 'Long', 'String',
+    'Boolean', 'Double', 'Integer', 'DateTime', 'Long', 'String', 'Unit',
   ],
 
   operators: [
