@@ -12,31 +12,27 @@ import ErgoEditor from '../ErgoEditor';
 import JsonEditor from '../JsonEditor';
 
 const CurrentEditor = (props) => {
-  switch (props.editor) {
-    case 'contract':
+  const { editor } = props;
+  switch (editor) {
+    case 'contractExampleText':
       return (<ContractEditor />);
-    case 'clause':
+    case 'contractTemplate':
+      return (<ContractEditor />);
+    case 'clauseTemplate':
+      return (<ClauseTemplateEditor />);
+    case 'exampleText':
       return (<ClauseTemplateEditor />);
     case 'model':
       return (
-        <ConcertoEditor
-          textValue={props.modelFileContents}
-          handleSubmit={props.updateModelFile}
-        />
+        <ConcertoEditor />
       );
     case 'logic':
       return (
-      <ErgoEditor
-        textValue={props.logicMockValue}
-        handleSubmit={props.updateLogicMock}
-      />
+      <ErgoEditor />
       );
     case 'metadata':
       return (
-        <JsonEditor
-          jsonObject={props.sampleMockValue}
-          handleSubmit={props.updateSampleMock}
-        />
+        <JsonEditor />
       );
     default:
       return <ContractEditor />;
@@ -45,19 +41,11 @@ const CurrentEditor = (props) => {
 
 CurrentEditor.propTypes = {
   editor: PropTypes.string.isRequired,
-  logicMockValue: PropTypes.string,
-  modelFileContents: PropTypes.string,
-  sampleMockValue: PropTypes.string,
-  updateLogicMock: PropTypes.func.isRequired,
-  updateModelFile: PropTypes.func.isRequired,
-  updateSampleMock: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = state => ({
-  modelFileContents: state.modelState.modelFiles['test.cto'],
-  logicMockValue: state.logicState.logic,
-  sampleMockValue: state.sampleState.sample,
   editor: state.appState.editor,
+  id: state.appState.id,
 });
 
 const mapDispatchToProps = dispatch => ({

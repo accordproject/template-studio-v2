@@ -56,12 +56,12 @@ export const LeftNav = (props) => {
     <NavWrapper>
       { navVisible && <React.Fragment>
         <Heading>CONTRACT</Heading>
-        <SubHeading onClick={() => setCurrentEditor(null, 'contract')}>Contract Template</SubHeading>
-        <SubHeading onClick={() => setCurrentEditor(null, 'contract')}>Contract Text</SubHeading>
+        <SubHeading onClick={() => setCurrentEditor(null, 'contractTemplate')}>Contract Template</SubHeading>
+        <SubHeading onClick={() => setCurrentEditor(null, 'contractExampleText')}>Contract Text</SubHeading>
         <br />
         <Heading>CLAUSES</Heading>
         { Object.keys(clauses).length
-          && clauseNodes.map((clauseNode) => {
+          ? clauseNodes.map((clauseNode) => {
             const { clauseid, src } = clauseNode.data.attributes;
             const { clauseTemplateRef } = clauses[clauseid];
             return (
@@ -73,7 +73,7 @@ export const LeftNav = (props) => {
                 src={src}
                 setCurrentEditor={setCurrentEditor}
               />);
-          })
+          }) : null
         }
       </React.Fragment> }
     </NavWrapper>

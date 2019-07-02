@@ -15,6 +15,7 @@ const reducer = (state = initialState, action) => {
         ...state,
         id: action.id,
         editor: action.editor,
+        contentType: action.contentType,
       };
     default:
       return state;

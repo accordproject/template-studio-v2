@@ -32,8 +32,8 @@ const ClauseNav = (props) => {
       showExpandedClause[clauseTemplateId]
       && <React.Fragment>
         <ClauseNavOption onClick={() => setCurrentEditor(clauseTemplateId, 'metadata')}>Metadata</ClauseNavOption>
-        <ClauseNavOption onClick={() => setCurrentEditor(clauseTemplateId, 'clause')}>Clause Template</ClauseNavOption>
-        <ClauseNavOption onClick={() => setCurrentEditor(clauseTemplateId, 'clause')}>Example Text</ClauseNavOption>
+        <ClauseNavOption onClick={() => setCurrentEditor(clauseTemplateId, 'clauseTemplate')}>Clause Template</ClauseNavOption>
+        <ClauseNavOption onClick={() => setCurrentEditor(clauseTemplateId, 'exampleText')}>Example Text</ClauseNavOption>
         <ClauseNavOption onClick={() => setCurrentEditor(clauseTemplateId, 'model')}>Model</ClauseNavOption>
       </React.Fragment>
       }
