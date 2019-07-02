@@ -31,12 +31,25 @@ const reducer = (state = initialState, action) => {
         markdown: action.markdown,
         slateValue: action.slateValue,
       };
+    case 'ADD_TO_CONTRACT_SUCCESS':
+      return {
+        ...state,
+        clauses: {
+          ...state.clauses,
+          [action.clauseId]: {
+            parseError: null,
+            parseResult: null,
+            clauseTemplateRef: action.clauseTemplateRef
+          }
+        }
+      };
     case 'PARSE_CLAUSE_SUCEEDED':
       return {
         ...state,
         clauses: {
           ...state.clauses,
           [action.clauseId]: {
+            ...state.clauses[action.clauseId],
             parseError: null,
             parseResult: action.parseResult
           }
@@ -48,9 +61,10 @@ const reducer = (state = initialState, action) => {
         clauses: {
           ...state.clauses,
           [action.clauseId]: {
-            ...state[action.clauseId],
+            ...state.clauses[action.clauseId],
             parseError: action.error,
-            parseResult: null, // would we rather have this be that last good result (if there is one)?
+            // would we rather the below be that last good result (if there is one)?
+            parseResult: null,
           }
         }
       };

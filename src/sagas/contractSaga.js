@@ -43,7 +43,8 @@ export function* addToContract(action) {
     const { metadata } = templateObj;
 
     const currentPosition = slateValue.selection.anchor.path.get(0);
-    const clauseMd = `\`\`\` <clause src=${action.uri} clauseId=${uuidv4()}>
+    const clauseId = uuidv4();
+    const clauseMd = `\`\`\` <clause src=${action.uri} clauseId=${clauseId}>
   ${metadata.getSample()}
   \`\`\``;
     const value = fromMarkdown.convert(clauseMd);
@@ -58,10 +59,10 @@ export function* addToContract(action) {
     const sampleText = templateObj.getMetadata().getSamples().default;
     const model = templateObj.getModelManager().getModels();
     const clauseTemplateId = uuidv4();
-    // TODO: add other necessary props besides grammar
     yield put(clauseTemplatesActions.addClauseTemplate({
       model, sampleText, grammar, id: clauseTemplateId
     }));
+    yield put(actions.addToContractSuccess(clauseId, clauseTemplateId));
   } catch (err) {
     yield put(appActions.addAppError('Failed to add clause to contract', err));
   }

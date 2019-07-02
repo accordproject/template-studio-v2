@@ -15,6 +15,12 @@ export const addToContractAction = uri => ({
   uri,
 });
 
+export const addToContractSuccess = (clauseId, clauseTemplateRef) => ({
+  type: 'ADD_TO_CONTRACT_SUCCESS',
+  clauseId,
+  clauseTemplateRef,
+});
+
 export const parseClauseSuccess = (clauseId, parseResult) => ({
   type: 'PARSE_CLAUSE_SUCEEDED',
   clauseId,
