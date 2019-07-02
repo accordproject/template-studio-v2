@@ -55,9 +55,13 @@ export function* addToContract(action) {
     nodes.splice(currentPosition, 0, clauseNode);
     yield put(actions.documentEdited(Value.fromJSON(newSlateValue), newMd));
     const grammar = templateObj.parserManager.getTemplatizedGrammar();
+    const sampleText = templateObj.getMetadata().getSamples().default;
+    const model = templateObj.getModelManager().getModels();
     const clauseTemplateId = uuidv4();
     // TODO: add other necessary props besides grammar
-    yield put(clauseTemplatesActions.addClauseTemplate({ grammar, id: clauseTemplateId }));
+    yield put(clauseTemplatesActions.addClauseTemplate({
+      model, sampleText, grammar, id: clauseTemplateId
+    }));
   } catch (err) {
     yield put(appActions.addAppError('Failed to add clause to contract', err));
   }
