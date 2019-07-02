@@ -5,37 +5,39 @@ import { connect } from 'react-redux';
 import { updateModelFileAction } from '../../actions/modelActions';
 import { updateLogicMockAction } from '../../actions/logicActions';
 import { updateSampleMockAction } from '../../actions/sampleActions';
-import ClauseTemplateEditor from '../ClauseTemplateEditor';
-import ContractEditor from '../ContractEditor';
-import ConcertoEditor from '../ConcertoEditor';
-import ErgoEditor from '../ErgoEditor';
-import JsonEditor from '../JsonEditor';
+import ClauseTemplateGrammarEditor from '../ClauseTemplate/ClauseGrammarEditor';
+import ClauseExampleTextEditor from '../ClauseTemplate/ClauseExampleTextEditor';
+import ContractTemplateEditor from '../ContractTemplateEditor';
+import ContractExampleTextEditor from '../ContractExampleTextEditor';
+import ConcertoEditor from '../BaseEditors/ConcertoEditor';
+import ErgoEditor from '../BaseEditors/ErgoEditor';
+import JsonEditor from '../BaseEditors/JsonEditor';
 
 const CurrentEditor = (props) => {
   const { editor } = props;
   switch (editor) {
     case 'contractExampleText':
-      return (<ContractEditor />);
+      return (<ContractExampleTextEditor />);
     case 'contractTemplate':
-      return (<ContractEditor />);
-    case 'clauseTemplate':
-      return (<ClauseTemplateEditor />);
-    case 'exampleText':
-      return (<ClauseTemplateEditor />);
-    case 'model':
+      return (<ContractTemplateEditor />);
+    case 'clauseTemplateGrammar':
+      return (<ClauseTemplateGrammarEditor />);
+    case 'clauseExampleText':
+      return (<ClauseExampleTextEditor />);
+    case 'clauseModel':
       return (
         <ConcertoEditor />
       );
-    case 'logic':
+    case 'clauseLogic':
       return (
       <ErgoEditor />
       );
-    case 'metadata':
+    case 'clauseMetadata':
       return (
         <JsonEditor />
       );
     default:
-      return <ContractEditor />;
+      return <ContractTemplateEditor />;
   }
 };
 
