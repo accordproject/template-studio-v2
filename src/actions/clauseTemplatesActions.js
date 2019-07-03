@@ -20,3 +20,10 @@ export const editClauseLogicAction = (clauseTemplateId, logic) => ({
   clauseTemplateId,
   logic,
 });
+
+export const editClauseModelAction = (clauseTemplateId, fileName, content) => ({
+  type: 'EDIT_CLAUSE_MODEL',
+  clauseTemplateId,
+  fileName,
+  content,
+});

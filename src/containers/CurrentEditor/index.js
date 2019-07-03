@@ -2,13 +2,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
-import { updateModelFileAction } from '../../actions/modelActions';
-import { updateLogicMockAction } from '../../actions/logicActions';
-import { updateSampleMockAction } from '../../actions/sampleActions';
 import ClauseTemplateGrammarEditor from '../ClauseTemplate/ClauseGrammarEditor';
 import ClauseExampleTextEditor from '../ClauseTemplate/ClauseExampleTextEditor';
 import ContractEditor from '../ContractEditor';
-import ConcertoEditor from '../BaseEditors/ConcertoEditor';
+import ClauseModelEditor from '../ClauseTemplate/ClauseModelEditor';
 import ErgoEditor from '../BaseEditors/ErgoEditor';
 import JsonEditor from '../BaseEditors/JsonEditor';
 
@@ -22,7 +19,7 @@ const CurrentEditor = (props) => {
     case 'clauseExampleText':
       return (<ClauseExampleTextEditor />);
     case 'clauseModel':
-      return (<ConcertoEditor />);
+      return (<ClauseModelEditor />);
     case 'clauseLogic':
       return (<ErgoEditor />);
     case 'clauseMetadata':
@@ -38,13 +35,6 @@ CurrentEditor.propTypes = {
 
 const mapStateToProps = state => ({
   editor: state.appState.editor,
-  id: state.appState.id,
 });
 
-const mapDispatchToProps = dispatch => ({
-  updateModelFile: value => dispatch(updateModelFileAction(value)),
-  updateLogicMock: value => dispatch(updateLogicMockAction(value)),
-  updateSampleMock: value => dispatch(updateSampleMockAction(value)),
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(CurrentEditor);
+export default connect(mapStateToProps)(CurrentEditor);
