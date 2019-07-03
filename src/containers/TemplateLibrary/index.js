@@ -8,10 +8,24 @@ import TextButton from '../../components/TextButton';
 import { getTemplatesAction, addNewTemplateAction } from '../../actions/templatesActions';
 import { addToContractAction } from '../../actions/contractActions';
 
+import { AP_THEME, TEMPLATE_LIBRARY } from '../App/themeConstants';
+
+const RightSidebar = styled.div`
+  background-color: ${AP_THEME.DARK_BLUE};
+  height: inherit;
+`;
+
+const FileBar = styled.div`
+  height: 36px;
+  background-color: ${AP_THEME.DARK_BLUE_LIGHT};
+`;
+
 const TLWrapper = styled.div`
   width: 355px;
-  border: 2px solid #F9F9F9;
-  overflow-y: scroll;
+  position: relative;
+  height: inherit;
+  padding-right: 10px;
+
   &::-webkit-scrollbar {
     width: 4px;
     background: transparent;
@@ -23,6 +37,16 @@ const TLWrapper = styled.div`
 const TemplatesBtn = styled(TextButton)`
   justify-self: end;
 `;
+
+const libraryProps = {
+  HEADER_TITLE: TEMPLATE_LIBRARY.HEADER_TITLE,
+  ACTION_BUTTON: TEMPLATE_LIBRARY.ACTION_BUTTON,
+  ACTION_BUTTON_BG: TEMPLATE_LIBRARY.ACTION_BUTTON_BACKGROUND,
+  ACTION_BUTTON_BORDER: TEMPLATE_LIBRARY.ACTION_BUTTON_BORDER,
+  TEMPLATE_BACKGROUND: TEMPLATE_LIBRARY.TEMPLATE_BACKGROUND,
+  TEMPLATE_TITLE: TEMPLATE_LIBRARY.TEMPLATE_TITLE,
+  TEMPLATE_DESCRIPTION: TEMPLATE_LIBRARY.TEMPLATE_DESCRIPTION,
+};
 
 const mockImport = () => { console.log('import'); };
 const mockUpload = () => { console.log('upload'); };
@@ -42,22 +66,27 @@ export const LibraryComponent = (props) => {
   }, [fetchAPTemplates]);
 
   return (
-    <TLWrapper>
-      <TemplatesBtn
-        ref={buttonRef}
-        onClick={handleClick}
-        display={'block'}
-      >
-        { templatesVisible ? 'Hide Clause Templates >' : '< Show Clause Templates'}
-      </TemplatesBtn>
-      { templatesVisible && <TemplateLibrary
-        templates={props.templates}
-        upload={mockUpload}
-        import={mockImport}
-        addTemp={props.addNewTemplate}
-        addToCont={props.addToContract}
-      /> }
-    </TLWrapper>
+    <RightSidebar>
+      <FileBar />
+      <TLWrapper>
+        <TemplatesBtn
+          ref={buttonRef}
+          onClick={handleClick}
+          display={'block'}
+        >
+          { templatesVisible ? 'Hide Clause Templates >' : '< Show Clause Templates'}
+        </TemplatesBtn>
+        { templatesVisible && <TemplateLibrary
+          templates={props.templates}
+          upload={mockUpload}
+          import={mockImport}
+          addTemp={props.addNewTemplate}
+          addToCont={props.addToContract}
+          libraryProps={libraryProps}
+
+        /> }
+      </TLWrapper>
+    </RightSidebar>
   );
 };
 

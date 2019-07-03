@@ -6,6 +6,7 @@ import { ContractEditor } from '@accordproject/cicero-ui';
 import { loadTemplateObjectAction } from '../../actions/templatesActions';
 import { documentEdited } from '../../actions/contractActions';
 import parseClause from '../../utilities/parseClause';
+import { AP_THEME, CONTRACT_EDITOR } from '../App/themeConstants';
 
 const EditorWrapper = styled.div`
   overflow-y: auto;
@@ -15,8 +16,23 @@ const EditorWrapper = styled.div`
     background: transparent;
   };
   justify-self: center;
-  width: 594px;
+  width: 100%;
+  height: inherit;
 `;
+
+const editorProps = {
+  TOOLBAR_BACKGROUND: CONTRACT_EDITOR.TOOLBAR_BACKGROUND,
+  BUTTON_BACKGROUND_INACTIVE: CONTRACT_EDITOR.BUTTON_BACKGROUND_INACTIVE,
+  BUTTON_BACKGROUND_ACTIVE: CONTRACT_EDITOR.BUTTON_BACKGROUND_ACTIVE,
+  BUTTON_BACKGROUND_HOVER: CONTRACT_EDITOR.BUTTON_BACKGROUND_HOVER,
+  BUTTON_SYMBOL_INACTIVE: CONTRACT_EDITOR.BUTTON_SYMBOL_INACTIVE,
+  BUTTON_SYMBOL_ACTIVE: CONTRACT_EDITOR.BUTTON_SYMBOL_ACTIVE,
+  TOOLTIP_BACKGROUND: CONTRACT_EDITOR.TOOLTIP_BACKGROUND,
+  TOOLTIP: CONTRACT_EDITOR.TOOLTIP,
+  DROPDOWN_COLOR: AP_THEME.WHITE,
+  DIVIDER: CONTRACT_EDITOR.DIVIDER,
+  WIDTH: CONTRACT_EDITOR.WIDTH,
+};
 
 const EditorContainer = props => (
   <EditorWrapper>
@@ -26,6 +42,7 @@ const EditorContainer = props => (
       onChange={props.onEditorChange}
       value={props.value}
       lockText={false}
+      editorProps={editorProps}
     />
   </EditorWrapper>
 );
