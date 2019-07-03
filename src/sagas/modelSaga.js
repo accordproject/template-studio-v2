@@ -1,15 +1,17 @@
 import { takeLatest, put, select } from 'redux-saga/effects';
 import { ModelManager } from 'composer-concerto';
-import * as selectors from '../selectors/modelSelectors';
+import * as clauseTemplateSelectors from '../selectors/clauseTemplateSelectors';
 import * as actions from '../actions/modelActions';
+import * as clauseTemplateActions from '../actions/clauseTemplatesActions';
 
 /**
  * saga which yields to putting the successful model manager into the store
  * and subsequently clears all model manager errors from the store
  */
-export function* validateModelFiles() {
-  // get all the model files in the state
-  const modelFiles = yield select(selectors.modelFiles);
+export function* validateClauseModelFiles(action) {
+  // get all the model files for a template
+  const clauseTemplates = yield select(clauseTemplateSelectors.clauseTemplates);
+  const modelFiles = clauseTemplates[action.clauseTemplateId].model;
 
   try {
     const modelManager = new ModelManager();
@@ -28,7 +30,7 @@ export function* validateModelFiles() {
     yield put(actions.updateModelManagerError(null));
   } catch (err) {
     err.type = 'Model';
-    err.fileName = 'test.cto';
+    err.fileName = action.fileName;
     yield put(actions.updateModelManagerError(err));
   }
 }
@@ -38,12 +40,13 @@ export function* validateModelFiles() {
  * subsequently puts a valid model in the store
  */
 export function* updateModelFileOnStore(modelFileAction) {
-  yield put(actions.updateModelFileSuccess(modelFileAction.modelFile));
+  const { clauseTemplateId, fileName, content } = modelFileAction;
+  yield put(clauseTemplateActions.editClauseModelSuccess(clauseTemplateId, fileName, content));
 
-  yield put(actions.validateModelFilesAction());
+  yield put(actions.validateClauseModelFilesAction(clauseTemplateId, fileName));
 }
 
 export const modelSaga = [
-  takeLatest('UPDATE_MODEL_FILE', updateModelFileOnStore),
-  takeLatest('VALIDATE_MODEL_FILES', validateModelFiles),
+  takeLatest('EDIT_CLAUSE_MODEL', updateModelFileOnStore),
+  takeLatest('VALIDATE_CLAUSE_MODEL_FILES', validateClauseModelFiles),
 ];

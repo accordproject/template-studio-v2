@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { Icon } from 'semantic-ui-react';
-import styled from 'styled-components';
 import { connect } from 'react-redux';
 import { setCurrentEditorAction } from '../../actions/appActions';
 import SubHeading from './SubHeadingBtn';
@@ -46,16 +45,10 @@ ClauseNav.propTypes = {
   setCurrentEditor: PropTypes.func.isRequired,
 };
 
-const mapStateToProps = state => ({
-  modelFileContents: state.modelState.modelFiles['test.cto'],
-  logicMockValue: state.logicState.logic,
-  sampleMockValue: state.sampleState.sample,
-});
-
 const mapDispatchToProps = dispatch => ({
   setCurrentEditor: (clauseTemplateId, editor) => {
     dispatch(setCurrentEditorAction(clauseTemplateId, editor));
   },
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(ClauseNav);
+export default connect(null, mapDispatchToProps)(ClauseNav);

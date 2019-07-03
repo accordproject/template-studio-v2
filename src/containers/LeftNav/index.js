@@ -15,13 +15,6 @@ const LeftSidebar = styled.div`
   height: inherit;
 `;
 
-import { AP_THEME, FILE_BAR, LEFT_NAV } from '../App/themeConstants';
-
-const LeftSidebar = styled.div`
-  background-color: ${AP_THEME.DARK_BLUE};
-  height: inherit;
-`;
-
 const LeftNavWrapper = styled.div`
   padding: 15px;
   overflow-x: hidden;

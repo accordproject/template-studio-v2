@@ -22,6 +22,13 @@ export const editClauseModelAction = (clauseTemplateId, fileName, content) => ({
   content,
 });
 
+export const editClauseModelSuccess = (clauseTemplateId, fileName, content) => ({
+  type: 'EDIT_CLAUSE_MODEL_SUCCESS',
+  clauseTemplateId,
+  fileName,
+  content,
+});
+
 export const editClauseLogicAction = (clauseTemplateId, fileName, content) => ({
   type: 'EDIT_CLAUSE_LOGIC',
   clauseTemplateId,

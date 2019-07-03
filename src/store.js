@@ -4,12 +4,9 @@ import logger from 'redux-logger';
 
 import appReducer from './reducers/appReducer';
 import templatesReducer from './reducers/templatesReducer';
-import modelReducer from './reducers/modelReducer'; // remove
-import logicReducer from './reducers/logicReducer'; // remove
-import sampleReducer from './reducers/sampleReducer'; // remove
+import modelReducer from './reducers/modelReducer';
 import contractReducer from './reducers/contractReducer';
 import clauseTemplatesReducer from './reducers/clauseTemplatesReducer';
-import contractTemplatesReducer from './reducers/contractTemplatesReducer';
 import rootSaga from './sagas/rootSaga';
 
 const sagaMiddleware = createSagaMiddleware();
@@ -21,13 +18,10 @@ if (process.env.NODE_ENV === 'development') {
 
 const rootReducer = combineReducers({
   appState: appReducer,
-  templatesState: templatesReducer, // rename???
-  modelState: modelReducer, // remove
-  logicState: logicReducer, // remove
-  sampleState: sampleReducer, // remove
+  templatesState: templatesReducer,
+  modelState: modelReducer,
   contractState: contractReducer,
   clauseTemplatesState: clauseTemplatesReducer,
-  contractTemplatesState: contractTemplatesReducer,
 });
 
 const store = createStore(

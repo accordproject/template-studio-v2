@@ -2,7 +2,7 @@ const initialState = {};
 
 const reducer = (state = initialState, action) => {
   let newModel;
-  if (action.type === 'EDIT_CLAUSE_MODEL') {
+  if (action.type === 'EDIT_CLAUSE_MODEL_SUCCESS') {
     const { model } = state[action.clauseTemplateId];
     newModel = model.map((file) => {
       if (file.name === action.fileName) {
@@ -57,7 +57,7 @@ const reducer = (state = initialState, action) => {
           logic: newLogic,
         }
       };
-    case 'EDIT_CLAUSE_MODEL':
+    case 'EDIT_CLAUSE_MODEL_SUCCESS':
       return {
         ...state,
         [action.clauseTemplateId]: {

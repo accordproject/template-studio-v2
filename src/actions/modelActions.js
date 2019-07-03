@@ -18,6 +18,8 @@ export const updateModelManagerError = error => ({
   error,
 });
 
-export const validateModelFilesAction = () => ({
-  type: 'VALIDATE_MODEL_FILES',
+export const validateClauseModelFilesAction = (clauseTemplateId, fileName) => ({
+  type: 'VALIDATE_CLAUSE_MODEL_FILES',
+  clauseTemplateId,
+  fileName
 });
