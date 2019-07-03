@@ -7,7 +7,7 @@ const TextButton = styled.button`
   padding: 0;
   border: 0;
   background: transparent;
-  font-size: ${props => (props.fontSize ? props.fontSize : '#inherit')};
+  font-size: ${props => (props.fontSize ? props.fontSize : 'inherit')};
   color: ${props => (props.disabled ? '#B5BABE' : AP_THEME.GRAY)};
   display: ${props => (props.display ? props.display : 'inline-block')};
   cursor: pointer;
