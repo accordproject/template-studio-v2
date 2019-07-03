@@ -38,11 +38,7 @@ const FileOptionButtons = styled.button`
   margin: 8px;
   border: 0;
   background: transparent;
-<<<<<<< HEAD
   font-size: inherit;
-=======
-  font-size: #inherit;
->>>>>>> origin
   color: ${FILE_BAR.OPTION_BUTTONS};
   display: inline-block;
   cursor: pointer;
