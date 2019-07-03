@@ -15,14 +15,15 @@ export const editClauseSampleAction = (clauseTemplateId, sample) => ({
   sample,
 });
 
-export const editClauseLogicAction = (clauseTemplateId, logic) => ({
-  type: 'EDIT_CLAUSE_LOGIC',
-  clauseTemplateId,
-  logic,
-});
-
 export const editClauseModelAction = (clauseTemplateId, fileName, content) => ({
   type: 'EDIT_CLAUSE_MODEL',
+  clauseTemplateId,
+  fileName,
+  content,
+});
+
+export const editClauseLogicAction = (clauseTemplateId, fileName, content) => ({
+  type: 'EDIT_CLAUSE_LOGIC',
   clauseTemplateId,
   fileName,
   content,

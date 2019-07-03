@@ -13,9 +13,6 @@ const ClauseNav = (props) => {
 
   const [clauseOpen, setClauseOpen] = useState(false);
 
-  const ClauseNavOption = styled(SubHeading)`
-    padding-left: 10px;
-  `;
 
   return (
     <React.Fragment>
@@ -31,10 +28,11 @@ const ClauseNav = (props) => {
       {
       showExpandedClause[clauseTemplateId]
       && <React.Fragment>
-        <ClauseNavOption onClick={() => setCurrentEditor(clauseTemplateId, 'clauseMetadata')}>Metadata</ClauseNavOption>
-        <ClauseNavOption onClick={() => setCurrentEditor(clauseTemplateId, 'clauseTemplateGrammar')}>Clause Template</ClauseNavOption>
-        <ClauseNavOption onClick={() => setCurrentEditor(clauseTemplateId, 'clauseExampleText')}>Example Text</ClauseNavOption>
-        <ClauseNavOption onClick={() => setCurrentEditor(clauseTemplateId, 'clauseModel')}>Model</ClauseNavOption>
+        <SubHeading onClick={() => setCurrentEditor(clauseTemplateId, 'clauseMetadata')}>Metadata</SubHeading>
+        <SubHeading onClick={() => setCurrentEditor(clauseTemplateId, 'clauseTemplateGrammar')}>Clause Template</SubHeading>
+        <SubHeading onClick={() => setCurrentEditor(clauseTemplateId, 'clauseExampleText')}>Example Text</SubHeading>
+        <SubHeading onClick={() => setCurrentEditor(clauseTemplateId, 'clauseModel')}>Model</SubHeading>
+        <SubHeading onClick={() => setCurrentEditor(clauseTemplateId, 'clauseLogic')}>Logic</SubHeading>
       </React.Fragment>
       }
     </React.Fragment>);

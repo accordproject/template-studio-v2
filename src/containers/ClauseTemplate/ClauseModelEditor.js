@@ -7,7 +7,7 @@ import ConcertoEditor from '../BaseEditors/ConcertoEditor';
 import { editClauseModelAction } from '../../actions/clauseTemplatesActions';
 
 /**
- * A code editing component for JSON files
+ * A code editing component for model files
  * @param {*} props the properties for the component
  */
 function ClauseModelEditor(props) {

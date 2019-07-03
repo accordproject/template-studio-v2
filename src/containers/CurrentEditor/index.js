@@ -6,7 +6,7 @@ import ClauseTemplateGrammarEditor from '../ClauseTemplate/ClauseGrammarEditor';
 import ClauseExampleTextEditor from '../ClauseTemplate/ClauseExampleTextEditor';
 import ContractEditor from '../ContractEditor';
 import ClauseModelEditor from '../ClauseTemplate/ClauseModelEditor';
-import ErgoEditor from '../BaseEditors/ErgoEditor';
+import ClauseLogicEditor from '../ClauseTemplate/ClauseLogicEditor';
 import JsonEditor from '../BaseEditors/JsonEditor';
 
 const CurrentEditor = (props) => {
@@ -21,7 +21,7 @@ const CurrentEditor = (props) => {
     case 'clauseModel':
       return (<ClauseModelEditor />);
     case 'clauseLogic':
-      return (<ErgoEditor />);
+      return (<ClauseLogicEditor />);
     case 'clauseMetadata':
       return (<JsonEditor />);
     default:

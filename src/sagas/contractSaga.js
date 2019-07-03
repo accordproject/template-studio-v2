@@ -58,9 +58,10 @@ export function* addToContract(action) {
     const grammar = templateObj.parserManager.getTemplatizedGrammar();
     const sampleText = templateObj.getMetadata().getSamples().default;
     const model = templateObj.getModelManager().getModels();
+    const logic = templateObj.getScriptManager().getLogic();
     const clauseTemplateId = uuidv4();
     yield put(clauseTemplatesActions.addClauseTemplate({
-      metadata, model, sampleText, grammar, id: clauseTemplateId
+      metadata, model, logic, sampleText, grammar, id: clauseTemplateId
     }));
     yield put(actions.addToContractSuccess(clauseId, clauseTemplateId));
   } catch (err) {

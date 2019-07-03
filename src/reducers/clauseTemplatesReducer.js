@@ -14,6 +14,19 @@ const reducer = (state = initialState, action) => {
       return file;
     });
   }
+  let newLogic;
+  if (action.type === 'EDIT_CLAUSE_LOGIC') {
+    const { logic } = state[action.clauseTemplateId];
+    newLogic = logic.map((file) => {
+      if (file.name === action.fileName) {
+        return {
+          name: file.name,
+          content: action.content
+        };
+      }
+      return file;
+    });
+  }
   switch (action.type) {
     case 'ADD_CLAUSE_TEMPLATE':
       return {
@@ -41,11 +54,10 @@ const reducer = (state = initialState, action) => {
         ...state,
         [action.clauseTemplateId]: {
           ...state[action.clauseTemplateId],
-          logic: action.logic,
+          logic: newLogic,
         }
       };
     case 'EDIT_CLAUSE_MODEL':
-      console.log('NEW MOD', newModel);
       return {
         ...state,
         [action.clauseTemplateId]: {
