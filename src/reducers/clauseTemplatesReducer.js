@@ -1,5 +1,4 @@
-const initialState = {
-};
+const initialState = {};
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
@@ -22,6 +21,14 @@ const reducer = (state = initialState, action) => {
         [action.clauseTemplateId]: {
           ...state[action.clauseTemplateId],
           sampleText: action.sample,
+        }
+      };
+    case 'EDIT_CLAUSE_LOGIC':
+      return {
+        ...state,
+        [action.clauseTemplateId]: {
+          ...state[action.clauseTemplateId],
+          logic: action.logic,
         }
       };
     default:

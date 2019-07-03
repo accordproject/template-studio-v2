@@ -25,15 +25,15 @@ function CodeEditor(props) {
   };
 
   return (
-      <MonacoEditor
-        options={props.monacoOptions}
-        language={props.languageId}
-        theme={props.themeId}
-        value={code || props.textValue}
-        onChange={onChange}
-        editorDidMount={editorDidMount}
-        editorWillMount={editorWillMount}
-      />);
+    <MonacoEditor
+      options={props.monacoOptions}
+      language={props.languageId}
+      theme={props.themeId}
+      value={code || props.textValue}
+      onChange={onChange}
+      editorDidMount={editorDidMount}
+      editorWillMount={editorWillMount}
+    />);
 }
 
 CodeEditor.propTypes = {

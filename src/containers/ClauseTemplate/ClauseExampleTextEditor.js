@@ -21,6 +21,8 @@ const ClauseExampleTextEditor = props => (
     <TextArea
       onChange={(event, data) => props.onClauseSampleChange(props.clauseTemplateid, data.value)}
       value={props.value}
+      rows={20}
+      style={{ width: 'inherit' }}
     />
   </EditorWrapper>
 );

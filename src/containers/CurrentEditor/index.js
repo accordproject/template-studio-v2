@@ -7,8 +7,7 @@ import { updateLogicMockAction } from '../../actions/logicActions';
 import { updateSampleMockAction } from '../../actions/sampleActions';
 import ClauseTemplateGrammarEditor from '../ClauseTemplate/ClauseGrammarEditor';
 import ClauseExampleTextEditor from '../ClauseTemplate/ClauseExampleTextEditor';
-import ContractTemplateEditor from '../ContractTemplateEditor';
-import ContractExampleTextEditor from '../ContractExampleTextEditor';
+import ContractEditor from '../ContractEditor';
 import ConcertoEditor from '../BaseEditors/ConcertoEditor';
 import ErgoEditor from '../BaseEditors/ErgoEditor';
 import JsonEditor from '../BaseEditors/JsonEditor';
@@ -16,28 +15,20 @@ import JsonEditor from '../BaseEditors/JsonEditor';
 const CurrentEditor = (props) => {
   const { editor } = props;
   switch (editor) {
-    case 'contractExampleText':
-      return (<ContractExampleTextEditor />);
-    case 'contractTemplate':
-      return (<ContractTemplateEditor />);
+    case 'contract':
+      return (<ContractEditor />);
     case 'clauseTemplateGrammar':
       return (<ClauseTemplateGrammarEditor />);
     case 'clauseExampleText':
       return (<ClauseExampleTextEditor />);
     case 'clauseModel':
-      return (
-        <ConcertoEditor />
-      );
+      return (<ConcertoEditor />);
     case 'clauseLogic':
-      return (
-      <ErgoEditor />
-      );
+      return (<ErgoEditor />);
     case 'clauseMetadata':
-      return (
-        <JsonEditor />
-      );
+      return (<JsonEditor />);
     default:
-      return <ContractTemplateEditor />;
+      return <ContractEditor />;
   }
 };
 

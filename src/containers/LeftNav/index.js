@@ -56,8 +56,7 @@ export const LeftNav = (props) => {
     <NavWrapper>
       { navVisible && <React.Fragment>
         <Heading>CONTRACT</Heading>
-        <SubHeading onClick={() => setCurrentEditor(null, 'contractTemplate')}>Contract Template</SubHeading>
-        <SubHeading onClick={() => setCurrentEditor(null, 'contractExampleText')}>Contract Text</SubHeading>
+        <SubHeading onClick={() => setCurrentEditor(null, 'contract')}>Contract</SubHeading>
         <br />
         <Heading>CLAUSES</Heading>
         { Object.keys(clauses).length

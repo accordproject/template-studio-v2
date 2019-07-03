@@ -14,3 +14,9 @@ export const editClauseSampleAction = (clauseTemplateId, sample) => ({
   clauseTemplateId,
   sample,
 });
+
+export const editClauseLogicAction = (clauseTemplateId, logic) => ({
+  type: 'EDIT_CLAUSE_LOGIC',
+  clauseTemplateId,
+  logic,
+});
