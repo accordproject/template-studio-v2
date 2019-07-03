@@ -65,6 +65,17 @@ const reducer = (state = initialState, action) => {
           model: newModel,
         }
       };
+    case 'EDIT_CLAUSE_PACKAGE_JSON':
+      return {
+        ...state,
+        [action.clauseTemplateId]: {
+          ...state[action.clauseTemplateId],
+          metadata: {
+            ...state[action.clauseTemplateId].metadata,
+            packageJson: action.packageJson,
+          }
+        }
+      };
     default:
       return state;
   }

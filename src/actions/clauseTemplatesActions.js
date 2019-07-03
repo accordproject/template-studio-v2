@@ -28,3 +28,9 @@ export const editClauseLogicAction = (clauseTemplateId, fileName, content) => ({
   fileName,
   content,
 });
+
+export const editClausePackageJsonAction = (clauseTemplateId, packageJson) => ({
+  type: 'EDIT_CLAUSE_PACKAGE_JSON',
+  clauseTemplateId,
+  packageJson,
+});
