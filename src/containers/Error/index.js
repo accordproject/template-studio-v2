@@ -5,7 +5,14 @@ import { connect } from 'react-redux';
 import { ErrorLogger } from '@accordproject/cicero-ui';
 
 const ErrorWrapper = styled.div`
-  width: 600px;
+  width: 100%;
+  position: fixed;
+  // bottom: -360px;
+  bottom: 0;
+  transition: 1s;
+  &:hover {
+    bottom: 0;
+  }
 `;
 const ErrorContainer = props => (
   <ErrorWrapper>
