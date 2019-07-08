@@ -16,6 +16,10 @@ const EditorWrapper = styled.div`
   width: 594px;
 `;
 
+/**
+ * A text editing component for clause template grammar
+ * @param {*} props the properties for the component
+ */
 const ClauseGrammarEditor = props => (
   <EditorWrapper>
     <TextArea

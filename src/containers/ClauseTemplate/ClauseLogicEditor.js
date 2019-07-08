@@ -7,7 +7,8 @@ import { editClauseLogicAction } from '../../actions/clauseTemplatesActions';
 
 
 /**
- * A code editing component for logic files
+ * A code editing component for clause template logic files
+ * which wraps the ErgoEditor
  * @param {*} props the properties for the component
  */
 function ClauseLogicEditor(props) {

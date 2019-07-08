@@ -4,6 +4,11 @@ import { connect } from 'react-redux';
 import { editClausePackageJsonAction } from '../../actions/clauseTemplatesActions';
 import JsonEditor from '../BaseEditors/JsonEditor';
 
+/**
+ * A code editing component for package.json files
+ * which wraps the Json editor
+ * @param {*} props the properties for the component
+ */
 const ClauseMetadataEditor = props => (
   <JsonEditor
     handleSubmit={value => props.onClausePackageJsonChange(props.clauseTemplateid, value)}
