@@ -16,8 +16,8 @@ export function* validateClauseModelFiles(action) {
   try {
     // create a new ModelManager with the template's concerto files
     const modelManager = new ModelManager();
-    Object.keys(modelFiles).forEach((fileName) => {
-      modelManager.addModelFile(modelFiles[fileName], fileName, true);
+    modelFiles.forEach((file) => {
+      modelManager.addModelFile(file.content, file.name, true);
     });
 
     // download external dependencies
