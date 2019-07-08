@@ -13,6 +13,10 @@ import * as appActions from '../actions/appActions';
 import * as clauseTemplatesActions from '../actions/clauseTemplatesActions';
 import * as contractSelectors from '../selectors/contractSelectors';
 import { addTemplateObjectToStore } from './templatesSaga';
+import {
+  ADD_TO_CONTRACT,
+  DOCUMENT_EDITED
+} from '../actions/constants';
 
 /**
  * saga to update the contract in the store if it has changed
@@ -81,6 +85,6 @@ export function* addToContract(action) {
 }
 
 export const contractSaga = [
-  takeLatest('DOCUMENT_EDITED', updateDocument),
-  takeEvery('ADD_TO_CONTRACT', addToContract)
+  takeLatest(DOCUMENT_EDITED, updateDocument),
+  takeEvery(ADD_TO_CONTRACT, addToContract)
 ];

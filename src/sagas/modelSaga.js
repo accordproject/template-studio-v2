@@ -3,6 +3,10 @@ import { ModelManager } from 'composer-concerto';
 import * as clauseTemplateSelectors from '../selectors/clauseTemplateSelectors';
 import * as actions from '../actions/modelActions';
 import * as clauseTemplateActions from '../actions/clauseTemplatesActions';
+import {
+  EDIT_CLAUSE_MODEL,
+  VALIDATE_CLAUSE_MODEL_FILES
+} from '../actions/constants';
 
 /**
  * saga which yields to putting the successful model manager into the store
@@ -48,6 +52,6 @@ export function* updateModelFileOnStore(modelFileAction) {
 }
 
 export const modelSaga = [
-  takeLatest('EDIT_CLAUSE_MODEL', updateModelFileOnStore),
-  takeLatest('VALIDATE_CLAUSE_MODEL_FILES', validateClauseModelFiles),
+  takeLatest(EDIT_CLAUSE_MODEL, updateModelFileOnStore),
+  takeLatest(VALIDATE_CLAUSE_MODEL_FILES, validateClauseModelFiles),
 ];

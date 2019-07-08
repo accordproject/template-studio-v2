@@ -1,11 +1,13 @@
+import {
+  ADD_NEW_TEMPLATE_SUCCEEDED,
+  GET_AP_TEMPLATES_SUCEEDED,
+  LOAD_TEMPLATE_OBJECT_SUCCEEDED,
+} from '../actions/constants';
+
 const initialState = {
   templatesAP: [],
   templateObjs: {},
 };
-
-const GET_AP_TEMPLATES_SUCEEDED = 'GET_AP_TEMPLATES_SUCEEDED';
-const ADD_NEW_TEMPLATE_SUCCEEDED = 'ADD_NEW_TEMPLATE_SUCCEEDED';
-const LOAD_TEMPLATE_OBJECT_SUCCEEDED = 'LOAD_TEMPLATE_OBJECT_SUCCEEDED';
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {

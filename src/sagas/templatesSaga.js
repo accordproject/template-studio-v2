@@ -8,7 +8,11 @@ import {
 import * as actions from '../actions/templatesActions';
 import * as appActions from '../actions/appActions';
 import * as selectors from '../selectors/templatesSelectors';
-
+import {
+  ADD_NEW_TEMPLATE,
+  GET_AP_TEMPLATES,
+  LOAD_TEMPLATE_OBJECT,
+} from '../actions/constants';
 
 /**
  * saga to populate store with templates
@@ -61,7 +65,7 @@ export function* addTemplateObjectToStore(action) {
 }
 
 export const templatesSaga = [
-  takeLatest('GET_AP_TEMPLATES', pushTemplatesToStore),
-  takeLatest('ADD_NEW_TEMPLATE', addNewTemplateToStore),
-  takeEvery('LOAD_TEMPLATE_OBJECT', addTemplateObjectToStore),
+  takeLatest(GET_AP_TEMPLATES, pushTemplatesToStore),
+  takeLatest(ADD_NEW_TEMPLATE, addNewTemplateToStore),
+  takeEvery(LOAD_TEMPLATE_OBJECT, addTemplateObjectToStore),
 ];

@@ -1,4 +1,10 @@
 import { Value } from 'slate';
+import {
+  ADD_TO_CONTRACT_SUCCESS,
+  DOCUMENT_EDITED_SUCCESS,
+  PARSE_CLAUSE_ERROR,
+  PARSE_CLAUSE_SUCEEDED
+} from '../actions/constants';
 
 const initialState = {
   contractTemplateRef: null,
@@ -25,13 +31,13 @@ const initialState = {
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
-    case 'DOCUMENT_EDITED_SUCCESS':
+    case DOCUMENT_EDITED_SUCCESS:
       return {
         ...state,
         markdown: action.markdown,
         slateValue: action.slateValue,
       };
-    case 'ADD_TO_CONTRACT_SUCCESS':
+    case ADD_TO_CONTRACT_SUCCESS:
       return {
         ...state,
         clauses: {
@@ -43,7 +49,7 @@ const reducer = (state = initialState, action) => {
           }
         }
       };
-    case 'PARSE_CLAUSE_SUCEEDED':
+    case PARSE_CLAUSE_SUCEEDED:
       return {
         ...state,
         clauses: {
@@ -55,7 +61,7 @@ const reducer = (state = initialState, action) => {
           }
         }
       };
-    case 'PARSE_CLAUSE_ERROR':
+    case PARSE_CLAUSE_ERROR:
       return {
         ...state,
         clauses: {
