@@ -33,21 +33,12 @@ export const App = () => (
     <AppWrapper>
       <ErrorModalComponent />
       <MainWrapper>
-<<<<<<< HEAD
-      <Header />
-      <ContentWrapper>
-        <LeftNavContainer />
-        <CurrentEditorContainer />
-        <LibraryContainer />
-      </ContentWrapper>
-=======
         <Header />
         <ContentWrapper>
-          <LeftNavContainer setCurrentEditor={setCurrentEditor} />
-          <CurrentEditorContainer type={currentEditor} />
+          <LeftNavContainer />
+          <CurrentEditorContainer />
           <LibraryContainer />
         </ContentWrapper>
->>>>>>> chore(App): introduce error component - I61
       </MainWrapper>
       <ErrorContainer />
     </AppWrapper>
