@@ -5,7 +5,9 @@ import * as actions from '../actions/modelActions';
 import * as clauseTemplateActions from '../actions/clauseTemplatesActions';
 import {
   EDIT_CLAUSE_MODEL,
-  VALIDATE_CLAUSE_MODEL_FILES
+  VALIDATE_CLAUSE_MODEL_FILES,
+  // UPDATE_MODEL_ERROR_SUCCEEDED,
+  UPDATE_MODEL_ERROR_ATTEMPT
 } from '../actions/constants';
 
 /**
@@ -41,6 +43,15 @@ export function* validateClauseModelFiles(action) {
 }
 
 /**
+ * a
+ */
+export function* testerSaga(action) {
+  // err.type = 'Model';
+  // err.fileName = err.fileName;
+  yield put(actions.updateModelManagerError(action.error));
+}
+
+/**
  * saga which yields to updating the model file and
  * subsequently puts a valid model in the store
  */
@@ -54,4 +65,5 @@ export function* updateModelFileOnStore(modelFileAction) {
 export const modelSaga = [
   takeLatest(EDIT_CLAUSE_MODEL, updateModelFileOnStore),
   takeLatest(VALIDATE_CLAUSE_MODEL_FILES, validateClauseModelFiles),
+  takeLatest(UPDATE_MODEL_ERROR_ATTEMPT, testerSaga),
 ];
