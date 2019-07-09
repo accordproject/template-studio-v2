@@ -17,7 +17,7 @@ export const ERGO_FORMAT = {
   ],
 
   operators: [
-    '=',
+    '=', '+', '-', '*', '%', '++', '<', '<=', '>', '>=', '??'
   ],
 
   // we include these common regular expressions
