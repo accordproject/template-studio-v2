@@ -33,12 +33,12 @@ export const App = () => (
     <AppWrapper>
       <ErrorModalComponent />
       <MainWrapper>
-      <Header />
-      <ContentWrapper>
-        <LeftNavContainer />
-        <CurrentEditorContainer />
-        <LibraryContainer />
-      </ContentWrapper>
+        <Header />
+        <ContentWrapper>
+          <LeftNavContainer />
+          <CurrentEditorContainer />
+          <LibraryContainer />
+        </ContentWrapper>
       </MainWrapper>
       <ErrorContainer />
     </AppWrapper>
