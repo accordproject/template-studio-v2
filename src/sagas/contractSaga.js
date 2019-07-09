@@ -50,7 +50,7 @@ export function* addToContract(action) {
 
     // get the user's current position in Slate dom to insert clause at
     const currentPosition = slateValue.selection.anchor.path.get(0);
-    const clauseId = uuidv4();
+    const clauseId = uuidv4(); // unique identifier for a clause instance
     const clauseMd = `\`\`\` <clause src=${action.uri} clauseId=${clauseId}>
   ${metadata.getSample()}
   \`\`\``;
@@ -70,7 +70,7 @@ export function* addToContract(action) {
     const sampleText = templateObj.getMetadata().getSamples().default;
     const model = templateObj.getModelManager().getModels();
     const logic = templateObj.getScriptManager().getLogic();
-    const clauseTemplateId = uuidv4();
+    const clauseTemplateId = uuidv4(); // unique identifier for a clause template
 
     // add a new clause template to the store so user can edit template
     yield put(clauseTemplatesActions.addClauseTemplate({
