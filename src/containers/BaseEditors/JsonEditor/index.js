@@ -7,7 +7,6 @@ import ReactJson from 'react-json-view';
  * @param {*} props the properties for the component
  */
 function JsonEditor(props) {
-
   const onEdit = (evt) => {
     console.log(evt.updated_src);
     props.handleSubmit(evt.updated_src);
@@ -27,13 +26,13 @@ function JsonEditor(props) {
   };
 
   return (
-  <ReactJson 
-    onEdit={onEdit} 
-    onDelete={onDelete} 
-    onAdd={onAdd} 
-    src={props.jsonObject} 
-    theme="monokai" 
-  />
+    <ReactJson
+      onEdit={onEdit}
+      onDelete={onDelete}
+      onAdd={onAdd}
+      src={props.jsonObject}
+      theme="monokai"
+    />
   );
 }
 

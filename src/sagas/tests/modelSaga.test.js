@@ -1,31 +1,21 @@
 import { select } from 'redux-saga/effects';
 import { expectSaga } from 'redux-saga-test-plan';
 import { ModelManager } from 'composer-concerto';
-import { updateModelFileOnStore, validateModelFiles } from '../modelSaga';
-import { recordSaga } from '../../utilities/test/sagaTest';
-import { updateModelFileSuccess, updateModelManagerSuccess } from '../../actions/modelActions';
-import * as selectors from '../../selectors/modelSelectors';
+import { validateClauseModelFiles } from '../modelSaga';
+import { updateModelManagerSuccess } from '../../actions/modelActions';
+import * as clauseTemplateSelectors from '../../selectors/clauseTemplateSelectors';
 
-describe('updateModelFileOnStore', () => {
-  it('should dispatch the action updateModelFileSuccess', async () => {
-    const dispatched = await recordSaga(
-      updateModelFileOnStore,
-      updateModelFileSuccess,
-    );
-    expect(dispatched[0].type).toEqual('UPDATE_MODEL_FILE_SUCCEEDED');
-  });
-});
-
-describe('validateModelFiles', () => {
-  it('first yield resolves to the model selector', async () => {
-    const modelFilesSelected = select(selectors.modelFiles);
-    const firstYield = validateModelFiles().next().value;
-    expect(firstYield).toEqual(modelFilesSelected);
+describe('validateClauseModelFiles', () => {
+  it('first yield resolves to the clause template selector', async () => {
+    const clauseTemplatesSelected = select(clauseTemplateSelectors.clauseTemplates);
+    const firstYield = validateClauseModelFiles({ clauseTemplateId: 'clauseTempId', fileName: 'model.cto' }).next().value;
+    expect(firstYield).toEqual(clauseTemplatesSelected);
   });
 
   it('should complete successful update to model manager', async () => {
-    const modelFiles = {
-      'test.cto': `
+    const modelFiles = [{
+      name: 'model.cto',
+      content: `
                 /**
                  * This is a comment
                  */
@@ -43,20 +33,22 @@ describe('validateModelFiles', () => {
                   o DateTime dob
                   --> Vehicle vehicle
                 }`,
-    };
+    }];
     const state = {
-      modelState: {
-        modelFiles
+      clauseTemplatesState: {
+        clauseTempId: {
+          model: modelFiles
+        }
       }
     };
     const modelManager = new ModelManager();
-    Object.keys(modelFiles).forEach((fileName) => {
-      modelManager.addModelFile(modelFiles[fileName], fileName, true);
+    modelFiles.forEach((file) => {
+      modelManager.addModelFile(file.content, file.name, true);
     });
     modelManager.updateExternalModels();
     modelManager.validateModelFiles();
 
-    return expectSaga(validateModelFiles)
+    return expectSaga(validateClauseModelFiles, { clauseTemplateId: 'clauseTempId', fileName: 'model.cto' })
       .withState(state)
       .put(updateModelManagerSuccess(modelManager))
       .run();

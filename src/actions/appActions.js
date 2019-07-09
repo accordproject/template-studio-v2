@@ -1,5 +1,7 @@
+import { ADD_APP_ERROR, REMOVE_APP_ERROR, SET_CURRENT_EDITOR } from './constants';
+
 export const addAppError = (errorDescription, error) => ({
-  type: 'ADD_APP_ERROR',
+  type: ADD_APP_ERROR,
   error: {
     errorDescription,
     errorName: error.name,
@@ -8,5 +10,11 @@ export const addAppError = (errorDescription, error) => ({
 });
 
 export const removeAppError = () => ({
-  type: 'REMOVE_APP_ERROR',
+  type: REMOVE_APP_ERROR,
+});
+
+export const setCurrentEditorAction = (id, editor) => ({
+  type: SET_CURRENT_EDITOR,
+  id,
+  editor,
 });

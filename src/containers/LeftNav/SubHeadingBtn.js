@@ -9,6 +9,8 @@ const SubHeadingBtn = styled(TextButton)`
   text-decoration: none;
   text-align: left;
   margin: 6px;
+  display: block;
+  padding-left: 10px;
 `;
 
 export default SubHeadingBtn;

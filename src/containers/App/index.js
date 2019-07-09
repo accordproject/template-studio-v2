@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import 'semantic-ui-css/semantic.min.css';
 import styled from 'styled-components';
 
@@ -29,22 +29,18 @@ const ContentWrapper = styled.div`
   overflow-y: hidden;
 `;
 
-export const App = () => {
-  const [currentEditor, setCurrentEditor] = useState('contract');
-
-  return (
+export const App = () => (
     <AppWrapper>
       <ErrorModalComponent />
       <MainWrapper>
       <Header />
       <ContentWrapper>
-        <LeftNavContainer setCurrentEditor={setCurrentEditor} />
-        <CurrentEditorContainer type={currentEditor} />
+        <LeftNavContainer />
+        <CurrentEditorContainer />
         <LibraryContainer />
       </ContentWrapper>
       </MainWrapper>
     </AppWrapper>
-  );
-};
+);
 
 export default App;

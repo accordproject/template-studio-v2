@@ -1,4 +1,10 @@
 import { Value } from 'slate';
+import {
+  ADD_TO_CONTRACT_SUCCESS,
+  DOCUMENT_EDITED_SUCCESS,
+  PARSE_CLAUSE_ERROR,
+  PARSE_CLAUSE_SUCEEDED
+} from '../actions/constants';
 
 const initialState = {
   contractTemplateRef: null,
@@ -25,32 +31,46 @@ const initialState = {
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
-    case 'DOCUMENT_EDITED_SUCCESS':
+    case DOCUMENT_EDITED_SUCCESS:
       return {
         ...state,
         markdown: action.markdown,
         slateValue: action.slateValue,
       };
-    case 'PARSE_CLAUSE_SUCEEDED':
+    case ADD_TO_CONTRACT_SUCCESS:
       return {
         ...state,
         clauses: {
           ...state.clauses,
           [action.clauseId]: {
             parseError: null,
-            parseResult: action.parseResult
+            parseResult: null,
+            clauseTemplateRef: action.clauseTemplateRef
           }
         }
       };
-    case 'PARSE_CLAUSE_ERROR':
+    case PARSE_CLAUSE_SUCEEDED:
       return {
         ...state,
         clauses: {
           ...state.clauses,
           [action.clauseId]: {
-            ...state[action.clauseId],
+            ...state.clauses[action.clauseId],
+            parseError: null,
+            parseResult: action.parseResult
+          }
+        }
+      };
+    case PARSE_CLAUSE_ERROR:
+      return {
+        ...state,
+        clauses: {
+          ...state.clauses,
+          [action.clauseId]: {
+            ...state.clauses[action.clauseId],
             parseError: action.error,
-            parseResult: null, // would we rather have this be that last good result (if there is one)?
+            // would we rather the below be that last good result (if there is one)?
+            parseResult: null,
           }
         }
       };

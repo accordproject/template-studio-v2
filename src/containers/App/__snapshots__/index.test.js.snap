@@ -6,12 +6,8 @@ exports[`<App /> on initialization renders page correctly 1`] = `
   <App__MainWrapper>
     <Header />
     <App__ContentWrapper>
-      <Connect(LeftNav)
-        setCurrentEditor={[Function]}
-      />
-      <Connect(CurrentEditor)
-        type="contract"
-      />
+      <Connect(LeftNav) />
+      <Connect(CurrentEditor) />
       <Connect(LibraryComponent) />
     </App__ContentWrapper>
   </App__MainWrapper>
