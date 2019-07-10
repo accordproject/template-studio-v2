@@ -1,4 +1,5 @@
 import React from 'react';
+import * as R from 'ramda';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
@@ -23,8 +24,17 @@ const ErrorContainer = props => (
 ErrorContainer.propTypes = {
   errors: PropTypes.array.isRequired,
 };
+
 const mapStateToProps = state => ({
-  errors: state.modelState.error ? [state.modelState.error] : [],
+  // const modelErrors = state.modelState.error ? [state.modelState.error] : [];
+
+  errors: {
+    modelErrors: [R.path(['modelState', 'error'], state)]
+      .filter(modelError => !R.isNil(modelError)),
+    parseErrors: R.toPairs(R.path(['contractState', 'clauses'], state) || {})
+      .map(([clauseId, clause]) => ({ clauseId, parseError: clause.parseError }))
+      .filter(({ parseError }) => !R.isNil(parseError)),
+  },
 });
 
 export default connect(mapStateToProps)(ErrorContainer);
