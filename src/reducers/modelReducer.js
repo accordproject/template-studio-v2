@@ -5,7 +5,8 @@ import {
 
 const initialState = {
   modelManager: null,
-  error: [],
+  // error: [],
+  error: null,
 };
 
 const reducer = (state = initialState, action) => {
@@ -13,7 +14,16 @@ const reducer = (state = initialState, action) => {
     case UPDATE_MODEL_MANAGER_SUCCEEDED:
       return { ...state, modelManager: action.modelManager };
     case UPDATE_MODEL_ERROR_SUCCEEDED:
-      return { ...state, error: [...state.error, action.error] };
+      console.log('what is here? ', state);
+      // return { ...state, error: [...state.error, action.error] };
+      return {
+        ...state,
+        error: {
+          ...state.error,
+          [action.clauseTemplateId]:
+            action.error
+        }
+      };
     default:
       return state;
   }
