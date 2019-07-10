@@ -5,9 +5,7 @@ import * as actions from '../actions/modelActions';
 import * as clauseTemplateActions from '../actions/clauseTemplatesActions';
 import {
   EDIT_CLAUSE_MODEL,
-  VALIDATE_CLAUSE_MODEL_FILES,
-  // UPDATE_MODEL_ERROR_SUCCEEDED,
-  UPDATE_MODEL_ERROR_ATTEMPT
+  VALIDATE_CLAUSE_MODEL_FILES
 } from '../actions/constants';
 
 /**
@@ -15,9 +13,11 @@ import {
  * and subsequently clears all model manager errors from the store
  */
 export function* validateClauseModelFiles(action) {
+  const { clauseTemplateId } = action;
+
   // get all the model files for a template
   const clauseTemplates = yield select(clauseTemplateSelectors.clauseTemplates);
-  const modelFiles = clauseTemplates[action.clauseTemplateId].model;
+  const modelFiles = clauseTemplates[clauseTemplateId].model;
 
   try {
     // create a new ModelManager with the template's concerto files
@@ -38,17 +38,8 @@ export function* validateClauseModelFiles(action) {
   } catch (err) {
     err.type = 'Model';
     err.fileName = action.fileName;
-    yield put(actions.updateModelManagerError(err));
+    yield put(actions.updateModelManagerError(err, clauseTemplateId));
   }
-}
-
-/**
- * a
- */
-export function* testerSaga(action) {
-  // err.type = 'Model';
-  // err.fileName = err.fileName;
-  yield put(actions.updateModelManagerError(action.error));
 }
 
 /**
@@ -65,5 +56,4 @@ export function* updateModelFileOnStore(modelFileAction) {
 export const modelSaga = [
   takeLatest(EDIT_CLAUSE_MODEL, updateModelFileOnStore),
   takeLatest(VALIDATE_CLAUSE_MODEL_FILES, validateClauseModelFiles),
-  takeLatest(UPDATE_MODEL_ERROR_ATTEMPT, testerSaga),
 ];
