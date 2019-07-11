@@ -26,11 +26,9 @@ ErrorContainer.propTypes = {
 };
 
 const mapStateToProps = state => ({
-  // const modelErrors = state.modelState.error ? [state.modelState.error] : [];
-
   errors: {
-    modelErrors: [R.path(['modelState', 'error'], state)]
-      .filter(modelError => !R.isNil(modelError)),
+    modelErrors: R.toPairs(R.path(['modelState', 'error'], state) || {})
+      .map(([clauseTemplateId, modelError]) => ({ clauseTemplateId, modelError })),
     parseErrors: R.toPairs(R.path(['contractState', 'clauses'], state) || {})
       .map(([clauseId, clause]) => ({ clauseId, parseError: clause.parseError }))
       .filter(({ parseError }) => !R.isNil(parseError)),

@@ -14,7 +14,6 @@ const reducer = (state = initialState, action) => {
     case UPDATE_MODEL_MANAGER_SUCCEEDED:
       return { ...state, modelManager: action.modelManager };
     case UPDATE_MODEL_ERROR_SUCCEEDED:
-      console.log('what is here? ', state);
       // return { ...state, error: [...state.error, action.error] };
       return {
         ...state,
