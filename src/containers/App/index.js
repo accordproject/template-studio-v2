@@ -35,8 +35,13 @@ export const App = () => (
       <MainWrapper>
         <Header />
         <ContentWrapper>
+<<<<<<< HEAD
           <LeftNavContainer />
           <CurrentEditorContainer />
+=======
+          <LeftNavContainer setCurrentEditor={setCurrentEditor} />
+          <CurrentEditorContainer type={currentEditor} />
+>>>>>>> 851a94b3b7d715e2fff3afc2705e273a2758199b
           <LibraryContainer />
         </ContentWrapper>
       </MainWrapper>
