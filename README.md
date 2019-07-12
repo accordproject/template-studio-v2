@@ -72,7 +72,7 @@ Template Studio v2 is built with **Redux Sagas**, a good intro guide can be foun
   <img src="assets/APLogo.png" alt="Accord Project Logo" width="400" />
 </a>
 
-Accord Project is an open source, non-profit, initiative working to transform contract management and contract automation by digitizing contracts. Accord Project operates under the umbrella of the [Linux Foundation][linuxfound].
+Accord Project is an open source, non-profit, initiative working to transform contract management and contract automation by digitizing contracts. Accord Project operates under the umbrella of the [Linux Foundation][linuxfound]. The technical charter for the Accord Project can be found [here][charter].
 
 ## Learn More About Accord Project
 
@@ -111,6 +111,7 @@ Accord Project documentation files are made available under the [Creative Common
 [reduxSaga]: https://redux-saga.js.org/
 
 [linuxfound]: https://www.linuxfoundation.org
+[charter]: https://github.com/accordproject/template-studio-v2/blob/master/CHARTER.md
 [apmain]: https://accordproject.org/ 
 [apworkgroup]: https://calendar.google.com/calendar/event?action=TEMPLATE&tmeid=MjZvYzIzZHVrYnI1aDVzbjZnMHJqYmtwaGlfMjAxNzExMTVUMjEwMDAwWiBkYW5AY2xhdXNlLmlv&tmsrc=dan%40clause.io
 [apblog]: https://medium.com/@accordhq
@@ -127,8 +128,8 @@ Accord Project documentation files are made available under the [Creative Common
 [doccicero]: https://docs.accordproject.org/docs/basic-use.html
 [docstudio]: https://docs.accordproject.org/docs/advanced-latedelivery.html
 
-[contributing]: https://github.com/accordproject/ergo/blob/master/CONTRIBUTING.md
-[developers]: https://github.com/accordproject/ergo/blob/master/DEVELOPERS.md
+[contributing]: https://github.com/accordproject/template-studio-v2/blob/master/CONTRIBUTING.md
+[developers]: https://github.com/accordproject/template-studio-v2/blob/master/DEVELOPERS.md
 
 [apache]: https://github.com/accordproject/template-studio-v2/blob/master/LICENSE
 [creativecommons]: http://creativecommons.org/licenses/by/4.0/
