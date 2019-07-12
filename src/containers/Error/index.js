@@ -4,9 +4,12 @@ import styled from 'styled-components';
 import { connect } from 'react-redux';
 import { ErrorLogger } from '@accordproject/cicero-ui';
 
+import errorsGenerator from './errorReducer';
+
 const ErrorWrapper = styled.div`
-  width: 600px;
+  width: 100%;
 `;
+
 const ErrorContainer = props => (
   <ErrorWrapper>
     <ErrorLogger errors={props.errors}/>
@@ -16,8 +19,9 @@ const ErrorContainer = props => (
 ErrorContainer.propTypes = {
   errors: PropTypes.array.isRequired,
 };
+
 const mapStateToProps = state => ({
-  errors: state.modelState.error ? [state.modelState.error] : [],
+  errors: errorsGenerator(state),
 });
 
 export default connect(mapStateToProps)(ErrorContainer);

@@ -4,7 +4,7 @@ import styled from 'styled-components';
 
 import Header from '../Header';
 import LibraryContainer from '../TemplateLibrary';
-// import ErrorContainer from '../Error';
+import ErrorContainer from '../Error';
 import ErrorModalComponent from '../ErrorModal';
 import LeftNavContainer from '../LeftNav';
 import CurrentEditorContainer from '../CurrentEditor';
@@ -33,13 +33,14 @@ export const App = () => (
     <AppWrapper>
       <ErrorModalComponent />
       <MainWrapper>
-      <Header />
-      <ContentWrapper>
-        <LeftNavContainer />
-        <CurrentEditorContainer />
-        <LibraryContainer />
-      </ContentWrapper>
+        <Header />
+        <ContentWrapper>
+          <LeftNavContainer />
+          <CurrentEditorContainer />
+          <LibraryContainer />
+        </ContentWrapper>
       </MainWrapper>
+      <ErrorContainer />
     </AppWrapper>
 );
 

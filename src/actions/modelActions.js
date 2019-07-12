@@ -9,9 +9,10 @@ export const updateModelManagerSuccess = modelManager => ({
   modelManager,
 });
 
-export const updateModelManagerError = error => ({
+export const updateModelManagerError = (error, clauseTemplateId) => ({
   type: UPDATE_MODEL_ERROR_SUCCEEDED,
   error,
+  clauseTemplateId
 });
 
 export const validateClauseModelFilesAction = (clauseTemplateId, fileName) => ({

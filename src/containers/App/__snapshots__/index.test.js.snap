@@ -11,5 +11,6 @@ exports[`<App /> on initialization renders page correctly 1`] = `
       <Connect(LibraryComponent) />
     </App__ContentWrapper>
   </App__MainWrapper>
+  <Connect(ErrorContainer) />
 </App__AppWrapper>
 `;

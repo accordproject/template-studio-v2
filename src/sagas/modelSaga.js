@@ -13,9 +13,11 @@ import {
  * and subsequently clears all model manager errors from the store
  */
 export function* validateClauseModelFiles(action) {
+  const { clauseTemplateId } = action;
+
   // get all the model files for a template
   const clauseTemplates = yield select(clauseTemplateSelectors.clauseTemplates);
-  const modelFiles = clauseTemplates[action.clauseTemplateId].model;
+  const modelFiles = clauseTemplates[clauseTemplateId].model;
 
   try {
     // create a new ModelManager with the template's concerto files
@@ -36,7 +38,7 @@ export function* validateClauseModelFiles(action) {
   } catch (err) {
     err.type = 'Model';
     err.fileName = action.fileName;
-    yield put(actions.updateModelManagerError(err));
+    yield put(actions.updateModelManagerError(err, clauseTemplateId));
   }
 }
 
