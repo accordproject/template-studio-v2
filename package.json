@@ -64,7 +64,7 @@
   },
   "dependencies": {
     "@accordproject/cicero-core": "^0.13.3",
-    "@accordproject/cicero-ui": "0.0.20",
+    "@accordproject/cicero-ui": "0.0.21-20190716175712",
     "@accordproject/markdown-editor": "^0.5.10",
     "@babel/runtime": "^7.5.4",
     "composer-concerto": "^0.70.5",
