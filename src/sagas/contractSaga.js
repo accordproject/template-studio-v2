@@ -54,6 +54,11 @@ export function* addToContract(action) {
     const clauseMd = `\`\`\` <clause src=${action.uri} clauseId=${clauseId}>
   ${metadata.getSample()}
   \`\`\``;
+
+    const paragraphSpaceMd = 'This is a new clause!';
+    const spacerValue = fromMarkdown.convert(paragraphSpaceMd);
+    const paragraphSpaceNode = spacerValue.toJSON().document.nodes[0];
+
     const value = fromMarkdown.convert(clauseMd);
     const clauseNode = value.toJSON().document.nodes[0];
 
@@ -62,7 +67,7 @@ export function* addToContract(action) {
     const { nodes } = newSlateValue.document;
 
     // add the clause node to the Slate dom at current position
-    nodes.splice(currentPosition, 0, clauseNode);
+    nodes.splice(currentPosition, 0, clauseNode, paragraphSpaceNode);
 
     // update contract on store with new slate and md values
     yield put(actions.documentEdited(Value.fromJSON(newSlateValue), newMd));
