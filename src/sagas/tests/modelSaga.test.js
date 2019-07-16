@@ -1,6 +1,6 @@
 import { select } from 'redux-saga/effects';
 import { expectSaga } from 'redux-saga-test-plan';
-import { ModelManager } from 'composer-concerto';
+import { APModelManager } from '@accordproject/ergo-compiler';
 import { validateClauseModelFiles } from '../modelSaga';
 import { updateModelManagerSuccess } from '../../actions/modelActions';
 import * as clauseTemplateSelectors from '../../selectors/clauseTemplateSelectors';
@@ -41,7 +41,7 @@ describe('validateClauseModelFiles', () => {
         }
       }
     };
-    const modelManager = new ModelManager();
+    const modelManager = new APModelManager();
     modelFiles.forEach((file) => {
       modelManager.addModelFile(file.content, file.name, true);
     });
