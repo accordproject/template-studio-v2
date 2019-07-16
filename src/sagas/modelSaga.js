@@ -1,5 +1,5 @@
 import { takeLatest, put, select } from 'redux-saga/effects';
-import { ModelManager } from 'composer-concerto';
+import { APModelManager } from '@accordproject/ergo-compiler';
 import * as clauseTemplateSelectors from '../selectors/clauseTemplateSelectors';
 import * as actions from '../actions/modelActions';
 import * as clauseTemplateActions from '../actions/clauseTemplatesActions';
@@ -21,7 +21,7 @@ export function* validateClauseModelFiles(action) {
 
   try {
     // create a new ModelManager with the template's concerto files
-    const modelManager = new ModelManager();
+    const modelManager = new APModelManager();
     modelFiles.forEach((file) => {
       modelManager.addModelFile(file.content, file.name, true);
     });
@@ -34,11 +34,11 @@ export function* validateClauseModelFiles(action) {
 
     yield put(actions.updateModelManagerSuccess(modelManager));
 
-    yield put(actions.updateModelManagerError(null));
+    yield put(actions.updateModelManagerRemoveError(null, clauseTemplateId));
   } catch (err) {
     err.type = 'Model';
     err.fileName = action.fileName;
-    yield put(actions.updateModelManagerError(err, clauseTemplateId));
+    yield put(actions.updateModelManagerAddError(err, clauseTemplateId));
   }
 }
 
