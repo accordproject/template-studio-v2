@@ -1,4 +1,5 @@
 import { takeLatest, put, select } from 'redux-saga/effects';
+// import { ModelManager } from 'composer-concerto';
 import { APModelManager } from '@accordproject/ergo-compiler';
 import * as clauseTemplateSelectors from '../selectors/clauseTemplateSelectors';
 import * as actions from '../actions/modelActions';
@@ -34,11 +35,11 @@ export function* validateClauseModelFiles(action) {
 
     yield put(actions.updateModelManagerSuccess(modelManager));
 
-    yield put(actions.updateModelManagerRemoveError(null, clauseTemplateId));
+    yield put(actions.updateModelManagerError(null, clauseTemplateId));
   } catch (err) {
     err.type = 'Model';
     err.fileName = action.fileName;
-    yield put(actions.updateModelManagerAddError(err, clauseTemplateId));
+    yield put(actions.updateModelManagerError(err, clauseTemplateId));
   }
 }
 
