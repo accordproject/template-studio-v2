@@ -55,6 +55,7 @@ export function* addToContract(action) {
   ${metadata.getSample()}
   \`\`\``;
 
+    // Create a new paragraph in markdown for spacing between clauses
     const paragraphSpaceMd = 'This is a new clause!';
     const spacerValue = fromMarkdown.convert(paragraphSpaceMd);
     const paragraphSpaceNode = spacerValue.toJSON().document.nodes[0];
@@ -67,6 +68,8 @@ export function* addToContract(action) {
     const { nodes } = newSlateValue.document;
 
     // add the clause node to the Slate dom at current position
+    // Temporary fix to separate clauses, adding the new paragraph at
+    // end of splice
     nodes.splice(currentPosition, 0, clauseNode, paragraphSpaceNode);
 
     // update contract on store with new slate and md values
