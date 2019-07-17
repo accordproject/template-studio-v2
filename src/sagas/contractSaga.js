@@ -41,6 +41,16 @@ export function* addToContract(action) {
     const fromMarkdown = new FromMarkdown(pluginManager);
     const toMarkdown = new ToMarkdown(pluginManager);
 
+    // Temporary fix based on the following idea:
+    // if you apply “fromMarkdown” to the grammar before parsing,
+    // both will have the same whitespace processing done and parsing will work better
+    // markdown <-commonmark-> markdown AST
+    const roundTrip = (markdownText) => {
+      const value = fromMarkdown.convert(markdownText);
+      const markdownRound = toMarkdown.convert(value);
+      return markdownRound;
+    };
+
     // get the templateObj from the store if we already have it
     // or load it and add it to the store if we do not
     const templateObj = yield call(addTemplateObjectToStore, action);
@@ -75,6 +85,11 @@ export function* addToContract(action) {
     // update contract on store with new slate and md values
     yield put(actions.documentEdited(Value.fromJSON(newSlateValue), newMd));
     const grammar = templateObj.parserManager.getTemplatizedGrammar();
+
+    // Temporary roundtrip and rebuild grammar
+    const grammarRound = roundTrip(grammar);
+    templateObj.parserManager.buildGrammar(grammarRound);
+
     const sampleText = templateObj.getMetadata().getSamples().default;
     const model = templateObj.getModelManager().getModels();
     const logic = templateObj.getScriptManager().getLogic();
