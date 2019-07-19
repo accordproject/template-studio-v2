@@ -4,7 +4,7 @@ import {
 import {
   PluginManager, List, FromMarkdown, ToMarkdown
 } from '@accordproject/markdown-editor';
-import ClausePlugin from '@accordproject/cicero-ui/dist/plugins/ClausePlugin';
+import { ClausePlugin } from '@accordproject/cicero-ui';
 import { Value } from 'slate';
 import uuidv4 from 'uuidv4';
 
