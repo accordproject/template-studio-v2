@@ -3,7 +3,8 @@ import {
   ADD_TO_CONTRACT_SUCCESS,
   DOCUMENT_EDITED_SUCCESS,
   PARSE_CLAUSE_ERROR,
-  PARSE_CLAUSE_SUCEEDED
+  PARSE_CLAUSE_SUCEEDED,
+  REMOVE_FROM_CONTRACT
 } from '../actions/constants';
 
 const initialState = {
