@@ -5,6 +5,7 @@ import {
   DOCUMENT_EDITED_SUCCESS,
   PARSE_CLAUSE_ERROR,
   PARSE_CLAUSE_SUCEEDED,
+  REMOVE_FROM_CONTRACT,
 } from './constants';
 
 export const documentEdited = (value, markdown) => ({
@@ -28,6 +29,11 @@ export const addToContractSuccess = (clauseId, clauseTemplateRef) => ({
   type: ADD_TO_CONTRACT_SUCCESS,
   clauseId,
   clauseTemplateRef,
+});
+
+export const removeFromContractAction = uri => ({
+  type: REMOVE_FROM_CONTRACT,
+  uri,
 });
 
 export const parseClauseSuccess = (clauseId, parseResult) => ({
