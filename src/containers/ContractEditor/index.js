@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import { connect } from 'react-redux';
 import { ContractEditor } from '@accordproject/cicero-ui';
 import { loadTemplateObjectAction } from '../../actions/templatesActions';
-import { documentEdited } from '../../actions/contractActions';
+import { documentEdited, removeFromContractAction } from '../../actions/contractActions';
 import parseClause from '../../utilities/parseClause';
 import { AP_THEME, CONTRACT_EDITOR } from '../App/themeConstants';
 
@@ -19,6 +19,11 @@ const EditorWrapper = styled.div`
   width: 100%;
   height: inherit;
 `;
+
+const clauseProps = deleteFunc => ({
+  CLAUSE_BORDER: 'red',
+  CLAUSE_DELETE_FUNCTION: deleteFunc,
+});
 
 const editorProps = {
   TOOLBAR_BACKGROUND: CONTRACT_EDITOR.TOOLBAR_BACKGROUND,
@@ -37,6 +42,7 @@ const editorProps = {
 const EditorContainer = props => (
   <EditorWrapper>
     <ContractEditor
+      clauseProps={clauseProps(props.removeFromContract)}
       loadTemplateObject={props.loadTemplateObject}
       parseClause={(uri, text, clauseId) => parseClause(props.templateObjs, uri, text, clauseId)}
       onChange={props.onEditorChange}
@@ -52,6 +58,7 @@ EditorContainer.propTypes = {
   templateObjs: PropTypes.object,
   onEditorChange: PropTypes.func.isRequired,
   value: PropTypes.object,
+  removeFromContract: PropTypes.func,
 };
 
 const mapStateToProps = state => ({
@@ -61,7 +68,8 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   loadTemplateObject: value => dispatch(loadTemplateObjectAction(value)),
-  onEditorChange: (value, markdown) => dispatch(documentEdited(value, markdown))
+  onEditorChange: (value, markdown) => dispatch(documentEdited(value, markdown)),
+  removeFromContract: value => dispatch(removeFromContractAction(value)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(React.memo(EditorContainer));
