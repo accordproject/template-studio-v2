@@ -1,10 +1,11 @@
 import { Value } from 'slate';
+import * as R from 'ramda';
 import {
   ADD_TO_CONTRACT_SUCCESS,
   DOCUMENT_EDITED_SUCCESS,
   PARSE_CLAUSE_ERROR,
   PARSE_CLAUSE_SUCEEDED,
-  REMOVE_FROM_CONTRACT
+  REMOVE_CLAUSE_FROM_CONTRACT,
 } from '../actions/constants';
 
 const initialState = {
@@ -32,13 +33,14 @@ const initialState = {
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
-    case DOCUMENT_EDITED_SUCCESS:
+    case DOCUMENT_EDITED_SUCCESS: {
       return {
         ...state,
         markdown: action.markdown,
         slateValue: action.slateValue,
       };
-    case ADD_TO_CONTRACT_SUCCESS:
+    }
+    case ADD_TO_CONTRACT_SUCCESS: {
       return {
         ...state,
         clauses: {
@@ -50,7 +52,8 @@ const reducer = (state = initialState, action) => {
           }
         }
       };
-    case PARSE_CLAUSE_SUCEEDED:
+    }
+    case PARSE_CLAUSE_SUCEEDED: {
       return {
         ...state,
         clauses: {
@@ -62,7 +65,8 @@ const reducer = (state = initialState, action) => {
           }
         }
       };
-    case PARSE_CLAUSE_ERROR:
+    }
+    case PARSE_CLAUSE_ERROR: {
       return {
         ...state,
         clauses: {
@@ -75,8 +79,19 @@ const reducer = (state = initialState, action) => {
           }
         }
       };
-    default:
+    }
+    case REMOVE_CLAUSE_FROM_CONTRACT: {
+      const filteredClauses = R.omit([action.clauseId], state.clauses);
+      return {
+        ...state,
+        clauses: {
+          ...filteredClauses
+        }
+      };
+    }
+    default: {
       return state;
+    }
   }
 };
 
