@@ -21,9 +21,9 @@ const EditorWrapper = styled.div`
 `;
 
 const clauseProps = deleteFunc => ({
-  CLAUSE_BORDER: 'red',
   CLAUSE_DELETE_FUNCTION: deleteFunc,
 });
+
 
 const editorProps = {
   TOOLBAR_BACKGROUND: CONTRACT_EDITOR.TOOLBAR_BACKGROUND,
