@@ -14,14 +14,6 @@ import ErrorModalComponent from '../ErrorModal';
 import LeftNavContainer from '../LeftNav';
 import CurrentEditorContainer from '../CurrentEditor';
 
-/* Actions */
-import * as NAV from '../../utilities/navigateClause';
-
-const contractNavigation = {
-  findClause: NAV.findClauseNode,
-  scrollToClause: NAV.scrollToClause
-};
-
 const AppWrapper = styled.div`
   height: 100%;
 `;
@@ -47,11 +39,11 @@ export const App = () => (
         <Header />
         <ContentWrapper>
           <LeftNavContainer />
-          <CurrentEditorContainer {...contractNavigation}/>
+          <CurrentEditorContainer />
           <LibraryContainer />
         </ContentWrapper>
       </MainWrapper>
-      <ErrorContainer errorNav={NAV.navigateToClauseError}/>
+      <ErrorContainer />
     </AppWrapper>
 );
 
