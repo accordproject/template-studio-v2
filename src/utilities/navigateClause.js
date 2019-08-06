@@ -1,36 +1,68 @@
-/* These changes are to navigate PARSE ERRORS only */
-/* Model errors will come later */
+import * as R from 'ramda';
 
-// This should be passed to the ContractEditor (or current)
-// Adjust to find the node in the Slate DOM
-export const findClauseNode = (clauseId) => {
-  const { value } = this.state;
+import store from '../store';
 
+/**
+ * Functions for navigating the PARSE ERRORS
+ * This main function relies upon helper functions
+ * The main function is passed to the ErrorLogger
+ * Model Errors will come later
+ */
+
+/**
+ * Returns the contractState.slateValue from the current Redux store
+ */
+const slateSelector = store => R.path(['contractState', 'slateValue'], store);
+
+/**
+ * Returns the clauseId value from the given clause
+ */
+const clauseIdSelector = clause => R.path(['clauseId'], clause);
+
+/* eslint no-console: 0 */
+const noClauseError = () => console.error('Error: clause not found');
+
+/**
+ * Takes in a clause ID, takes the SlateValue from the Redux Store
+ * Iterates through to find the corresponding clause with the same ID
+ * Returns this node
+ */
+const findClauseNode = (clauseId) => {
   let clauseNode = null;
-  value.document.nodes.forEach((n) => {
-    if (n.type !== 'clause') return;
-    if (n.data.get('clauseId') === clauseId) {
-      clauseNode = n;
+  const slateValue = slateSelector(store.getState());
+  slateValue.document.nodes.forEach((node) => {
+    if (node.type !== 'clause') return;
+    if ((node.data.get('attributes').clauseid) === clauseId) {
+      clauseNode = node;
     }
   });
   return clauseNode;
 };
 
-// This should also be passed to the ContractEditor (or current)
-// Will scroll to the node in the Slate DOM
-export const scrollToClause = (clauseNode) => {
-  const el = document.querySelector(`[data-key="${clauseNode.key}"]`);
-  el.scrollIntoView({ behavior: 'smooth' });
+/**
+ * Takes in a clause node to determine the Slate key
+ * Decrements the key - possible bug within this process
+ * Scrolls the document to the selected DOM element
+ */
+const scrollToClause = (clauseNode) => {
+  const nodeKey = (clauseNode.key - 1).toString();
+  const selectedClauseNode = document.querySelector(`[data-key="${nodeKey}"]`);
+  selectedClauseNode.scrollIntoView({ behavior: 'smooth' });
 };
 
-// This gets passed to error, when the file is clicked,
-// this runs with the error's associated clauseId
-export const navigateToClauseError = (clauseId) => {
+/**
+ * High level function to navigate which will pass to the ErrorLogger
+ * Identifies the ID to track the specific node in the Slate DOM
+ * Calls to scroll to the node
+ */
+const navigateToClauseError = (clause) => {
+  const clauseId = clauseIdSelector(clause);
   const clauseNode = findClauseNode(clauseId);
-
   if (!clauseNode) {
-    console.error('Error: clause not found');
+    noClauseError();
     return;
   }
   scrollToClause(clauseNode);
 };
+
+export default navigateToClauseError;
