@@ -27,7 +27,6 @@ const ErrorContainer = props => (
 
 ErrorContainer.propTypes = {
   errors: PropTypes.array.isRequired,
-  // errorNav: PropTypes.func,
 };
 
 const mapStateToProps = state => ({
