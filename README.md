@@ -46,26 +46,6 @@ It correctly bundles React in production mode and optimizes the build for the be
 The build is minified and the filenames include the hashes.<br>
 Your app is ready to be deployed!
 
---- 
-
-## Redux Sagas
-
-Template Studio v2 is built with **Redux Sagas**, a good intro guide can be found [here][sagaGuide] and __official docs__ can be found [here][reduxSaga].
-
-### Why Sagas vs. Thunks?
-
-**Thunks** dispatch a function that in turn dispatches an actions. So,
-
-- *Pros*: Simple code to maintain
-- *Cons*: Have to mock the async behavior of thunk in test cases which could get pretty clumsy
-- *Implies*: Suited for small, straight forward async parts of the application
-
-**Sagas** use generator functions underneath so the function virtually pauses at an async action and resumes when it is resolved
-
-- *Pros*: Test cases become fair and straight without necessity to mock the async behavior
-- *Cons*: Brings in more complexity to the code
-- *Implies*: Suited for complex async parts of the application that requires complex unit test cases
-
 ---
 
 <a href="https://www.accordproject.org/">
