@@ -16,6 +16,7 @@ import {
 import { ClausePlugin } from '@accordproject/cicero-ui';
 import { Value } from 'slate';
 import uuidv4 from 'uuidv4';
+import * as R from 'ramda';
 
 import * as actions from '../actions/contractActions';
 import * as appActions from '../actions/appActions';
@@ -28,6 +29,12 @@ import {
   REMOVE_CLAUSE_FROM_CONTRACT
 } from '../actions/constants';
 
+const headingOne = node => node.type === 'heading_one';
+const headingTwo = node => node.type === 'heading_two';
+const headingThree = node => node.type === 'heading_three';
+
+const headingExists = R.anyPass([headingOne, headingTwo, headingThree]);
+
 /**
  * saga to update the contract in the store if it has changed
  */
@@ -35,8 +42,22 @@ export function* updateDocument(action) {
   const currentSlateValue = yield select(contractSelectors.slateValue);
   // only update the store if the slate value has changed
   if (currentSlateValue.equals(action.slateValue)) return;
+
+  // create an array of all headers for navigation
+  const headers = [];
+  action.slateValue.document.nodes.forEach((node) => {
+    if (headingExists(node)) {
+      const headerSlateObj = {
+        key: node.key,
+        text: node.text,
+        type: node.type
+      };
+      headers.push(headerSlateObj);
+    }
+  });
+
   try {
-    yield put(actions.documentEditedSuccess(action.slateValue, action.markdown));
+    yield put(actions.documentEditedSuccess(action.slateValue, action.markdown, headers));
   } catch (err) {
     yield put(appActions.addAppError('Failed to update document', err));
   }
@@ -84,7 +105,9 @@ export function* addToContract(action) {
     const clauseNode = value.toJSON().document.nodes[0];
 
     const newSlateValue = JSON.parse(JSON.stringify(slateValue.toJSON()));
+    console.log('Fail before: ', newSlateValue);
     const newMd = toMarkdown.convert(newSlateValue);
+    console.log('Fail after');
     const { nodes } = newSlateValue.document;
 
     // add the clause node to the Slate dom at current position
