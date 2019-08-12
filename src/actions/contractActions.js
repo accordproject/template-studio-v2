@@ -14,10 +14,11 @@ export const documentEdited = (value, markdown) => ({
   markdown,
 });
 
-export const documentEditedSuccess = (value, markdown) => ({
+export const documentEditedSuccess = (value, markdown, headers) => ({
   type: DOCUMENT_EDITED_SUCCESS,
   slateValue: value,
   markdown,
+  headers,
 });
 
 export const addToContractAction = uri => ({
