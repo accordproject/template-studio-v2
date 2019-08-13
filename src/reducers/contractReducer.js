@@ -98,6 +98,71 @@ const initialState = {
       key: '11',
       text: 'Confirmation of Receipt',
       type: 'heading_two'
+    },
+    {
+      key: '12',
+      text: 'Confirmation of Receipt',
+      type: 'heading_two'
+    },
+    {
+      key: '13',
+      text: 'Confirmation of Receipt',
+      type: 'heading_two'
+    },
+    {
+      key: '14',
+      text: 'Confirmation of Receipt',
+      type: 'heading_two'
+    },
+    {
+      key: '15',
+      text: 'Confirmation of Receipt',
+      type: 'heading_two'
+    },
+    {
+      key: '16',
+      text: 'Confirmation of Receipt',
+      type: 'heading_two'
+    },
+    {
+      key: '17',
+      text: 'Confirmation of Receipt',
+      type: 'heading_two'
+    },
+    {
+      key: '21',
+      text: 'Confirmation of Receipt',
+      type: 'heading_two'
+    },
+    {
+      key: '22',
+      text: 'Confirmation of Receipt',
+      type: 'heading_two'
+    },
+    {
+      key: '23',
+      text: 'Confirmation of Receipt',
+      type: 'heading_two'
+    },
+    {
+      key: '24',
+      text: 'Confirmation of Receipt',
+      type: 'heading_two'
+    },
+    {
+      key: '25',
+      text: 'Confirmation of Receipt',
+      type: 'heading_two'
+    },
+    {
+      key: '26',
+      text: 'Confirmation of Receipt',
+      type: 'heading_two'
+    },
+    {
+      key: '27',
+      text: 'Bottom',
+      type: 'heading_two'
     }
   ]
   /* Above temporary */
@@ -121,7 +186,8 @@ const reducer = (state = initialState, action) => {
           [action.clauseId]: {
             parseError: null,
             parseResult: null,
-            clauseTemplateRef: action.clauseTemplateRef
+            clauseTemplateRef: action.clauseTemplateRef,
+            uri: action.uri,
           }
         }
       };
