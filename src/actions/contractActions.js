@@ -26,10 +26,11 @@ export const addToContractAction = uri => ({
   uri,
 });
 
-export const addToContractSuccess = (clauseId, clauseTemplateRef) => ({
+export const addToContractSuccess = (clauseId, clauseTemplateRef, uri) => ({
   type: ADD_TO_CONTRACT_SUCCESS,
   clauseId,
   clauseTemplateRef,
+  uri,
 });
 
 export const removeFromContractAction = props => ({

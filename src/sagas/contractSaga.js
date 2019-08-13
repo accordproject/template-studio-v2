@@ -105,9 +105,7 @@ export function* addToContract(action) {
     const clauseNode = value.toJSON().document.nodes[0];
 
     const newSlateValue = JSON.parse(JSON.stringify(slateValue.toJSON()));
-    console.log('Fail before: ', newSlateValue);
     const newMd = toMarkdown.convert(newSlateValue);
-    console.log('Fail after');
     const { nodes } = newSlateValue.document;
 
     // add the clause node to the Slate dom at current position
@@ -134,7 +132,7 @@ export function* addToContract(action) {
     }));
 
     // add instatiated clause to list of clauses in the contract state
-    yield put(actions.addToContractSuccess(clauseId, clauseTemplateId));
+    yield put(actions.addToContractSuccess(clauseId, clauseTemplateId, action.uri));
   } catch (err) {
     yield put(appActions.addAppError('Failed to add clause to contract', err));
   }
