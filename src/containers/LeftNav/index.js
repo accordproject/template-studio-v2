@@ -56,6 +56,7 @@ const FileOptionButtons = styled.button`
 const NavWrapper = styled.div`
   padding-top: 10px;
   height: 100%;
+  // overflow-y: inherit;
 `;
 
 export const LeftNav = (props) => {
@@ -66,6 +67,13 @@ export const LeftNav = (props) => {
   const handleClick = () => {
     setNavVisible(!navVisible);
     buttonRef.current.blur();
+  };
+
+  const navigationPropsInput = {
+    headers: props.headers,
+    navigationProps: {
+      NAVIGATE_SWITCH_FILES_VISIBLE: false,
+    }
   };
 
   return (
@@ -84,7 +92,7 @@ export const LeftNav = (props) => {
     </TextButton>
     <NavWrapper>
 
-    {navVisible && <Navigation headers={props.headers} />}
+    {navVisible && <Navigation {...navigationPropsInput} />}
     </NavWrapper>
     </LeftNavWrapper>
   </LeftSidebar>
