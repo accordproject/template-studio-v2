@@ -25,147 +25,11 @@ const initialState = {
           text: 'Welcome to Template Studio! Edit this text to get started.',
           marks: []
         }],
-      },
-      /* Below temporary */
-      {
-        object: 'block',
-        type: 'heading_one',
-        data: {},
-        nodes: [{
-          object: 'text',
-          text: 'Gestalt Design Service Agreement',
-          marks: []
-        }],
-      },
-      {
-        object: 'block',
-        type: 'paragraph',
-        data: {},
-        nodes: [{
-          object: 'text',
-          text: 'Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque shipper, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae deliverable vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui receiver voluptatem sequi nesciunt.',
-          marks: []
-        }],
-      },
-      {
-        object: 'block',
-        type: 'heading_three',
-        data: {},
-        nodes: [{
-          object: 'text',
-          text: 'Lorem Ipsum',
-          marks: []
-        }],
-      },
-      {
-        object: 'block',
-        type: 'paragraph',
-        data: {},
-        nodes: [{
-          object: 'text',
-          text: 'Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt.',
-          marks: []
-        }],
-      },
-      {
-        object: 'block',
-        type: 'heading_two',
-        data: {},
-        nodes: [{
-          object: 'text',
-          text: 'Confirmation of Receipt',
-          marks: []
-        }],
-      }
-      /* Above temporary */
-      ],
+      }],
     }
   }),
   clauses: {},
-  /* Below temporary */
-  headers: [
-    {
-      key: '3',
-      text: 'Gestalt Design Service Agreement',
-      type: 'heading_one'
-    },
-    {
-      key: '7',
-      text: 'Lorem Ipsum',
-      type: 'heading_three'
-    },
-    {
-      key: '11',
-      text: 'Confirmation of Receipt',
-      type: 'heading_two'
-    },
-    {
-      key: '12',
-      text: 'Confirmation of Receipt',
-      type: 'heading_two'
-    },
-    {
-      key: '13',
-      text: 'Confirmation of Receipt',
-      type: 'heading_two'
-    },
-    {
-      key: '14',
-      text: 'Confirmation of Receipt',
-      type: 'heading_two'
-    },
-    {
-      key: '15',
-      text: 'Confirmation of Receipt',
-      type: 'heading_two'
-    },
-    {
-      key: '16',
-      text: 'Confirmation of Receipt',
-      type: 'heading_two'
-    },
-    {
-      key: '17',
-      text: 'Confirmation of Receipt',
-      type: 'heading_two'
-    },
-    {
-      key: '21',
-      text: 'Confirmation of Receipt',
-      type: 'heading_two'
-    },
-    {
-      key: '22',
-      text: 'Confirmation of Receipt',
-      type: 'heading_two'
-    },
-    {
-      key: '23',
-      text: 'Confirmation of Receipt',
-      type: 'heading_two'
-    },
-    {
-      key: '24',
-      text: 'Confirmation of Receipt',
-      type: 'heading_two'
-    },
-    {
-      key: '25',
-      text: 'Confirmation of Receipt',
-      type: 'heading_two'
-    },
-    {
-      key: '26',
-      text: 'Confirmation of Receipt',
-      type: 'heading_two'
-    },
-    {
-      key: '27',
-      text: 'Bottom',
-      type: 'heading_two'
-    }
-  ]
-  /* Above temporary */
+  headers: [],
 };
 
 const reducer = (state = initialState, action) => {
@@ -175,7 +39,7 @@ const reducer = (state = initialState, action) => {
         ...state,
         markdown: action.markdown,
         slateValue: action.slateValue,
-        headers: action.headers,
+        headers: action.headers
       };
     }
     case ADD_TO_CONTRACT_SUCCESS: {
