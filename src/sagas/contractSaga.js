@@ -1,3 +1,4 @@
+/* Saga */
 import {
   takeLatest,
   select,
@@ -6,6 +7,7 @@ import {
   takeEvery
 } from 'redux-saga/effects';
 
+/* Markdown */
 import {
   PluginManager,
   List,
@@ -13,27 +15,28 @@ import {
   ToMarkdown
 } from '@accordproject/markdown-editor';
 
+/* Plugins */
 import { ClausePlugin } from '@accordproject/cicero-ui';
 import { Value } from 'slate';
 import uuidv4 from 'uuidv4';
-import * as R from 'ramda';
 
+/* Actions */
+import * as ACT from './actions';
 import * as actions from '../actions/contractActions';
 import * as appActions from '../actions/appActions';
 import * as clauseTemplatesActions from '../actions/clauseTemplatesActions';
+
+/* Selectors */
+import * as templatesSelectors from '../selectors/templatesSelectors';
 import * as contractSelectors from '../selectors/contractSelectors';
 import { addTemplateObjectToStore } from './templatesSaga';
+
+/* Constants */
 import {
   ADD_TO_CONTRACT,
   DOCUMENT_EDITED,
   REMOVE_CLAUSE_FROM_CONTRACT
 } from '../actions/constants';
-
-const headingOne = node => node.type === 'heading_one';
-const headingTwo = node => node.type === 'heading_two';
-const headingThree = node => node.type === 'heading_three';
-
-const headingExists = R.anyPass([headingOne, headingTwo, headingThree]);
 
 /**
  * saga to update the contract in the store if it has changed
@@ -43,13 +46,28 @@ export function* updateDocument(action) {
   // only update the store if the slate value has changed
   if (currentSlateValue.equals(action.slateValue)) return;
 
+  const templates = yield select(templatesSelectors.templateObjects);
   // create an array of all headers for navigation
   const headers = [];
-  action.slateValue.document.nodes.forEach((node) => {
-    if (headingExists(node)) {
+  yield action.slateValue.document.nodes.forEach((node) => {
+    if (ACT.headingExists(node)) {
       const headerSlateObj = {
         key: node.key,
         text: node.text,
+        type: node.type
+      };
+      headers.push(headerSlateObj);
+    }
+    if (ACT.headingClause(node)) {
+      const clauseSrcUrl = node.data.get('attributes').src;
+
+      const clauseDisplayName = ACT.clauseDisplayNameFinder(templates[clauseSrcUrl]);
+      const clauseName = ACT.clauseNameFinder(templates[clauseSrcUrl]);
+      const clauseNameText = clauseDisplayName || clauseName;
+
+      const headerSlateObj = {
+        key: node.key,
+        text: clauseNameText,
         type: node.type
       };
       headers.push(headerSlateObj);
@@ -90,7 +108,7 @@ export function* addToContract(action) {
     const metadata = templateObj.getMetadata();
 
     // get the user's current position in Slate dom to insert clause at
-    const currentPosition = slateValue.selection.anchor.path.get(0);
+    const currentPosition = slateValue.selection.anchor.path.get(0); // possibly here
     const clauseId = uuidv4(); // unique identifier for a clause instance
     const clauseMd = `\`\`\` <clause src=${action.uri} clauseId=${clauseId}>
   ${metadata.getSample()}
