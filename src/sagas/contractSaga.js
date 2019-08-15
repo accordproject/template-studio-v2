@@ -112,7 +112,7 @@ export function* addToContract(action) {
     const metadata = templateObj.getMetadata();
 
     // get the user's current position in Slate dom to insert clause at
-    const currentPosition = slateValue.selection.anchor.path.get(0); // possibly here
+    const currentPosition = slateValue.selection.anchor.path.get(0);
     const clauseId = uuidv4(); // unique identifier for a clause instance
     const clauseMd = `\`\`\` <clause src=${action.uri} clauseId=${clauseId}>
   ${metadata.getSample()}

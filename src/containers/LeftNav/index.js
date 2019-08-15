@@ -60,7 +60,6 @@ const FileOptionButtons = styled.button`
 const NavWrapper = styled.div`
   padding-top: 10px;
   height: 100%;
-  // overflow-y: inherit;
 `;
 
 const Heading = styled.h2`
