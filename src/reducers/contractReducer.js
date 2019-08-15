@@ -51,7 +51,6 @@ const reducer = (state = initialState, action) => {
             parseError: null,
             parseResult: null,
             clauseTemplateRef: action.clauseTemplateRef,
-            uri: action.uri,
           }
         }
       };
