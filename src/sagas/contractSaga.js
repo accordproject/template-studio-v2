@@ -154,7 +154,7 @@ export function* addToContract(action) {
     }));
 
     // add instatiated clause to list of clauses in the contract state
-    yield put(actions.addToContractSuccess(clauseId, clauseTemplateId, action.uri));
+    yield put(actions.addToContractSuccess(clauseId, clauseTemplateId));
   } catch (err) {
     yield put(appActions.addAppError('Failed to add clause to contract', err));
   }
