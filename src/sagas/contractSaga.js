@@ -39,7 +39,9 @@ import {
 } from '../actions/constants';
 
 /**
- * saga to update the contract in the store if it has changed
+ * Saga to update the contract in the store if it has changed
+ * Determines if heading or clause nodes exist
+ * If so, populates an array to send to the store for navigation
  */
 export function* updateDocument(action) {
   const currentSlateValue = yield select(contractSelectors.slateValue);
@@ -59,14 +61,16 @@ export function* updateDocument(action) {
       headers.push(headerSlateObj);
     }
     if (ACT.headingClause(node)) {
+      const clauseId = node.data.get('attributes').clauseid;
       const clauseSrcUrl = node.data.get('attributes').src;
 
       const clauseDisplayName = ACT.clauseDisplayNameFinder(templates[clauseSrcUrl]);
       const clauseName = ACT.clauseNameFinder(templates[clauseSrcUrl]);
+
       const clauseNameText = clauseDisplayName || clauseName;
 
       const headerSlateObj = {
-        key: node.key,
+        key: clauseId,
         text: clauseNameText,
         type: node.type
       };
