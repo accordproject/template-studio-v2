@@ -33,7 +33,7 @@ const findClauseNode = (clauseId) => {
   slateValue.document.nodes.forEach((node) => {
     if (node.type !== 'clause') return;
     if ((node.data.get('attributes').clauseid) === clauseId) {
-      clauseNode = node;
+      clauseNode = node.data.get('attributes').clauseid;
     }
   });
   return clauseNode;
@@ -44,9 +44,10 @@ const findClauseNode = (clauseId) => {
  * Decrements the key - possible bug within this process
  * Scrolls the document to the selected DOM element
  */
-const scrollToClause = (clauseNode) => {
-  const nodeKey = (clauseNode.key - 1).toString();
-  const selectedClauseNode = document.querySelector(`[data-key="${nodeKey}"]`);
+const scrollToClause = (clauseNodeId, type) => {
+  const selectedClauseNode = (type === 'clause')
+    ? document.getElementById(`${clauseNodeId}`)
+    : document.querySelector(`[data-key="${clauseNodeId}"]`);
   selectedClauseNode.scrollIntoView({ behavior: 'smooth' });
 };
 
@@ -62,7 +63,11 @@ const navigateToClauseError = (clause) => {
     noClauseError();
     return;
   }
-  scrollToClause(clauseNode);
+  scrollToClause(clauseNode, 'clause');
+};
+
+export const navigateToHeader = (clauseNode, type) => {
+  scrollToClause(clauseNode, type);
 };
 
 export default navigateToClauseError;
