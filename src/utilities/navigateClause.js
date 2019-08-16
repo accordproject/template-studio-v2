@@ -40,8 +40,9 @@ const findClauseNode = (clauseId) => {
 };
 
 /**
- * Takes in a clause node to determine the Slate key
- * Decrements the key - possible bug within this process
+ * Takes in a clause node to determine a key
+ * Using the the Slate key for non clauses
+ * Using the clauseId for clauses
  * Scrolls the document to the selected DOM element
  */
 const scrollToClause = (clauseNodeId, type) => {
