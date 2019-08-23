@@ -121,23 +121,24 @@ export function* addToContract(action) {
     // Create a new paragraph in markdown for spacing between clauses
     const paragraphSpaceMd = 'This is a new clause!';
     const spacerValue = fromMarkdown.convert(paragraphSpaceMd);
-    const paragraphSpaceNode = spacerValue.toJSON().document.nodes[0];
+    const paragraphSpaceNodeJSON = spacerValue.toJSON().document.nodes[0];
 
-    const value = fromMarkdown.convert(clauseMd);
-    const clauseNode = value.toJSON().document.nodes[0];
+    const valueAsSlate = fromMarkdown.convert(clauseMd);
+    const clauseNodeJSON = valueAsSlate.toJSON().document.nodes[0];
+    const newSlateValueAsJSON = JSON.parse(JSON.stringify(slateValue.toJSON()));
 
-    const newSlateValue = JSON.parse(JSON.stringify(slateValue.toJSON()));
-    const newMd = toMarkdown.convert(newSlateValue);
-    const { nodes } = newSlateValue.document;
+    const { nodes } = newSlateValueAsJSON.document;
 
     // add the clause node to the Slate dom at current position
     // Temporary fix to separate clauses, adding the new paragraph at
-    // end of splice
-    nodes.splice(currentPosition, 0, clauseNode, paragraphSpaceNode);
+    // end of splice. Convert this all back to markdown
+    nodes.splice(currentPosition, 0, clauseNodeJSON, paragraphSpaceNodeJSON);
+    const realNewMd = toMarkdown.convert(Value.fromJSON(newSlateValueAsJSON));
 
     // update contract on store with new slate and md values
-    yield put(actions.documentEdited(Value.fromJSON(newSlateValue), newMd));
+    yield put(actions.documentEdited(Value.fromJSON(newSlateValueAsJSON), realNewMd));
     const grammar = templateObj.parserManager.getTemplatizedGrammar();
+
 
     // Temporary roundtrip and rebuild grammar
     const grammarRound = roundTrip(grammar);
