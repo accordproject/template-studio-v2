@@ -22,6 +22,7 @@ const EditorWrapper = styled.div`
 
 const clauseProps = deleteFunc => ({
   CLAUSE_DELETE_FUNCTION: deleteFunc,
+  HEADER_TITLE: ' - CLAUSE TEMPLATE',
 });
 
 
