@@ -10,7 +10,7 @@ import { AP_THEME, CONTRACT_EDITOR } from '../App/themeConstants';
 
 const EditorWrapper = styled.div`
   overflow-y: auto;
-  overflow-x: hidden;
+  overflow-x: auto;
   &::-webkit-scrollbar {
     width: 6px;
     background: transparent;
