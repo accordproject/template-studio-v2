@@ -5,6 +5,8 @@ import {
   DOCUMENT_EDITED_SUCCESS,
   PARSE_CLAUSE_ERROR,
   PARSE_CLAUSE_SUCEEDED,
+  PASTE_TO_CONTRACT,
+  PASTE_TO_CONTRACT_SUCCESS,
   REMOVE_CLAUSE_FROM_CONTRACT,
 } from './constants';
 
@@ -48,4 +50,16 @@ export const parseClauseError = (clauseId, error) => ({
   type: PARSE_CLAUSE_ERROR,
   clauseId,
   error,
+});
+
+export const pasteToContractAction = (clauseId, clauseTemplateRef) => ({
+  type: PASTE_TO_CONTRACT,
+  clauseId,
+  clauseTemplateRef,
+});
+
+export const pasteToContractSuccess = (clauseId, clauseTemplateRef) => ({
+  type: PASTE_TO_CONTRACT_SUCCESS,
+  clauseId,
+  clauseTemplateRef,
 });
