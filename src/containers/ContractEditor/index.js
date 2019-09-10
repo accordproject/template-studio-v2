@@ -45,7 +45,7 @@ const EditorContainer = props => (
     <ContractEditor
       clauseProps={clauseProps(props.removeFromContract)}
       loadTemplateObject={props.loadTemplateObject}
-      parseClause={(uri, text, clauseId) => parseClause(props.templateObjs, uri, text, clauseId)}
+      parseClause={(uri, text, clauseId) => parseClause(props.templateObjs[uri], text, clauseId)}
       onChange={props.onEditorChange}
       value={props.value}
       lockText={false}
