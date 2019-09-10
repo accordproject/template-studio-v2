@@ -78,24 +78,11 @@ export function* updateDocument(action) {
       headers.push(headerSlateObj);
     }
     if (ACT.headingClause(node)) {
-      // console.log('node: ', node);
       const clauseId = node.data.get('attributes').clauseid;
-      // console.log('clauseId: ', clauseId);
       const clauseSrcUrl = node.data.get('attributes').src;
-      // console.log('clauseSrcUrl: ', clauseSrcUrl);
-
-
-
-      // if (ACT.clauseDisplayNameFinder(templates[clauseSrcUrl]) === undefined) {
-      //   const actionInsert = { type: ADD_TO_CONTRACT, uri: clauseSrcUrl }
-
-      //   call(addTemplateObjectToStore, actionInsert);
-      // }
 
       const clauseDisplayName = ACT.clauseDisplayNameFinder(templates[clauseSrcUrl]);
-      // console.log('clauseDisplayName: ', clauseDisplayName);
       const clauseName = ACT.clauseNameFinder(templates[clauseSrcUrl]);
-      // console.log('clauseDisplayName: ', clauseDisplayName);
 
       const clauseNameText = clauseDisplayName || clauseName;
 
@@ -128,7 +115,7 @@ export function* addToContract(action) {
     const templateObj = yield call(addTemplateObjectToStore, action);
 
     const slateValue = yield select(contractSelectors.slateValue);
-    const metadata = templateObj.getMetadata(); // failing
+    const metadata = templateObj.getMetadata();
 
     // get the user's current position in Slate dom to insert clause at
     const currentPosition = slateValue.selection.anchor.path.get(0);
@@ -180,6 +167,9 @@ export function* addToContract(action) {
   }
 }
 
+/**
+ * saga which adds a pasted clause node to the current slate value
+ */
 export function* pasteToContract(action) {
   try{
     const { clauseId, clauseTemplateRef, type } = action;
@@ -188,11 +178,10 @@ export function* pasteToContract(action) {
       type: type,
       uri: clauseTemplateRef
     };
-    // get the templateObj from the store if we already have it
-    // or load it and add it to the store if we do not
+    // get the templateObj from the store if we already have it or load if not
     const templateObj = yield call(addTemplateObjectToStore, actionRedesign);
 
-    const metadata = templateObj.getMetadata(); // failing
+    const metadata = templateObj.getMetadata();
     const grammar = templateObj.parserManager.getTemplatizedGrammar();
 
     // Temporary roundtrip and rebuild grammar
