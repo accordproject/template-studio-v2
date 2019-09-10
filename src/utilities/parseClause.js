@@ -4,13 +4,13 @@ import { parseClauseSuccess, parseClauseError } from '../actions/contractActions
 
 /**
  * Parses user inputted text for a template using Cicero
- * @param {string} uri The uri of the template.
+ * @param {object} template The cicero template object.
  * @param {string} text The user submitted text.
+ * @param {string} clauseId The uuid of the clause
  * @returns {Promise} The result of the parse or an error.
  */
-export default function parseClause(templateObjs, uri, text, clauseId) {
+export default function parseClause(template, text, clauseId) {
   try {
-    const template = templateObjs[uri];
     const ciceroClause = new Clause(template);
     ciceroClause.parse(text);
     const parseResult = ciceroClause.getData();
