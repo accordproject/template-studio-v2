@@ -77,7 +77,9 @@ const mapDispatchToProps = dispatch => ({
   loadTemplateObject: value => dispatch(loadTemplateObjectAction(value)),
   onEditorChange: (value, markdown) => dispatch(documentEdited(value, markdown)),
   removeFromContract: value => dispatch(removeFromContractAction(value)),
-  pasteToContract: (clause, template) => dispatch(pasteToContractAction(clause, template)),
+  pasteToContract: (clause, template, text) => dispatch(pasteToContractAction(
+    clause, template, text
+  )),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(React.memo(EditorContainer));
