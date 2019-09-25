@@ -64,7 +64,7 @@ const NavWrapper = styled.div`
 
 const Heading = styled.h2`
   color: ${LEFT_NAV.HEADING};
-  font-size: 14px;
+  font-size: 0.87em;
   font-weight: 600;
   line-height: 14px;
   text-decoration: none;
