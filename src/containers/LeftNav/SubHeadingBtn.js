@@ -4,7 +4,7 @@ import { AP_THEME } from '../App/themeConstants';
 
 const SubHeadingBtn = styled(TextButton)`
   color: ${AP_THEME.GRAY};
-  font-size: 16px;
+  font-size: 1em;
   line-height: 24px;
   text-decoration: none;
   text-align: left;
