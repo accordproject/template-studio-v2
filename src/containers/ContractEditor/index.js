@@ -18,6 +18,10 @@ const EditorWrapper = styled.div`
   justify-self: center;
   width: 100%;
   height: inherit;
+
+  > div {
+    overflow: auto;
+  }
 `;
 
 const clauseProps = deleteFunc => ({
