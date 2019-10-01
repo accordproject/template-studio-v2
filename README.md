@@ -6,9 +6,9 @@
 
 In order to link another React component to template-studio-v2 for development, following these steps:
 1. Ensure template-studio-v2 is on your local machine.
-2. Ensure your React component has been built - in it's root directory, run `npm run build`.
+2. Ensure your React component has been built - in its root directory, run `npm run build`.
 3. In the root directory of your React component intended to link, run `npm link`.
-4. Copy the `name` property of this React component from it's `package.json` file.
+4. Copy the `name` property of this React component from its `package.json` file.
 5. In the root directory of template-studio-v2, run `npm link <INSERT NAME HERE>`.
 6. Refresh and ensure the `<NAME>` is in the `node_modules` directory.
 7. Run `npm run start`.
@@ -32,7 +32,7 @@ You will also see any lint errors in the console.
 #### `npm run test`
 
 Launches JEST over the repository.
-Current snapshot tests requires `npm test -- -u` in order to update when all changes are final.
+Current snapshot tests require `npm test -- -u` in order to update when all changes are final.
 
 #### `npm run lint`
 
