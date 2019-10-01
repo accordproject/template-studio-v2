@@ -25,7 +25,6 @@ import * as ACT from './actions';
 import * as actions from '../actions/contractActions';
 import * as appActions from '../actions/appActions';
 import * as clauseTemplatesActions from '../actions/clauseTemplatesActions';
-// import parseClause from '../utilities/parseClause';
 
 /* Selectors */
 import * as templatesSelectors from '../selectors/templatesSelectors';
@@ -198,12 +197,6 @@ export function* pasteToContract(action) {
     yield put(clauseTemplatesActions.addClauseTemplate({
       metadata, model, logic, sampleText, grammar, id: clauseTemplateId
     }));
-
-    // TODO:
-    // TODO: May need to remove the next two lines of code
-    // TODO:
-    // const templateObjects = yield select(templatesSelectors.templateObjects);
-    // parseClause(templateObjects, clauseTemplateRef, sampleText, clauseId);
 
     // add instatiated clause to list of clauses in the contract state
     yield put(actions.pasteToContractSuccess(clauseId, clauseTemplateId));
