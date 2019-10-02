@@ -4,6 +4,8 @@ import styled from 'styled-components';
 import { connect } from 'react-redux';
 import { TemplateLibrary } from '@accordproject/cicero-ui';
 import TextButton from '../../components/TextButton';
+import { Icon } from 'semantic-ui-react'
+
 
 import { getTemplatesAction, addNewTemplateAction } from '../../actions/templatesActions';
 import { addToContractAction } from '../../actions/contractActions';
@@ -35,8 +37,31 @@ const TLWrapper = styled.div`
 `;
 
 const TemplatesBtn = styled(TextButton)`
-  justify-self: end;
+  justify-self: start;
 `;
+
+const CollapseWrapper = styled.div`
+&:hover {
+  border-left: 1px solid #49526f;
+}
+`
+
+const CollapseIcon = styled(Icon)`
+  cursor:pointer;
+  top:2em;
+  left:-.5em;
+  z-index:999;
+  color:#5dc4c6;
+  position: absolute;
+`;
+
+const ExpandIcon = styled(Icon)`
+  cursor:pointer;
+  background: #5dc4c6;
+  text-decoration:none !important;
+  border-radius: 50%;
+  color:white;
+  `
 
 const libraryProps = {
   HEADER_TITLE: TEMPLATE_LIBRARY.HEADER_TITLE,
@@ -53,7 +78,8 @@ const mockImport = () => { console.log('import'); };
 const mockUpload = () => { console.log('upload'); };
 
 export const LibraryComponent = (props) => {
-  const [templatesVisible, setTemplatesVisible] = useState(true);
+  const [templatesVisible, setTemplatesVisible] = useState(false);
+  const [collapseButtonVisible, setCollapseButtonVisible] = useState(false);
   const buttonRef = useRef(null);
 
   const handleClick = () => {
@@ -75,9 +101,23 @@ export const LibraryComponent = (props) => {
           onClick={handleClick}
           display={'block'}
         >
-          { templatesVisible ? 'Hide Clause Templates >' : '< Show Clause Templates'}
+          { !templatesVisible && <ExpandIcon name='bars' size='large' />}
         </TemplatesBtn>
-        { templatesVisible && <TemplateLibrary
+        { templatesVisible && 
+        <CollapseWrapper
+        onMouseEnter={() => setCollapseButtonVisible(true)}
+        onMouseLeave={() => setCollapseButtonVisible(false)}
+        >
+          {
+            collapseButtonVisible && 
+            <CollapseIcon 
+            onClick={handleClick}
+            name='play circle' size='large' />
+          }
+
+        <TemplateLibrary
+
+
           templates={props.templates}
           upload={mockUpload}
           import={mockImport}
@@ -85,7 +125,9 @@ export const LibraryComponent = (props) => {
           addToCont={props.addToContract}
           libraryProps={libraryProps}
 
-        /> }
+        /> 
+                </CollapseWrapper>
+}
       </TLWrapper>
     </RightSidebar>
   );
