@@ -2,6 +2,8 @@
 
 [![Netlify Status](https://api.netlify.com/api/v1/badges/088bd784-321b-49d4-940b-8c1c0af6942f/deploy-status)](https://app.netlify.com/sites/accordproject-studio/deploys)
 
+[Preview Template Studio V2 on Netlify](https://accordproject-studio.netlify.com/)
+
 ## Notes for development:
 
 In order to link another React component to template-studio-v2 for development, following these steps:
