@@ -40,7 +40,7 @@ const TLWrapper = styled.div`
 `;
 
 const TemplatesBtn = styled(TextButton)`
-  justify-self: start;
+  justify-self: end;
   padding-top: 0.5em;
 `;
 
@@ -151,7 +151,7 @@ export const LibraryComponent = props => {
         </TemplatesBtn>
         {templatesVisible && (
           <CollapseWrapper
-            onMouseEnter={() => setCollapseButtonVisible(true)}
+            onMouseOver={() => setCollapseButtonVisible(true)}
             onMouseLeave={() => setCollapseButtonVisible(false)}
           >
             {collapseButtonVisible && (
