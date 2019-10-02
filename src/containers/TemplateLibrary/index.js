@@ -4,7 +4,9 @@ import styled from 'styled-components';
 import { connect } from 'react-redux';
 import { TemplateLibrary } from '@accordproject/cicero-ui';
 import TextButton from '../../components/TextButton';
-import { Icon } from 'semantic-ui-react'
+import GreenArrow from '../../../public/img/greenArrow.svg';
+import WhiteArrow from '../../../public/img/whiteArrow.svg';
+
 
 
 import { getTemplatesAction, addNewTemplateAction } from '../../actions/templatesActions';
@@ -47,23 +49,6 @@ const CollapseWrapper = styled.div`
 }
 `
 
-const CollapseIcon = styled(Icon)`
-  cursor:pointer;
-  height:2rem;
-  width:2rem;
-  top:2em;
-  left:-.5em;
-  z-index:999;
-  color:white;
-  position: absolute;
-  display: inline-block;
-  border:solid;
-  border-radius: 60px;
-  background-color:#1ac7c7;
-border-width:1px;
-color:white;
-`;
-
 const ExpandButton = styled.button`
   padding-left: .5rem;
   padding-right: .5rem;
@@ -84,20 +69,32 @@ const ExpandSvg = styled.svg`
   width: .75rem;
 `
 
-const Circle = styled.div`
-cursor:pointer;
-top:2em;
-left:-.5em;
-z-index:999;
-color:white;
+const ArrowWrapper = styled.div`
 position: absolute;
-border-radius: 50%;
-  width: 200px;
-  height: 200px; 
-  border-color: white;
-  background-color: blue;
-
+z-index:999;
+cursor:pointer;
+top:3.5em;
+left:-1em;
+background-color:white;
+  border:solid;
+  border-radius:50%;
+  width:2em;
+  height:2em;
+  display:flex;
+  border-color:#62c6c8;
+  border-width:.1em;
+  &:hover {
+    background-color:#62c6c8;
+  }
 `
+
+const CollapseImg = styled.img`
+margin:auto;
+display:flex;
+height:1em;
+width:1em;
+`
+
 
 const libraryProps = {
   HEADER_TITLE: TEMPLATE_LIBRARY.HEADER_TITLE,
@@ -116,6 +113,8 @@ const mockUpload = () => { console.log('upload'); };
 export const LibraryComponent = (props) => {
   const [templatesVisible, setTemplatesVisible] = useState(false);
   const [collapseButtonVisible, setCollapseButtonVisible] = useState(false);
+  const [collapseButtonHovered, toggleCollapseButtonHover] = useState(false);
+
   const buttonRef = useRef(null);
 
   const handleClick = () => {
@@ -146,21 +145,22 @@ export const LibraryComponent = (props) => {
         { templatesVisible && 
         <CollapseWrapper
         onMouseEnter={() => setCollapseButtonVisible(true)}
-        onMouseLeave={() => setCollapseButtonVisible(true)}
+        onMouseLeave={() => setCollapseButtonVisible(false)}
         >
           {
             collapseButtonVisible && 
-  //           <CollapseIcon size='huge'>
-  // //   <Icon size='big' name='circle outline' />
-  // //   <Icon name='user' />
-  // // </CollapseIcon>
-            <CollapseIcon 
-            onClick={handleClick}
-            name='play' size='large' />
-          }
-          {/* <Circle >
-            sdf
-            </Circle> */}
+
+            <ArrowWrapper
+            onClick={() => 
+              {setTemplatesVisible(false)
+              toggleCollapseButtonHover(false)
+              setCollapseButtonVisible(false)}
+            }
+            onMouseEnter={() => toggleCollapseButtonHover(true)}
+            onMouseLeave={() => toggleCollapseButtonHover(false)}>
+            <CollapseImg 
+            src={collapseButtonHovered ? WhiteArrow : GreenArrow} />
+            </ArrowWrapper>
           }
         <TemplateLibrary
 
