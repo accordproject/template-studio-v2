@@ -38,6 +38,7 @@ const TLWrapper = styled.div`
 
 const TemplatesBtn = styled(TextButton)`
   justify-self: start;
+  padding-top:.5em;
 `;
 
 const CollapseWrapper = styled.div`
@@ -48,20 +49,55 @@ const CollapseWrapper = styled.div`
 
 const CollapseIcon = styled(Icon)`
   cursor:pointer;
+  height:2rem;
+  width:2rem;
   top:2em;
   left:-.5em;
   z-index:999;
-  color:#5dc4c6;
+  color:white;
   position: absolute;
+  display: inline-block;
+  border:solid;
+  border-radius: 60px;
+  background-color:#1ac7c7;
+border-width:1px;
+color:white;
 `;
 
-const ExpandIcon = styled(Icon)`
-  cursor:pointer;
-  background: #5dc4c6;
-  text-decoration:none !important;
+const ExpandButton = styled.button`
+  padding-left: .5rem;
+  padding-right: .5rem;
+  padding-top: .5rem;
+  padding-bottom: .5rem;
+  align-items: center;
+  display: flex;
+  border-width: 1px;
   border-radius: 50%;
-  color:white;
-  `
+  border:none;
+  background-color:#62c6c8;
+  cursor: pointer;
+`
+
+const ExpandSvg = styled.svg`
+  color: white;
+  height: .75rem;
+  width: .75rem;
+`
+
+const Circle = styled.div`
+cursor:pointer;
+top:2em;
+left:-.5em;
+z-index:999;
+color:white;
+position: absolute;
+border-radius: 50%;
+  width: 200px;
+  height: 200px; 
+  border-color: white;
+  background-color: blue;
+
+`
 
 const libraryProps = {
   HEADER_TITLE: TEMPLATE_LIBRARY.HEADER_TITLE,
@@ -101,20 +137,31 @@ export const LibraryComponent = (props) => {
           onClick={handleClick}
           display={'block'}
         >
-          { !templatesVisible && <ExpandIcon name='bars' size='large' />}
+          { !templatesVisible && 
+          <ExpandButton>
+      <ExpandSvg viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" fill="white"><title>Menu</title><path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z"/></ExpandSvg>
+
+          </ExpandButton>}
         </TemplatesBtn>
         { templatesVisible && 
         <CollapseWrapper
         onMouseEnter={() => setCollapseButtonVisible(true)}
-        onMouseLeave={() => setCollapseButtonVisible(false)}
+        onMouseLeave={() => setCollapseButtonVisible(true)}
         >
           {
             collapseButtonVisible && 
+  //           <CollapseIcon size='huge'>
+  // //   <Icon size='big' name='circle outline' />
+  // //   <Icon name='user' />
+  // // </CollapseIcon>
             <CollapseIcon 
             onClick={handleClick}
-            name='play circle' size='large' />
+            name='play' size='large' />
           }
-
+          {/* <Circle >
+            sdf
+            </Circle> */}
+          }
         <TemplateLibrary
 
 
