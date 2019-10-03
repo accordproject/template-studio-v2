@@ -1,6 +1,8 @@
 # Accord Project Template Studio (v2)
 
 [![Netlify Status](https://api.netlify.com/api/v1/badges/088bd784-321b-49d4-940b-8c1c0af6942f/deploy-status)](https://app.netlify.com/sites/accordproject-studio/deploys)
+[![GitHub license](https://img.shields.io/github/license/accordproject/cicero?color=bright-green)](./LICENSE)
+[![join slack](https://img.shields.io/badge/Slack-Join%20Slack-blue)](https://accord-project-slack-signup.herokuapp.com/)
 
 [Preview Template Studio V2 on Netlify](https://accordproject-studio.netlify.com/)
 
@@ -50,9 +52,11 @@ Your app is ready to be deployed!
 
 ---
 
-<a href="https://www.accordproject.org/">
-  <img src="assets/APLogo.png" alt="Accord Project Logo" width="400" />
-</a>
+<p align="center">
+  <a href="https://www.accordproject.org/">
+    <img src="assets/APLogo.png" alt="Accord Project Logo" width="400" />
+  </a>
+</p>
 
 Accord Project is an open source, non-profit, initiative working to transform contract management and contract automation by digitizing contracts. Accord Project operates under the umbrella of the [Linux Foundation][linuxfound]. The technical charter for the Accord Project can be found [here][charter].
 
