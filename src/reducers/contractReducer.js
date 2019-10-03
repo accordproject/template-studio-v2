@@ -5,6 +5,7 @@ import {
   DOCUMENT_EDITED_SUCCESS,
   PARSE_CLAUSE_ERROR,
   PARSE_CLAUSE_SUCEEDED,
+  PASTE_TO_CONTRACT_SUCCESS,
   REMOVE_CLAUSE_FROM_CONTRACT,
 } from '../actions/constants';
 
@@ -78,6 +79,19 @@ const reducer = (state = initialState, action) => {
             parseError: action.error,
             // would we rather the below be that last good result (if there is one)?
             parseResult: null,
+          }
+        }
+      };
+    }
+    case PASTE_TO_CONTRACT_SUCCESS: {
+      return {
+        ...state,
+        clauses: {
+          ...state.clauses,
+          [action.clauseId]: {
+            parseError: null,
+            parseResult: null,
+            clauseTemplateRef: action.clauseTemplateRef,
           }
         }
       };
