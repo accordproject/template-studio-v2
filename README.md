@@ -1,6 +1,7 @@
 # Accord Project Template Studio (v2)
 
 [![Netlify Status](https://api.netlify.com/api/v1/badges/088bd784-321b-49d4-940b-8c1c0af6942f/deploy-status)](https://app.netlify.com/sites/accordproject-studio/deploys)
+[![Netlify](https://img.shields.io/badge/Netlify-Netlify%20preview%20of%20Template%20Studio%20V2-green)](https://accordproject-studio.netlify.com/)
 
 [Preview Template Studio V2 on Netlify](https://accordproject-studio.netlify.com/)
 
