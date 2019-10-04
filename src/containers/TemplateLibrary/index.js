@@ -41,7 +41,7 @@ const TLWrapper = styled.div`
 
 const TemplatesBtn = styled(TextButton)`
   justify-self: end;
-  padding-top: 0.5em;
+  padding-top: 4em;
 `;
 
 const CollapseWrapper = styled.div`
