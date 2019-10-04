@@ -5,7 +5,6 @@
 [![GitHub license](https://img.shields.io/github/license/accordproject/cicero?color=bright-green)](./LICENSE)
 [![join slack](https://img.shields.io/badge/Slack-Join%20Slack-blue)](https://accord-project-slack-signup.herokuapp.com/)
 
-[Preview Template Studio V2 on Netlify](https://accordproject-studio.netlify.com/)
 
 ## Notes for development:
 
