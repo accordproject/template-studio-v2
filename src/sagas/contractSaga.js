@@ -35,8 +35,25 @@ import { addTemplateObjectToStore } from './templatesSaga';
 import {
   ADD_TO_CONTRACT,
   DOCUMENT_EDITED,
+  PASTE_TO_CONTRACT,
   REMOVE_CLAUSE_FROM_CONTRACT
 } from '../actions/constants';
+
+const pluginManagerGenerator = () => new PluginManager([List(), ClausePlugin()]);
+const fromMarkdownGenerator = () => new FromMarkdown(pluginManagerGenerator());
+const toMarkdownGenerator = () => new ToMarkdown(pluginManagerGenerator());
+
+// Temporary fix based on the following idea:
+// if you apply “fromMarkdown” to the grammar before parsing,
+// both will have the same whitespace processing done and parsing will work better
+// markdown <-commonmark-> markdown AST
+const roundTrip = (markdownText) => {
+  const fromMarkdown = fromMarkdownGenerator();
+  const toMarkdown = toMarkdownGenerator();
+  const value = fromMarkdown.convert(markdownText);
+  const markdownRound = toMarkdown.convert(value);
+  return markdownRound;
+};
 
 /**
  * Saga to update the contract in the store if it has changed
@@ -90,19 +107,8 @@ export function* updateDocument(action) {
  */
 export function* addToContract(action) {
   try {
-    const pluginManager = new PluginManager([List(), ClausePlugin()]);
-    const fromMarkdown = new FromMarkdown(pluginManager);
-    const toMarkdown = new ToMarkdown(pluginManager);
-
-    // Temporary fix based on the following idea:
-    // if you apply “fromMarkdown” to the grammar before parsing,
-    // both will have the same whitespace processing done and parsing will work better
-    // markdown <-commonmark-> markdown AST
-    const roundTrip = (markdownText) => {
-      const value = fromMarkdown.convert(markdownText);
-      const markdownRound = toMarkdown.convert(value);
-      return markdownRound;
-    };
+    const fromMarkdown = fromMarkdownGenerator();
+    const toMarkdown = toMarkdownGenerator();
 
     // get the templateObj from the store if we already have it
     // or load it and add it to the store if we do not
@@ -162,12 +168,49 @@ export function* addToContract(action) {
 }
 
 /**
+ * saga which adds a pasted clause node to the current slate value
+ */
+export function* pasteToContract(action) {
+  try {
+    const { clauseId, clauseTemplateRef, type } = action;
+    const actionRedesign = {
+      clauseId,
+      type,
+      uri: clauseTemplateRef
+    };
+    // get the templateObj from the store if we already have it or load if not
+    const templateObj = yield call(addTemplateObjectToStore, actionRedesign);
+
+    const metadata = templateObj.getMetadata();
+    const grammar = templateObj.parserManager.getTemplatizedGrammar();
+
+    // Temporary roundtrip and rebuild grammar
+    const grammarRound = roundTrip(grammar);
+    templateObj.parserManager.buildGrammar(grammarRound);
+
+    const sampleText = templateObj.getMetadata().getSamples().default;
+    const model = templateObj.getModelManager().getModels();
+    const logic = templateObj.getScriptManager().getLogic();
+    const clauseTemplateId = uuidv4(); // unique identifier for a clause template
+
+    // add a new clause template to the store so user can edit template
+    yield put(clauseTemplatesActions.addClauseTemplate({
+      metadata, model, logic, sampleText, grammar, id: clauseTemplateId
+    }));
+
+    // add instatiated clause to list of clauses in the contract state
+    yield put(actions.pasteToContractSuccess(clauseId, clauseTemplateId));
+  } catch (err) {
+    yield put(appActions.addAppError('Failed to add clause to contract', err));
+  }
+}
+
+/**
  * saga which removes a clause node from the current Slate value
  */
 export function* removeFromContract(clause) {
   try {
-    const pluginManager = new PluginManager([List(), ClausePlugin()]);
-    const toMarkdown = new ToMarkdown(pluginManager);
+    const toMarkdown = toMarkdownGenerator();
     // Select the current Slate value
     const slateValue = yield select(contractSelectors.slateValue);
     // Remove the node in the Slate DOM with the provided key
@@ -186,5 +229,6 @@ export function* removeFromContract(clause) {
 export const contractSaga = [
   takeLatest(DOCUMENT_EDITED, updateDocument),
   takeEvery(ADD_TO_CONTRACT, addToContract),
+  takeEvery(PASTE_TO_CONTRACT, pasteToContract),
   takeEvery(REMOVE_CLAUSE_FROM_CONTRACT, removeFromContract)
 ];
