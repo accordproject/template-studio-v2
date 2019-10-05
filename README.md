@@ -59,7 +59,7 @@ Your app is ready to be deployed!
   </a>
 </p>
 
-Accord Project is an open source, non-profit, initiative working to transform contract management and contract automation by digitizing contracts. Accord Project operates under the umbrella of the [Linux Foundation][linuxfound]. The technical charter for the Accord Project can be found [here][charter].
+Accord Project is an open-source, non-profit, initiative working to transform contract management and contract automation by digitizing contracts. Accord Project operates under the umbrella of the [Linux Foundation][linuxfound]. The technical charter for the Accord Project can be found [here][charter].
 
 ## Learn More About Accord Project
 
@@ -81,7 +81,7 @@ Accord Project is an open source, non-profit, initiative working to transform co
 
 ## Contributing
 
-The Accord Project technology is being developed as open source. All the software packages are being actively maintained on GitHub and we encourage organizations and individuals to contribute requirements, documentation, issues, new templates, and code.
+The Accord Project technology is being developed as open-source. All the software packages are being actively maintained on GitHub and we encourage organizations and individuals to contribute requirements, documentation, issues, new templates, and code.
 
 Find out what’s coming on our [blog][apblog].
 
@@ -101,7 +101,7 @@ Copyright 2018-2019 Clause, Inc. All trademarks are the property of their respec
 
 [linuxfound]: https://www.linuxfoundation.org
 [charter]: https://github.com/accordproject/template-studio-v2/blob/master/CHARTER.md
-[apmain]: https://accordproject.org/ 
+[apmain]: https://accordproject.org/
 [apworkgroup]: https://calendar.google.com/calendar/event?action=TEMPLATE&tmeid=MjZvYzIzZHVrYnI1aDVzbjZnMHJqYmtwaGlfMjAxNzExMTVUMjEwMDAwWiBkYW5AY2xhdXNlLmlv&tmsrc=dan%40clause.io
 [apblog]: https://medium.com/@accordhq
 [apnews]: https://www.accordproject.org/news/
