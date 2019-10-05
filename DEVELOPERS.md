@@ -45,7 +45,7 @@ git clone https://github.com/<github username>/template-studio-v2.git
 cd template-studio-v2
 
 # Add the main Template Studio (v2) repository as an upstream remote to your repository:
-git remote add upstream "https://github.com/acccordproject/template-studio-v2.git"
+git remote add upstream "https://github.com/accordproject/template-studio-v2.git"
 
 # Install node.js dependencies:
 npm install
