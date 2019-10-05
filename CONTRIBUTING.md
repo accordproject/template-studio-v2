@@ -26,7 +26,7 @@ Do not open issues for general support questions as we want to keep GitHub issue
 Stack Overflow is a much better place to ask questions since:
 
 * There are thousands of people willing to help on Stack Overflow
-* Questions and answers stay available for public viewing so your question / answer might help someone else
+* Questions and answers stay available for public viewing so your question/answer might help someone else
 * Stack Overflow's voting system assures that the best answers are prominently visible.
 
 To save your and our time, we will systematically close all issues that are requests for general support and redirect people to the section you are reading right now.
@@ -71,7 +71,7 @@ For large fixes, please build and test the documentation before submitting the P
 
 Before you submit your issue search the archive, maybe your question was already answered.
 
-If your issue appears to be a bug, and hasn't been reported, open a new issue. Help us to maximize the effort we can spend fixing issues and adding new features, by not reporting duplicate issues.
+If your issue appears to be a bug and hasn't been reported, open a new issue. Help us to maximize the effort we can spend fixing issues and adding new features, by not reporting duplicate issues.
 
 The "[new issue][github-new-issue]" form contains a number of prompts that you should fill out to make it easier to understand and categorize the issue.
 
@@ -102,21 +102,21 @@ Before you submit your pull request consider the following guidelines:
 * If the changes affect public APIs, change or add relevant [documentation][developers.documentation].
 * Run the [unit][developers.unit-tests] test suite, and ensure that all tests pass.
 
-* Commit your changes using a descriptive commit message that follows our [commit message conventions][developers.commits]. Adherence to the [commit message conventions][developers.commits] is required, because release notes are automatically generated from these messages.
+* Commit your changes using a descriptive commit message that follows our [commit message conventions][developers.commits]. Adherence to the [commit message conventions][developers.commits] is required because release notes are automatically generated from these messages.
 
   ```text
     git commit -a
   ```
 
-  Note: the optional commit `-a` command line option will automatically "add" and "rm" edited files.
+  Note: the optional commit `-a` command-line option will automatically "add" and "rm" edited files.
 
-* Before creating the Pull Request, ensure your branch sits on top of master (as opposed to branch off a branch). This ensures the reviewer will need only minimal effort to integrate your work by fast-fowarding master:
+* Before creating the Pull Request, ensure your branch sits on top of master (as opposed to branch off a branch). This ensures the reviewer will need only minimal effort to integrate your work by fast-forwarding master:
 
   ```text
     git rebase upstream/master
   ```
 
-* Last step before creating the Pull Request, package and run all tests a last time:
+* Last step before creating the Pull Request, package and run all tests one last time:
 
   ```text
     npm run test
@@ -129,7 +129,7 @@ Before you submit your pull request consider the following guidelines:
   ```
 
 * In GitHub, send a pull request to `template-studio-v2:master` by following our [pull request conventions][developers.pullrequest]. This will trigger the check of the [Contributor License Agreement][contribute.cla] and the Travis integration.
-* If you find that the Travis integration has failed, look into the logs on Travis to find out if your changes caused test failures, the commit message was malformed etc. If you find that the tests failed or times out for unrelated reasons, you can ping a team member so that the build can be restarted.
+* If you find that the Travis integration has failed, look into the logs on Travis to find out if your changes caused test failures, the commit message was malformed, etc. If you find that the tests failed or times out for unrelated reasons, you can ping a team member so that the build can be restarted.
 * If we suggest changes, then:
   * Make the required updates.
   * Re-run the test suite to ensure tests are still passing.
@@ -143,7 +143,7 @@ Before you submit your pull request consider the following guidelines:
     git push origin name-issue-tracker-short-description -f
     ```
 
-    This is generally easier to follow, but seperate commits are useful if the Pull Request contains iterations that might be interesting to see side-by-side.
+    This is generally easier to follow, but separate commits are useful if the Pull Request contains iterations that might be interesting to see side-by-side.
 
 That's it! Thank you for your contribution!
 
