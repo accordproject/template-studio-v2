@@ -84,10 +84,10 @@ To ensure consistency throughout the source code, keep these rules in mind as yo
 ## <a name="commits"></a> Git Commit Guidelines
 
 We have very precise rules over how our git commit messages can be formatted.  This leads to **more
-readable messages** that are easy to follow when looking through the **project history** and **git logs**.  
+readable messages** that are easy to follow when looking through the **project history** and **git logs**.
 But also, we use the git commit messages to **generate the Template Studio v2 change log**.
 
-The commit message formatting can be added using a version of typical git workflow.
+The commit message formatting can be added using a version of the typical git workflow.
 
 ### Commit Message Format
 Each commit message consists of a mandatory **type**, **scope**, **subject**, and **footer**. This is a specific format:
@@ -99,7 +99,7 @@ Each commit message consists of a mandatory **type**, **scope**, **subject**, an
 This allows the message to be easier to read on GitHub as well as in various git tools.
 
 ### Revert
-If the commit reverts a previous commit, it should begin with `revert: `, followed by the subject, where it 
+If the commit reverts a previous commit, it should begin with `revert: `, followed by the subject, where it
 should say: `this reverts commit <hash>.`, where the hash is the SHA of the commit being reverted.
 A commit with this format is automatically created by the `git revert` command.
 
@@ -118,8 +118,8 @@ Must be one of the following:
   generation
 
 ### Scope
-The scope will be specifying the place of the commit change; the focal point of new code or best 
-description for where changes can be found.
+The scope will be specifying the place of the commit change; the focal point of new code or best
+description of where changes can be found.
 
 You can use `*` when the change affects more than a single scope.
 
@@ -127,7 +127,7 @@ You can use `*` when the change affects more than a single scope.
 The subject contains succinct description of the change:
 
 * use the imperative, present tense: "change" not "changed" nor "changes"
-* don't capitalize first letter
+* don't capitalize the first letter
 * kept under 50 characters
 * no dot (.) at the end
 
@@ -135,7 +135,7 @@ The subject contains succinct description of the change:
 The footer should contain [reference GitHub Issues that this commit addresses][github-issues].
 
 ## <a name="pullrequests"></a> GitHub Pull Request Guidelines
-Pull Requests should consist of a complete addition to the code which contains value. 
+Pull Requests should consist of a complete addition to the code which contains value.
 Because the commits inside follow a pattern, the title should be an extension or summary of all the commits inside.
 
 Pull Request titles should follow [commit message formatting][developers.commits].
@@ -150,7 +150,7 @@ Formatting for the body is displayed in this example:
   - Subchange one
   - Subchange two
 - Change two
-- Theoretically this should be listing all the commit messages included in this PR
+- Theoretically, this should be listing all the commit messages included in this PR
 
 ### Flags
 - Possible issues or holds for reviewers to note
