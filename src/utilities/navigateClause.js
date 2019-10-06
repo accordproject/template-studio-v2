@@ -1,6 +1,7 @@
 import * as R from 'ramda';
 
 import store from '../store';
+import { min } from 'moment-mini';
 
 /**
  * Functions for navigating the PARSE ERRORS
@@ -45,12 +46,54 @@ const findClauseNode = (clauseId) => {
  * Using the clauseId for clauses
  * Scrolls the document to the selected DOM element
  */
+const getScrollParent = (node) => {
+  const isElement = node instanceof HTMLElement;
+  const overflowY = isElement && window.getComputedStyle(node).overflowY;
+  const isScrollable = !(overflowY.includes('hidden') || overflowY.includes('visible'));
+
+  if (!node) {
+    return null;
+  } else if (isScrollable && node.scrollHeight >= node.clientHeight) {
+    return node;
+  }
+
+  return getScrollParent(node.parentNode) || document.body;
+}
+
+let animationFrame;
+
+const scrollTo = (element, value) => {
+  console.log(`${element.scrollTop} ${value}`);
+  if(Math.abs(element.scrollTop - value) > 2){
+    let oldValue = element.scrollTop;
+    if(element.scrollTop < value){
+      element.scrollTop += Math.min(40, Math.abs(value-element.scrollTop));
+    }else{
+      element.scrollTop -= Math.min(40, Math.abs(value-element.scrollTop));
+    }
+    if(oldValue !== element.scrollTop)
+      animationFrame = window.requestAnimationFrame(() => scrollTo(element, value));
+  }else{
+    element.style.position = 'static';
+  }
+}
+
 const scrollToClause = (clauseNodeId, type) => {
   const selectedClauseNode = (type === 'clause')
     ? document.getElementById(`${clauseNodeId}`)
     : document.querySelector(`[data-key="${clauseNodeId}"]`);
-  selectedClauseNode.scrollIntoView({ behavior: 'smooth', block: 'center', inline: 'start' });
+  const parentClauseElement = getScrollParent(selectedClauseNode);
+  const toolbarHeight = document.getElementById('slate-toolbar-wrapper-id').clientHeight;
+  if(parentClauseElement){
+    parentClauseElement.style.position = 'relative';
+    window.cancelAnimationFrame(animationFrame);
+    animationFrame = window.requestAnimationFrame(() => scrollTo(parentClauseElement, selectedClauseNode.offsetTop-toolbarHeight));
+  }
+  //selectedClauseNode.scrollIntoView({ behavior: 'smooth', block: 'end', inline: 'start' });
 };
+
+
+
 
 /**
  * High level function to navigate which will pass to the ErrorLogger
