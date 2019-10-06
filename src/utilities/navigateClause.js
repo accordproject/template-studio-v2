@@ -89,7 +89,7 @@ const scrollToClause = (clauseNodeId, type) => {
     window.cancelAnimationFrame(animationFrame);
     animationFrame = window.requestAnimationFrame(() => scrollTo(parentClauseElement, selectedClauseNode.offsetTop-toolbarHeight));
   }
-  //selectedClauseNode.scrollIntoView({ behavior: 'smooth', block: 'end', inline: 'start' });
+
 };
 
 
