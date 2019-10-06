@@ -49,7 +49,7 @@ const scrollToClause = (clauseNodeId, type) => {
   const selectedClauseNode = (type === 'clause')
     ? document.getElementById(`${clauseNodeId}`)
     : document.querySelector(`[data-key="${clauseNodeId}"]`);
-  selectedClauseNode.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'start' });
+  selectedClauseNode.scrollIntoView({ behavior: 'smooth', block: 'center', inline: 'start' });
 };
 
 /**
