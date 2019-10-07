@@ -110,7 +110,7 @@ Before you submit your pull request consider the following guidelines:
 
   Note: the optional commit `-a` command line option will automatically "add" and "rm" edited files.
 
-* Before creating the Pull Request, ensure your branch sits on top of master (as opposed to branch off a branch). This ensures the reviewer will need only minimal effort to integrate your work by fast-fowarding master:
+* Before creating the Pull Request, ensure your branch sits on top of master (as opposed to branch off a branch). This ensures the reviewer will need only minimal effort to integrate your work by fast-forwarding master:
 
   ```text
     git rebase upstream/master
@@ -129,7 +129,7 @@ Before you submit your pull request consider the following guidelines:
   ```
 
 * In GitHub, send a pull request to `template-studio-v2:master` by following our [pull request conventions][developers.pullrequest]. This will trigger the check of the [Contributor License Agreement][contribute.cla] and the Travis integration.
-* If you find that the Travis integration has failed, look into the logs on Travis to find out if your changes caused test failures, the commit message was malformed etc. If you find that the tests failed or times out for unrelated reasons, you can ping a team member so that the build can be restarted.
+* If you find that the Travis integration has failed, look into the logs on Travis to find out if your changes caused test failures, the commit message was malformed, etc. If you find that the tests failed or times out for unrelated reasons, you can ping a team member so that the build can be restarted.
 * If we suggest changes, then:
   * Make the required updates.
   * Re-run the test suite to ensure tests are still passing.
@@ -143,7 +143,7 @@ Before you submit your pull request consider the following guidelines:
     git push origin name-issue-tracker-short-description -f
     ```
 
-    This is generally easier to follow, but seperate commits are useful if the Pull Request contains iterations that might be interesting to see side-by-side.
+    This is generally easier to follow, but separate commits are useful if the Pull Request contains iterations that might be interesting to see side-by-side.
 
 That's it! Thank you for your contribution!
 

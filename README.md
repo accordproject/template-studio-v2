@@ -1,6 +1,31 @@
-# Accord Project Template Studio (v2)
+<h1 align="center">
+  Accord Project Template Studio (v2)
+</h1>
 
-[![Netlify Status](https://api.netlify.com/api/v1/badges/088bd784-321b-49d4-940b-8c1c0af6942f/deploy-status)](https://app.netlify.com/sites/accordproject-studio/deploys)
+<p align="center">
+
+  <a href="https://app.netlify.com/sites/accordproject-studio/deploys">
+    <img src="https://api.netlify.com/api/v1/badges/088bd784-321b-49d4-940b-8c1c0af6942f/deploy-status" alt="Netlify Status"/>
+  </a>  
+
+  <a href="https://accordproject-studio.netlify.com/">
+    <img src="https://img.shields.io/badge/Netlify-Netlify%20preview%20of%20Template%20Studio%20V2-green" alt="Netlify"/>
+  </a> 
+
+  <a href="./LICENSE">
+    <img src="https://img.shields.io/github/license/accordproject/cicero?color=bright-green" alt="GitHub license"/>
+  </a>
+
+  <a href="https://accord-project-slack-signup.herokuapp.com/">
+    <img src="https://img.shields.io/badge/Slack-Join%20Slack-blue" alt="join slack"/>
+  </a>   
+
+</p>
+
+<p align="center">
+  <a href="https://accordproject-studio.netlify.com/">Preview Template Studio V2 on Netlify</a>
+</p>
+
 
 ## Notes for development:
 
@@ -48,9 +73,11 @@ Your app is ready to be deployed!
 
 ---
 
-<a href="https://www.accordproject.org/">
-  <img src="assets/APLogo.png" alt="Accord Project Logo" width="400" />
-</a>
+<p align="center">
+  <a href="https://www.accordproject.org/">
+    <img src="assets/APLogo.png" alt="Accord Project Logo" width="400" />
+  </a>
+</p>
 
 Accord Project is an open source, non-profit, initiative working to transform contract management and contract automation by digitizing contracts. Accord Project operates under the umbrella of the [Linux Foundation][linuxfound]. The technical charter for the Accord Project can be found [here][charter].
 
@@ -94,7 +121,7 @@ Copyright 2018-2019 Clause, Inc. All trademarks are the property of their respec
 
 [linuxfound]: https://www.linuxfoundation.org
 [charter]: https://github.com/accordproject/template-studio-v2/blob/master/CHARTER.md
-[apmain]: https://accordproject.org/ 
+[apmain]: https://accordproject.org/
 [apworkgroup]: https://calendar.google.com/calendar/event?action=TEMPLATE&tmeid=MjZvYzIzZHVrYnI1aDVzbjZnMHJqYmtwaGlfMjAxNzExMTVUMjEwMDAwWiBkYW5AY2xhdXNlLmlv&tmsrc=dan%40clause.io
 [apblog]: https://medium.com/@accordhq
 [apnews]: https://www.accordproject.org/news/
