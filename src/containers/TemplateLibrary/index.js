@@ -6,6 +6,9 @@ import { TemplateLibrary } from "@accordproject/cicero-ui";
 import TextButton from "../../components/TextButton";
 import GreenArrow from "../../../public/img/greenArrow.svg";
 import WhiteArrow from "../../../public/img/whiteArrow.svg";
+import GreenMenu from "../../../public/img/greenMenu.svg";
+import WhiteMenu from "../../../public/img/whiteMenu.svg";
+
 
 import {
   getTemplatesAction,
@@ -31,43 +34,35 @@ const TLWrapper = styled.div`
   height: inherit;
   padding-right: 10px;
 
+  border-left: 1px solid ${AP_THEME.DARK_BLUE};
+  &:hover {
+    border-left: 1px solid #49526f;
+  }
   &::-webkit-scrollbar {
     width: 4px;
     background: transparent;
   }
+
   display: grid;
   grid-template-rows: 18px auto;
 `;
 
-const TemplatesBtn = styled(TextButton)`
-  justify-self: end;
-  padding-top: 4em;
-`;
 
-const CollapseWrapper = styled.div`
-  &:hover {
-    border-left: 1px solid #49526f;
-  }
-`;
-
-const ExpandButton = styled.button`
-  padding-left: 0.5rem;
-  padding-right: 0.5rem;
-  padding-top: 0.5rem;
-  padding-bottom: 0.5rem;
-  align-items: center;
-  display: flex;
-  border-width: 1px;
-  border-radius: 50%;
-  border: none;
+const ExpandWrapper = styled.div`
+justify-self: end;
+margin-top: 4em;
+cursor:pointer;
+background-color: white;
+border: solid;
+border-radius: 50%;
+width: 2em;
+height: 2em;
+display: flex;
+border-color: #62c6c8;
+border-width: 0.1em;
+&:hover {
   background-color: #62c6c8;
-  cursor: pointer;
-`;
-
-const ExpandSvg = styled.svg`
-  color: white;
-  height: 0.75rem;
-  width: 0.75rem;
+}
 `;
 
 const ArrowWrapper = styled.div`
@@ -88,6 +83,13 @@ const ArrowWrapper = styled.div`
     background-color: #62c6c8;
   }
 `;
+
+const TemplateLibraryWrapper = styled(TemplateLibrary)`
+border-left: 1px solid ${AP_THEME.DARK_BLUE};
+&:hover {
+  border-left: 1px solid #49526f;
+}
+`
 
 const CollapseImg = styled.img`
   margin: auto;
@@ -118,10 +120,13 @@ export const LibraryComponent = props => {
   const [templatesVisible, setTemplatesVisible] = useState(false);
   const [collapseButtonVisible, setCollapseButtonVisible] = useState(false);
   const [collapseButtonHovered, toggleCollapseButtonHover] = useState(false);
+  const [expandButtonHovered, toggleExpandButtonHover] = useState(false);
+
 
   const buttonRef = useRef(null);
 
   const handleClick = () => {
+    toggleExpandButtonHover(false)
     setTemplatesVisible(!templatesVisible);
     buttonRef.current.blur();
   };
@@ -134,26 +139,23 @@ export const LibraryComponent = props => {
   return (
     <RightSidebar>
       <FileBar />
-      <TLWrapper>
-        <TemplatesBtn ref={buttonRef} onClick={handleClick} display={"block"}>
+      <TLWrapper
+                  onMouseOver={() => setCollapseButtonVisible(true)}
+                  onMouseLeave={() => setCollapseButtonVisible(false)}
+        >
           {!templatesVisible && (
-            <ExpandButton>
-              <ExpandSvg
-                viewBox="0 0 20 20"
-                xmlns="http://www.w3.org/2000/svg"
-                fill="white"
+            <ExpandWrapper
+            onClick={handleClick}
+            onMouseEnter={() => toggleExpandButtonHover(true)}
+            onMouseLeave={() => toggleExpandButtonHover(false)}
               >
-                <title>Menu</title>
-                <path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z" />
-              </ExpandSvg>
-            </ExpandButton>
+              <CollapseImg 
+              src={expandButtonHovered ? WhiteMenu : GreenMenu}
+              />
+              </ExpandWrapper>
           )}
-        </TemplatesBtn>
         {templatesVisible && (
-          <CollapseWrapper
-            onMouseOver={() => setCollapseButtonVisible(true)}
-            onMouseLeave={() => setCollapseButtonVisible(false)}
-          >
+          <>
             {collapseButtonVisible && (
               <ArrowWrapper
                 onClick={() => {
@@ -177,7 +179,7 @@ export const LibraryComponent = props => {
               addToCont={props.addToContract}
               libraryProps={libraryProps}
             />
-          </CollapseWrapper>
+          </>
         )}
       </TLWrapper>
     </RightSidebar>
