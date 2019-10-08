@@ -62,9 +62,8 @@ const getScrollParent = (node) => {
 let animationFrame;
 
 const scrollTo = (element, value) => {
-  console.log(`${element.scrollTop} ${value}`);
   if(Math.abs(element.scrollTop - value) > 2){
-    let oldValue = element.scrollTop;
+    const oldValue = element.scrollTop;
     if(element.scrollTop < value){
       element.scrollTop += Math.min(40, Math.abs(value-element.scrollTop));
     }else{
