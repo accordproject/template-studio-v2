@@ -1,7 +1,6 @@
 import * as R from 'ramda';
 
 import store from '../store';
-import { min } from 'moment-mini';
 
 /**
  * Functions for navigating the PARSE ERRORS
