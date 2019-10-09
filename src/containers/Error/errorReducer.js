@@ -8,6 +8,6 @@ const parseErrorGather = state => R.toPairs(R.path(['contractState', 'clauses'],
   .map(([clauseId, clause]) => ({ clauseId, parseError: clause.parseError }))
   .filter(({ parseError }) => !R.isNil(parseError));
 
-const errorsGenerator = state => [...modelErrorGather(state), ...parseErrorGather(state)];
+const errorsGenerator = state => ({ ...R.indexBy(R.prop('clauseTemplateId'), modelErrorGather(state)), ...R.indexBy(R.prop('clauseId'), parseErrorGather(state))});
 
 export default errorsGenerator;
