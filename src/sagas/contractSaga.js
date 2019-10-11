@@ -7,16 +7,7 @@ import {
   takeEvery
 } from 'redux-saga/effects';
 
-/* Markdown */
-import {
-  PluginManager,
-  List,
-  FromMarkdown,
-  ToMarkdown
-} from '@accordproject/markdown-editor';
-
-/* Plugins */
-import { ClausePlugin } from '@accordproject/cicero-ui';
+import { SlateTransformer } from '@accordproject/markdown-slate';
 import { Value } from 'slate';
 import uuidv4 from 'uuidv4';
 
@@ -39,19 +30,15 @@ import {
   REMOVE_CLAUSE_FROM_CONTRACT
 } from '../actions/constants';
 
-const pluginManagerGenerator = () => new PluginManager([List(), ClausePlugin()]);
-const fromMarkdownGenerator = () => new FromMarkdown(pluginManagerGenerator());
-const toMarkdownGenerator = () => new ToMarkdown(pluginManagerGenerator());
+const slateTransformer = new SlateTransformer();
 
 // Temporary fix based on the following idea:
 // if you apply “fromMarkdown” to the grammar before parsing,
 // both will have the same whitespace processing done and parsing will work better
 // markdown <-commonmark-> markdown AST
 const roundTrip = (markdownText) => {
-  const fromMarkdown = fromMarkdownGenerator();
-  const toMarkdown = toMarkdownGenerator();
-  const value = fromMarkdown.convert(markdownText);
-  const markdownRound = toMarkdown.convert(value);
+  const value = slateTransformer.fromMarkdown(markdownText);
+  const markdownRound = slateTransformer.toMarkdown(value);
   return markdownRound;
 };
 
@@ -78,8 +65,8 @@ export function* updateDocument(action) {
       headers.push(headerSlateObj);
     }
     if (ACT.headingClause(node)) {
-      const clauseId = node.data.get('attributes').clauseid;
-      const clauseSrcUrl = node.data.get('attributes').src;
+      const clauseId = node.data.get('clauseid');
+      const clauseSrcUrl = node.data.get('src');
 
       const clauseDisplayName = ACT.clauseDisplayNameFinder(templates[clauseSrcUrl]);
       const clauseName = ACT.clauseNameFinder(templates[clauseSrcUrl]);
@@ -96,7 +83,8 @@ export function* updateDocument(action) {
   });
 
   try {
-    yield put(actions.documentEditedSuccess(action.slateValue, action.markdown, headers));
+    const markdown = slateTransformer.toMarkdown(action.slateValue);
+    yield put(actions.documentEditedSuccess(action.slateValue, markdown, headers));
   } catch (err) {
     yield put(appActions.addAppError('Failed to update document', err));
   }
@@ -107,9 +95,6 @@ export function* updateDocument(action) {
  */
 export function* addToContract(action) {
   try {
-    const fromMarkdown = fromMarkdownGenerator();
-    const toMarkdown = toMarkdownGenerator();
-
     // get the templateObj from the store if we already have it
     // or load it and add it to the store if we do not
     const templateObj = yield call(addTemplateObjectToStore, action);
@@ -120,16 +105,16 @@ export function* addToContract(action) {
     // get the user's current position in Slate dom to insert clause at
     const currentPosition = slateValue.selection.anchor.path.get(0);
     const clauseId = uuidv4(); // unique identifier for a clause instance
-    const clauseMd = `\`\`\` <clause src=${action.uri} clauseId=${clauseId}>
+    const clauseMd = `\`\`\` <clause src=${action.uri} clauseid=${clauseId}>
   ${metadata.getSample()}
   \`\`\``;
 
     // Create a new paragraph in markdown for spacing between clauses
     const paragraphSpaceMd = 'This is a new clause!';
-    const spacerValue = fromMarkdown.convert(paragraphSpaceMd);
+    const spacerValue = slateTransformer.fromMarkdown(paragraphSpaceMd);
     const paragraphSpaceNodeJSON = spacerValue.toJSON().document.nodes[0];
 
-    const valueAsSlate = fromMarkdown.convert(clauseMd);
+    const valueAsSlate = slateTransformer.fromMarkdown(clauseMd);
     const clauseNodeJSON = valueAsSlate.toJSON().document.nodes[0];
     const newSlateValueAsJSON = JSON.parse(JSON.stringify(slateValue.toJSON()));
 
@@ -139,7 +124,7 @@ export function* addToContract(action) {
     // Temporary fix to separate clauses, adding the new paragraph at
     // end of splice. Convert this all back to markdown
     nodes.splice(currentPosition, 0, clauseNodeJSON, paragraphSpaceNodeJSON);
-    const realNewMd = toMarkdown.convert(Value.fromJSON(newSlateValueAsJSON));
+    const realNewMd = slateTransformer.toMarkdown(Value.fromJSON(newSlateValueAsJSON));
 
     // update contract on store with new slate and md values
     yield put(actions.documentEdited(Value.fromJSON(newSlateValueAsJSON), realNewMd));
@@ -163,6 +148,7 @@ export function* addToContract(action) {
     // add instatiated clause to list of clauses in the contract state
     yield put(actions.addToContractSuccess(clauseId, clauseTemplateId));
   } catch (err) {
+    console.error(err);
     yield put(appActions.addAppError('Failed to add clause to contract', err));
   }
 }
@@ -210,7 +196,6 @@ export function* pasteToContract(action) {
  */
 export function* removeFromContract(clause) {
   try {
-    const toMarkdown = toMarkdownGenerator();
     // Select the current Slate value
     const slateValue = yield select(contractSelectors.slateValue);
     // Remove the node in the Slate DOM with the provided key
@@ -218,7 +203,7 @@ export function* removeFromContract(clause) {
     // Regenerate the Slate value
     const newSlateValue = JSON.parse(JSON.stringify(slateWithoutNode.toJSON()));
     // Convert to Markdown
-    const newMd = toMarkdown.convert(newSlateValue);
+    const newMd = slateTransformer.toMarkdown(newSlateValue);
     // Put onto the store with the new Slate and Markdown state
     yield put(actions.documentEdited(Value.fromJSON(newSlateValue), newMd));
   } catch (err) {
