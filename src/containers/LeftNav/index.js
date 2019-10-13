@@ -31,29 +31,41 @@ const FileOptions = styled.div`
   height: 36px;
   padding-left: 5px;
   background-color: ${FILE_BAR.BACKGROUND};
+  
 `;
 
 const FileOptionButtons = styled.button`
   margin: 8px;
-  border: 0;
+  border: 2px solid ${FILE_BAR.OPTION_BUTTONS};
+  border-radius: 5px;
   background: transparent;
+  padding: 10px 10px 10px 10px !important;
   font-size: inherit;
   color: ${FILE_BAR.OPTION_BUTTONS};
   display: inline-block;
   cursor: pointer;
-  text-decoration: underline;
+  text-decoration: none;
   &:hover {
     color: ${FILE_BAR.OPTION_BUTTONS_HOVER};
-    text-decoration: underline;
+    text-decoration: none;
+    padding: 10px 10px 10px 10px !important;
+    border: 2px solid ${FILE_BAR.OPTION_BUTTONS_HOVER};
+    border-radius: 5px;
   }
   &:focus {
     outline: none;
     color: ${FILE_BAR.OPTION_BUTTONS_HOVER};
-    text-decoration: underline;
+    text-decoration: none;
+    padding: 10px 10px 10px 10px !important;
+    border: 2px solid ${FILE_BAR.OPTION_BUTTONS_HOVER};
+    border-radius: 5px;
   }
   &:active {
     color: ${FILE_BAR.OPTION_BUTTONS_HOVER};
-    text-decoration: underline;
+    text-decoration: none;
+    padding: 10px 10px 10px 10px !important;
+    border: 2px solid ${FILE_BAR.OPTION_BUTTONS_HOVER};
+    border-radius: 5px;
   }
 `;
 
