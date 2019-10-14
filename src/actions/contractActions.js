@@ -10,10 +10,9 @@ import {
   REMOVE_CLAUSE_FROM_CONTRACT,
 } from './constants';
 
-export const documentEdited = (value, markdown) => ({
+export const documentEdited = value => ({
   type: DOCUMENT_EDITED,
   slateValue: value,
-  markdown,
 });
 
 export const documentEditedSuccess = (value, markdown, headers) => ({

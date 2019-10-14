@@ -123,7 +123,7 @@ export const LeftNav = (props) => {
         { Object.keys(clauses).length
           ? clauseNodes.map((clauseNode) => {
             // clauseid is the id of the clause instance
-            const { clauseid, src } = clauseNode.data.attributes;
+            const { clauseid, src } = clauseNode.data;
             if (!clauses[clauseid]) return null;
             // clauseTemplateRef is the id of the clause template which the clause is an instance of
             const { clauseTemplateRef } = clauses[clauseid];

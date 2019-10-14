@@ -32,8 +32,8 @@ const findClauseNode = (clauseId) => {
   const slateValue = slateSelector(store.getState());
   slateValue.document.nodes.forEach((node) => {
     if (node.type !== 'clause') return;
-    if ((node.data.get('attributes').clauseid) === clauseId) {
-      clauseNode = node.data.get('attributes').clauseid;
+    if ((node.data.get('clauseid')) === clauseId) {
+      clauseNode = node.data.get('clauseid');
     }
   });
   return clauseNode;
@@ -52,29 +52,28 @@ const getScrollParent = (node) => {
 
   if (!node) {
     return null;
-  } else if (isScrollable && node.scrollHeight >= node.clientHeight) {
+  } if (isScrollable && node.scrollHeight >= node.clientHeight) {
     return node;
   }
 
   return getScrollParent(node.parentNode) || document.body;
-}
+};
 
 let animationFrame;
 
 const scrollTo = (element, value) => {
-  if(Math.abs(element.scrollTop - value) > 2){
+  if (Math.abs(element.scrollTop - value) > 2) {
     const oldValue = element.scrollTop;
-    if(element.scrollTop < value){
-      element.scrollTop += Math.min(40, Math.abs(value-element.scrollTop));
-    }else{
-      element.scrollTop -= Math.min(40, Math.abs(value-element.scrollTop));
+    if (element.scrollTop < value) {
+      element.scrollTop += Math.min(40, Math.abs(value - element.scrollTop));
+    } else {
+      element.scrollTop -= Math.min(40, Math.abs(value - element.scrollTop));
     }
-    if(oldValue !== element.scrollTop)
-      animationFrame = window.requestAnimationFrame(() => scrollTo(element, value));
-  }else{
+    if (oldValue !== element.scrollTop) { animationFrame = window.requestAnimationFrame(() => scrollTo(element, value)); }
+  } else {
     element.style.position = 'static';
   }
-}
+};
 
 const scrollToClause = (clauseNodeId, type) => {
   const selectedClauseNode = (type === 'clause')
@@ -82,15 +81,12 @@ const scrollToClause = (clauseNodeId, type) => {
     : document.querySelector(`[data-key="${clauseNodeId}"]`);
   const parentClauseElement = getScrollParent(selectedClauseNode);
   const toolbarHeight = document.getElementById('slate-toolbar-wrapper-id').clientHeight;
-  if(parentClauseElement){
+  if (parentClauseElement) {
     parentClauseElement.style.position = 'relative';
     window.cancelAnimationFrame(animationFrame);
-    animationFrame = window.requestAnimationFrame(() => scrollTo(parentClauseElement, selectedClauseNode.offsetTop-toolbarHeight));
+    animationFrame = window.requestAnimationFrame(() => scrollTo(parentClauseElement, selectedClauseNode.offsetTop - toolbarHeight));
   }
-
 };
-
-
 
 
 /**
