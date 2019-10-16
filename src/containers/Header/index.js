@@ -32,7 +32,7 @@ const HeaderLink = styled.a`
   font-size: 17px;
   color: #fff;
   position: absolute;
-  top: 0;
+  top: 1px;
   right: 22px;
   transition: all 0.2s;
   height: 36px;
@@ -40,6 +40,7 @@ const HeaderLink = styled.a`
   align-items: center;
   justify-content: space-evenly;
   svg {
+    margin-bottom 2px;
     margin-right: 4px;
     height: 20px;
     transition: all 0.2s;
