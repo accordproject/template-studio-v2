@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 
 import image from '../../../public/img/logo.png';
-import logo from '../../../public/img/github.png';
+import Logo from '../../../public/img/github.svg';
 
 import { AP_THEME } from '../App/themeConstants';
 
@@ -32,22 +32,27 @@ const HeaderLink = styled.a`
   font-size: 17px;
   color: #fff;
   position: absolute;
-  top: 10px;
-  right: 12px;
+  top: 0;
+  right: 22px;
   transition: all 0.2s;
-
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  svg {
+    margin-right: 4px;
+    height: 20px;
+    transition: all 0.2s;
+    fill: #fff;
+  }
   &:hover {
+    svg {
+      fill: rgb(25, 198, 199);
+    }
     color: rgb(25, 198, 199);
   }
 `;
 
-const HeaderLogo = styled.img`
-  position: absolute;
-  top: -6px;
-  right: 176px;
-  height: 28px;
-  transition: all 0.2s;
-`;
 const Header = () => (
   <HeaderWrapper>
     <a href="https://www.accordproject.org">
@@ -61,7 +66,7 @@ const Header = () => (
       href="https://github.com/accordproject/template-studio-v2"
       target="_blank"
     >
-      <HeaderLogo src={logo} alt="Github logo" /> Contribute on Github
+      <Logo /> Contribute on Github
     </HeaderLink>
   </HeaderWrapper>
 );

@@ -68,6 +68,7 @@
     "@accordproject/ergo-compiler": "^0.9.4",
     "@accordproject/markdown-editor": "^0.5.16",
     "@babel/runtime": "^7.5.5",
+    "@svgr/webpack": "^4.3.3",
     "mixin-deep": "^2.0.1",
     "monaco-editor": "^0.15.1",
     "prop-types": "^15.7.2",
