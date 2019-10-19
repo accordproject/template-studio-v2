@@ -32,8 +32,8 @@ const findClauseNode = (clauseId) => {
   const slateValue = slateSelector(store.getState());
   slateValue.document.nodes.forEach((node) => {
     if (node.type !== 'clause') return;
-    if ((node.data.get('attributes').clauseid) === clauseId) {
-      clauseNode = node.data.get('attributes').clauseid;
+    if ((node.data.get('clauseid')) === clauseId) {
+      clauseNode = node.data.get('clauseid');
     }
   });
   return clauseNode;
@@ -45,12 +45,49 @@ const findClauseNode = (clauseId) => {
  * Using the clauseId for clauses
  * Scrolls the document to the selected DOM element
  */
+const getScrollParent = (node) => {
+  const isElement = node instanceof HTMLElement;
+  const overflowY = isElement && window.getComputedStyle(node).overflowY;
+  const isScrollable = !(overflowY.includes('hidden') || overflowY.includes('visible'));
+
+  if (!node) {
+    return null;
+  } if (isScrollable && node.scrollHeight >= node.clientHeight) {
+    return node;
+  }
+
+  return getScrollParent(node.parentNode) || document.body;
+};
+
+let animationFrame;
+
+const scrollTo = (element, value) => {
+  if (Math.abs(element.scrollTop - value) > 2) {
+    const oldValue = element.scrollTop;
+    if (element.scrollTop < value) {
+      element.scrollTop += Math.min(40, Math.abs(value - element.scrollTop));
+    } else {
+      element.scrollTop -= Math.min(40, Math.abs(value - element.scrollTop));
+    }
+    if (oldValue !== element.scrollTop) { animationFrame = window.requestAnimationFrame(() => scrollTo(element, value)); }
+  } else {
+    element.style.position = 'static';
+  }
+};
+
 const scrollToClause = (clauseNodeId, type) => {
   const selectedClauseNode = (type === 'clause')
     ? document.getElementById(`${clauseNodeId}`)
     : document.querySelector(`[data-key="${clauseNodeId}"]`);
-  selectedClauseNode.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'start' });
+  const parentClauseElement = getScrollParent(selectedClauseNode);
+  const toolbarHeight = document.getElementById('slate-toolbar-wrapper-id').clientHeight;
+  if (parentClauseElement) {
+    parentClauseElement.style.position = 'relative';
+    window.cancelAnimationFrame(animationFrame);
+    animationFrame = window.requestAnimationFrame(() => scrollTo(parentClauseElement, selectedClauseNode.offsetTop - toolbarHeight));
+  }
 };
+
 
 /**
  * High level function to navigate which will pass to the ErrorLogger
