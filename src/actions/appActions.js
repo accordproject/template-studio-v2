@@ -1,4 +1,4 @@
-import { ADD_APP_ERROR, REMOVE_APP_ERROR, SET_CURRENT_EDITOR } from './constants';
+import { TOGGLE_WELCOME_SCREEN, ADD_APP_ERROR, REMOVE_APP_ERROR, SET_CURRENT_EDITOR } from './constants';
 
 export const addAppError = (errorDescription, error) => ({
   type: ADD_APP_ERROR,
@@ -7,6 +7,11 @@ export const addAppError = (errorDescription, error) => ({
     errorName: error.name,
     errorMessage: error.message,
   }
+});
+
+export const toggleWelcomeScreen = (toggle) => ({
+  type: TOGGLE_WELCOME_SCREEN,
+  toggle,
 });
 
 export const removeAppError = () => ({

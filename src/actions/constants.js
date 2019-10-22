@@ -2,6 +2,7 @@
 export const ADD_APP_ERROR = 'ADD_APP_ERROR';
 export const REMOVE_APP_ERROR = 'REMOVE_APP_ERROR';
 export const SET_CURRENT_EDITOR = 'SET_CURRENT_EDITOR';
+export const TOGGLE_WELCOME_SCREEN = 'TOGGLE_WELCOME_SCREEN';
 
 // Clause template action types
 export const ADD_CLAUSE_TEMPLATE = 'ADD_CLAUSE_TEMPLATE';
