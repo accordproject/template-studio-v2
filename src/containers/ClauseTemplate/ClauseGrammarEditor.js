@@ -8,6 +8,7 @@ import { editClauseGrammarAction } from '../../actions/clauseTemplatesActions';
 const EditorWrapper = styled.div`
   overflow-y: auto;
   overflow-x: hidden;
+  scrollbar-color: rgba(0,0,0,.25) rgba(0,0,0,.1);
   &::-webkit-scrollbar {
     width: 6px;
     background: transparent;
