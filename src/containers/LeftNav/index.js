@@ -23,6 +23,7 @@ const LeftNavWrapper = styled.div`
   padding: 15px;
   overflow-x: hidden;
   overflow-y: hidden;
+  scrollbar-color: transparent transparent;
   background-color: ${AP_THEME.DARK_BLUE};
   height: 100%;
 `;

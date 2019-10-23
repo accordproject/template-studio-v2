@@ -15,6 +15,8 @@ import {
 const EditorWrapper = styled.div`
   overflow-y: auto;
   overflow-x: auto;
+  scrollbar-color: rgba(0,0,0,.25) rgba(0,0,0,.1);
+  scrollbar-width: thin;
   &::-webkit-scrollbar {
     width: 6px;
     background: transparent;
