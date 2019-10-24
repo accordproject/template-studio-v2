@@ -2,14 +2,16 @@ import {
   ADD_APP_ERROR,
   REMOVE_APP_ERROR,
   SET_CURRENT_EDITOR,
-  TOGGLE_WELCOME_SCREEN,
+  TOGGLE_WELCOME,
+  CHANGE_WELCOME_SEARCH,
 } from '../actions/constants';
 
 const initialState = {
   error: null,
   id: null,
   editor: 'contract',
-  welcomeScreen: true,
+  welcome: true,
+  welcomeSearch: '',
 };
 
 const reducer = (state = initialState, action) => {
@@ -24,10 +26,15 @@ const reducer = (state = initialState, action) => {
         id: action.id,
         editor: action.editor,
       };
-    case TOGGLE_WELCOME_SCREEN:
+    case TOGGLE_WELCOME:
       return {
         ...state,
-        welcomeScreen: action.toggle,
+        welcome: action.toggle,
+      }
+    case CHANGE_WELCOME_SEARCH:
+      return {
+        ...state,
+        welcomeSearch: action.value
       }
     default:
       return state;

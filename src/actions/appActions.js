@@ -1,4 +1,4 @@
-import { TOGGLE_WELCOME_SCREEN, ADD_APP_ERROR, REMOVE_APP_ERROR, SET_CURRENT_EDITOR } from './constants';
+import { TOGGLE_WELCOME, ADD_APP_ERROR, REMOVE_APP_ERROR, SET_CURRENT_EDITOR, CHANGE_WELCOME_SEARCH } from './constants';
 
 export const addAppError = (errorDescription, error) => ({
   type: ADD_APP_ERROR,
@@ -9,10 +9,15 @@ export const addAppError = (errorDescription, error) => ({
   }
 });
 
-export const toggleWelcomeScreen = (toggle) => ({
-  type: TOGGLE_WELCOME_SCREEN,
+export const toggleWelcome = (toggle) => ({
+  type: TOGGLE_WELCOME,
   toggle,
 });
+
+export const changeWelcomeSearch = (value) => ({
+  type: CHANGE_WELCOME_SEARCH,
+  value,
+})
 
 export const removeAppError = () => ({
   type: REMOVE_APP_ERROR,

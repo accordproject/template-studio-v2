@@ -14,7 +14,7 @@ import ErrorContainer from '../Error';
 import ErrorModalComponent from '../ErrorModal';
 import LeftNavContainer from '../LeftNav';
 import CurrentEditorContainer from '../CurrentEditor';
-import WelcomeScreen from '../WelcomeScreen';
+import Welcome from '../Welcome';
 
 const AppWrapper = styled.div`
   height: 100%;
@@ -34,11 +34,11 @@ const ContentWrapper = styled.div`
   overflow-y: hidden;
 `;
 
-export const App = ({welcomeScreen}) => (
+export const App = ({welcome}) => (
     <AppWrapper>
       <ErrorModalComponent />
       <MainWrapper>
-        {welcomeScreen && <WelcomeScreen />}
+        {welcome && <Welcome />}
         <Header />
         <ContentWrapper>
           <LeftNavContainer />
@@ -51,7 +51,7 @@ export const App = ({welcomeScreen}) => (
 );
 
 const mapStateToProps = state => ({
-  welcomeScreen: state.appState.welcomeScreen,
+  welcome: state.appState.welcome
 });
 
 
