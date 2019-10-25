@@ -41,3 +41,13 @@ h1, h2, h3, h4, h5, h6, p, a, button {
   height: 100%;
   font-size: 1em;
 }
+
+blockquote {
+  font-size: 1em;
+  font-family: 'Graphik', sans-serif;
+  font-style: normal;
+  margin-left: 20px;
+  border-left: 2px solid #B9BCC4;
+  padding: 0 1.0em;
+  line-height: 1.4285em;
+}
