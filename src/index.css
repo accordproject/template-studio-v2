@@ -46,8 +46,8 @@ blockquote {
   font-size: 1em;
   font-family: 'Graphik', sans-serif;
   font-style: normal;
-  color: #939BA3;
   margin-left: 20px;
-  border-left: 2px solid #1F2D52;
-  padding: 0.25em 1.0em;
+  border-left: 2px solid #B9BCC4;
+  padding: 0 1.0em;
+  line-height: 1.4285em;
 }
