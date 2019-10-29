@@ -53,8 +53,8 @@ blockquote {
 }
 
 code {
-  border: solid 1px black;
-  background: lightgrey;
+  border: solid 1px #939EBA;
+  background: #ECF0FA;
   padding: 0.05em;
   border-radius: 0.1em;
 }
