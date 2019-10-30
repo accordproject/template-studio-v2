@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import { connect } from 'react-redux';
 import { TemplateLibrary } from '@accordproject/cicero-ui';
 import TextButton from '../../components/TextButton';
-import { Header, Icon, Image, Menu, Segment, Sidebar } from 'semantic-ui-react'
+import { Menu, Segment, Sidebar } from 'semantic-ui-react'
 import WhiteMenu from "../../../public/img/whiteMenu.svg";
 import GreenMenu from "../../../public/img/greenMenu.svg";
 
