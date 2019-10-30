@@ -4,6 +4,10 @@ import styled from 'styled-components';
 import { connect } from 'react-redux';
 import { TemplateLibrary } from '@accordproject/cicero-ui';
 import TextButton from '../../components/TextButton';
+import { Header, Icon, Image, Menu, Segment, Sidebar } from 'semantic-ui-react'
+import WhiteMenu from "../../../public/img/whiteMenu.svg";
+import GreenMenu from "../../../public/img/greenMenu.svg";
+
 
 import { getTemplatesAction, addNewTemplateAction } from '../../actions/templatesActions';
 import { addToContractAction } from '../../actions/contractActions';
@@ -34,8 +38,34 @@ const TLWrapper = styled.div`
   grid-template-rows: 18px auto;
 `;
 
+const ExpandWrapper = styled.div`
+justify-self: end;
+margin-top: 4em;
+cursor:pointer;
+background-color: white;
+border: solid;
+border-radius: 50%;
+width: 2em;
+height: 2em;
+display: flex;
+border-color: #62c6c8;
+border-width: 0.1em;
+&:hover {
+  background-color: #62c6c8;
+}
+`;
+
+const CollapseImg = styled.img`
+  margin: auto;
+  display: flex;
+  height: 1em;
+  width: 1em;
+`;
+
+
 const TemplatesBtn = styled(TextButton)`
   justify-self: end;
+  z-index:999;
 `;
 
 const libraryProps = {
@@ -54,17 +84,22 @@ const mockUpload = () => { console.log('upload'); };
 
 export const LibraryComponent = (props) => {
   const [templatesVisible, setTemplatesVisible] = useState(true);
-  const buttonRef = useRef(null);
+  const [expandButtonHovered, toggleExpandButtonHover] = useState(false);
+  
+  const [collapseButtonVisible, setCollapseButtonVisible] = useState(false);
 
-  const handleClick = () => {
-    setTemplatesVisible(!templatesVisible);
-    buttonRef.current.blur();
-  };
+  const buttonRef = useRef(null);
 
   const { fetchAPTemplates } = props;
   useEffect(() => {
     fetchAPTemplates();
   }, [fetchAPTemplates]);
+
+  const handleClick = () => {
+    toggleExpandButtonHover(false)
+    setTemplatesVisible(!templatesVisible);
+    buttonRef.current.blur();
+  };
 
   return (
     <RightSidebar>
@@ -75,9 +110,33 @@ export const LibraryComponent = (props) => {
           onClick={handleClick}
           display={'block'}
         >
-          { templatesVisible ? 'Hide Clause Templates >' : '< Show Clause Templates'}
+          { templatesVisible ? 
+            <button onClick={() => setTemplatesVisible(false)}>Hide Templates</button> : 
+            <ExpandWrapper
+            onClick={() => handleClick()}
+            onMouseEnter={() => toggleExpandButtonHover(true)}
+            onMouseLeave={() => toggleExpandButtonHover(false)}
+              >
+              <CollapseImg 
+              src={expandButtonHovered ? WhiteMenu : GreenMenu}
+              />
+              </ExpandWrapper>}
+          
         </TemplatesBtn>
-        { templatesVisible && <TemplateLibrary
+        <Sidebar.Pushable as={Segment} style={{background: "none"}}>
+        {/* #131e3c */}
+      <Sidebar
+      style={{backgroundColor: `${AP_THEME.DARK_BLUE}`}}
+        as={Menu}
+        animation='overlay'
+        icon='labeled'
+        inverted
+        // onHide={() => setTemplatesVisible(!templatesVisible)}
+        vertical
+        visible={templatesVisible}
+        width='very wide'
+      >
+        <TemplateLibrary
           templates={props.templates}
           upload={mockUpload}
           import={mockImport}
@@ -85,7 +144,18 @@ export const LibraryComponent = (props) => {
           addToCont={props.addToContract}
           libraryProps={libraryProps}
 
-        /> }
+        />
+      </Sidebar>
+    </Sidebar.Pushable>
+        {/* { templatesVisible && <TemplateLibrary
+          templates={props.templates}
+          upload={mockUpload}
+          import={mockImport}
+          addTemp={props.addNewTemplate}
+          addToCont={props.addToContract}
+          libraryProps={libraryProps}
+
+        /> } */}
       </TLWrapper>
     </RightSidebar>
   );
