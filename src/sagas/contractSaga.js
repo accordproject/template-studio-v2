@@ -142,7 +142,7 @@ export function* addToContract(action) {
 
     // add a new clause template to the store so user can edit template
     yield put(clauseTemplatesActions.addClauseTemplate({
-      metadata, model, logic, sampleText, grammar, id: clauseTemplateId
+      metadata, model, logic, sampleText, grammar, id: clauseTemplateId, clauseId
     }));
 
     // add instatiated clause to list of clauses in the contract state
@@ -181,7 +181,7 @@ export function* pasteToContract(action) {
 
     // add a new clause template to the store so user can edit template
     yield put(clauseTemplatesActions.addClauseTemplate({
-      metadata, model, logic, sampleText, grammar, id: clauseTemplateId
+      metadata, model, logic, sampleText, grammar, id: clauseTemplateId, caluseId
     }));
 
     // add instatiated clause to list of clauses in the contract state
@@ -206,6 +206,8 @@ export function* removeFromContract(clause) {
     const newMd = slateTransformer.toMarkdown(newSlateValue);
     // Put onto the store with the new Slate and Markdown state
     yield put(actions.documentEdited(Value.fromJSON(newSlateValue), newMd));
+    yield put(clauseTemplatesActions.removeClauseTemplate(clause.clauseId));
+
   } catch (err) {
     yield put(appActions.addAppError('Failed to remove clause from contract', err));
   }
