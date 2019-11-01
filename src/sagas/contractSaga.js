@@ -109,10 +109,20 @@ export function* addToContract(action) {
   ${metadata.getSample()}
   \`\`\``;
 
-    // Create a new paragraph in markdown for spacing between clauses
-    const paragraphSpaceMd = 'This is a new clause!';
-    const spacerValue = slateTransformer.fromMarkdown(paragraphSpaceMd);
-    const paragraphSpaceNodeJSON = spacerValue.toJSON().document.nodes[0];
+    // Create a new paragraph in JSON for spacing between clauses
+    const paragraphSpaceNodeJSON = {
+      object: 'block',
+      type: 'paragraph',
+      data: {
+      },
+      nodes: [
+        {
+          object: 'text',
+          text: '',
+          marks: []
+        }
+      ]
+    };
 
     const valueAsSlate = slateTransformer.fromMarkdown(clauseMd);
     const clauseNodeJSON = valueAsSlate.toJSON().document.nodes[0];
@@ -123,7 +133,7 @@ export function* addToContract(action) {
     // add the clause node to the Slate dom at current position
     // Temporary fix to separate clauses, adding the new paragraph at
     // end of splice. Convert this all back to markdown
-    nodes.splice(currentPosition, 0, clauseNodeJSON, paragraphSpaceNodeJSON);
+    nodes.splice((currentPosition + 1), 0, clauseNodeJSON, paragraphSpaceNodeJSON);
     const realNewMd = slateTransformer.toMarkdown(Value.fromJSON(newSlateValueAsJSON));
 
     // update contract on store with new slate and md values
