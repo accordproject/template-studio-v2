@@ -1,0 +1,21 @@
+{
+  "object": "value",
+  "document": {
+    "object": "document",
+    "data": null,
+    "nodes": [
+      {
+        "object": "block",
+        "type": "paragraph",
+        "data": null,
+        "nodes": [
+          {
+            "object": "text",
+            "text": "Welcome to Template Studio! Edit this text to get started.",
+            "marks": []
+          }
+        ]
+      }
+    ]
+  }
+}
