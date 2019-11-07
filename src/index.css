@@ -51,3 +51,10 @@ blockquote {
   padding: 0 1.0em;
   line-height: 1.4285em;
 }
+
+code {
+  border: solid 1px #939EBA;
+  background: #ECF0FA;
+  padding: 0.05em;
+  border-radius: 0.1em;
+}
