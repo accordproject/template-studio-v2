@@ -1,3 +1,4 @@
+import * as R from 'ramda';
 import {
   ADD_CLAUSE_TEMPLATE,
   REMOVE_CLAUSE_TEMPLATE,
@@ -7,7 +8,6 @@ import {
   EDIT_CLAUSE_PACKAGE_JSON,
   EDIT_CLAUSE_SAMPLE
 } from '../actions/constants';
-import * as R from 'ramda';
 
 const initialState = {};
 
@@ -45,19 +45,12 @@ const reducer = (state = initialState, action) => {
         [action.clauseTemplate.id]: action.clauseTemplate,
       };
     case REMOVE_CLAUSE_TEMPLATE:
-      let filteredTemplateClauses;
-      for (const [key, value] of Object.entries(state)) {
-        if (value.clauseId === action.clauseId) {
-          filteredTemplateClauses = R.omit(
-            [key],
-            state
-          );
-        }
-      }
-      return {
-        ...filteredTemplateClauses
-      };
-
+      return R.omit(
+        (R.slice(0, 1, Object.entries(state).find(
+          ([key, value]) => (value.clauseId === action.clauseId)
+        ) || []) || []),
+        state
+      );
     case EDIT_CLAUSE_GRAMMAR:
       return {
         ...state,
