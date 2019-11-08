@@ -181,7 +181,7 @@ export function* pasteToContract(action) {
 
     // add a new clause template to the store so user can edit template
     yield put(clauseTemplatesActions.addClauseTemplate({
-      metadata, model, logic, sampleText, grammar, id: clauseTemplateId, caluseId
+      metadata, model, logic, sampleText, grammar, id: clauseTemplateId, clauseId
     }));
 
     // add instatiated clause to list of clauses in the contract state
