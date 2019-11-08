@@ -83,8 +83,7 @@ export function* updateDocument(action) {
   });
 
   try {
-    const markdown = slateTransformer.toMarkdown(action.slateValue);
-    yield put(actions.documentEditedSuccess(action.slateValue, markdown, headers));
+    yield put(actions.documentEditedSuccess(action.slateValue, action.markdown, headers));
   } catch (err) {
     yield put(appActions.addAppError('Failed to update document', err));
   }
