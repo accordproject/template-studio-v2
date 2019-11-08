@@ -83,6 +83,7 @@
     "semantic-ui-css": "^2.4.1",
     "semantic-ui-react": "^0.87.3",
     "slate": "^0.47.8",
+    "slate-react": "^0.22.9",
     "styled-components": "^4.4.1",
     "throttle-debounce": "^2.1.0",
     "uuidv4": "^4.0.0"
