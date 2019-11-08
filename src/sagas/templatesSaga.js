@@ -21,7 +21,7 @@ export function* pushTemplatesToStore() {
   try {
     const templateLibrary = new TemplateLibrary();
     const templateIndex = yield templateLibrary
-      .getTemplateIndex({ latestVersion: false, ciceroVersion });
+      .getTemplateIndex({ latestVersion: true, ciceroVersion });
     const templateIndexArray = Object.values(templateIndex);
     yield put(actions.getTemplatesSuccess(templateIndexArray));
   } catch (err) {
