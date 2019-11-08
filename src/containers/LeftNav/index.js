@@ -97,7 +97,7 @@ export const LeftNav = (props) => {
     setShowExpandedClause({ ...showExpandedClause, [id]: !showExpandedClause[id] });
   }, [showExpandedClause]);
 
-  const clauseNodes = slateValue.toJSON().document.nodes.filter(node => node.type === 'clause');
+  const clauseNodes = slateValue.document.nodes.filter(node => node.type === 'clause');
 
   return (
     <LeftSidebar>
