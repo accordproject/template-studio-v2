@@ -12,23 +12,7 @@ import {
 const initialState = {
   contractTemplateRef: null,
   markdown: '',
-  slateValue: Value.fromJSON({
-    object: 'value',
-    document: {
-      object: 'document',
-      data: {},
-      nodes: [{
-        object: 'block',
-        type: 'paragraph',
-        data: {},
-        nodes: [{
-          object: 'text',
-          text: 'Welcome to Template Studio! Edit this text to get started.',
-          marks: []
-        }],
-      }],
-    }
-  }),
+  slateValue: Value.fromJSON(require('./initialState.json')),
   clauses: {},
   headers: [],
 };
