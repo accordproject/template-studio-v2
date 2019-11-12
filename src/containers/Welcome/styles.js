@@ -46,7 +46,11 @@ export const WelcomeHeaderSecondary = styled.h1`
         line-height: 33px;
 `;
 
-export const WelcomeButton = styled.button`
+const WelcomeButtonTag = ({className, onClick, text}) => (
+        <button className={className} onClick={onClick}>{text}</button>
+);
+
+const WelcomeButtonStyled = styled(WelcomeButtonTag)`
         height: 45px;
         width: 216px;
         border-radius: 22.5px;
@@ -66,7 +70,18 @@ export const WelcomeButton = styled.button`
             background-color: #fff;
 
         }
+        &:focus{
+                outline: none;
+            }
 `;
+
+export const WelcomeButton = ({onClick, text}) => createElement(
+        WelcomeButtonStyled,
+        {
+                onClick,
+                text
+        }
+);
 
 export const WelcomeLink = styled.a`
         color: #19c6c7;
@@ -98,6 +113,9 @@ const WelcomeSearchStyled = styled(WelcomeSearchTag)`
             &:focus{
                 outline: none;
             }
+            background: url('../../../assets/SearchAlternate.svg');
+            background-repeat:no-repeat;
+            background-position: 20px 300px;
 `;
 
 export const WelcomeSearch = ({onChange, value}) => createElement(

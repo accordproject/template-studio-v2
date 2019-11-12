@@ -3,16 +3,26 @@ import {
   REMOVE_APP_ERROR,
   SET_CURRENT_EDITOR,
   TOGGLE_WELCOME,
-  CHANGE_WELCOME_SEARCH,
+  CHANGE_WELCOME_SEARCH_VALUE,
+  CHANGE_WELCOME_SEARCH_RESULTS,
+  TOGGLE_WELCOME_SEARCH_LOADING,
 } from '../actions/constants';
+
+
 
 const initialState = {
   error: null,
   id: null,
   editor: 'contract',
-  welcome: true,
-  welcomeSearch: '',
+  welcome: {
+    toggle: true,
+    searchValue: '',
+    results: [],
+    isLoading: false,
+  }
 };
+
+
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
@@ -29,13 +39,35 @@ const reducer = (state = initialState, action) => {
     case TOGGLE_WELCOME:
       return {
         ...state,
-        welcome: action.toggle,
-      }
-    case CHANGE_WELCOME_SEARCH:
+        welcome: {
+          ...state.welcome,
+          toggle: action.toggle
+        },
+      };
+    case CHANGE_WELCOME_SEARCH_VALUE:
       return {
         ...state,
-        welcomeSearch: action.value
-      }
+        welcome: {
+          ...state.welcome,
+          searchValue: action.value
+        },
+      };
+    case CHANGE_WELCOME_SEARCH_RESULTS:
+      return {
+        ...state,
+        welcome: {
+          ...state.welcome,
+          results: action.results
+        },
+      };
+    case TOGGLE_WELCOME_SEARCH_LOADING:
+      return {
+        ...state,
+        welcome: {
+          ...state.welcome,
+          isLoading: action.isLoading
+        },
+      };
     default:
       return state;
   }
