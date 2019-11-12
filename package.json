@@ -64,7 +64,7 @@
   },
   "dependencies": {
     "@accordproject/cicero-core": "^0.20.1",
-    "@accordproject/cicero-ui": "^0.2.1",
+    "@accordproject/cicero-ui": "^0.2.2",
     "@accordproject/ergo-compiler": "^0.20.1",
     "@accordproject/markdown-slate": "^0.7.6",
     "@babel/runtime": "^7.7.2",
