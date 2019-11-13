@@ -40,15 +40,24 @@ class Welcome extends Component{
     }
     resultRenderer = ({ text }) => <Label content={text} />
     onChangeSearch = (e, {value}) => {
-        this.props.toggleWelcomeSearchLoading(true);
         this.props.changeWelcomeSearchValue(value);
+        this.filterResults(value);
+    };
+    filterResults = (filter) => {
+        this.props.toggleWelcomeSearchLoading(true);
         setTimeout(() => {
-            const re = new RegExp(_.escapeRegExp(value), 'i');
+            const re = new RegExp(_.escapeRegExp(filter), 'i');
             const isMatch = (result) => re.test(result.text);
             this.props.toggleWelcomeSearchLoading(false);
             this.props.changeWelcomeSearchResults( _.filter(this.state.templates, isMatch));
-        }, 300)
-    };
+        }, 150);
+    }
+    onBlurSearch = () => {
+        this.props.changeWelcomeSearchValue('');
+    }
+    onFocusSearch = () => {
+        this.filterResults(this.props.searchValue);
+    }
     componentDidMount(){
         this.loadTemplateLibrary().then(() => {
             console.log('done');
@@ -57,7 +66,7 @@ class Welcome extends Component{
     render(){
         return (
             <WelcomeBlurBackground>
-                <WelcomeWrapper>
+                <WelcomeWrapper className="welcome">
                   <WelcomeHeader>
                       Welcome to Template Studio
                   </WelcomeHeader>
@@ -76,6 +85,9 @@ class Welcome extends Component{
                         results={this.props.results}
                         value={this.props.searchValue}
                         resultRenderer={this.resultRenderer}
+                        minCharacters={0}
+                        onBlur={this.onBlurSearch}
+                        onFocus={this.onFocusSearch}
                   />
                   <WelcomeHeaderSecondary>
                       Start from scratch

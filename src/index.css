@@ -60,6 +60,7 @@ code {
   border-radius: 0.1em;
 }
 
+
 .github-link{
   float:right;
 }
@@ -71,12 +72,12 @@ code {
   margin-right:10px;
 }
 
-.ui.search{
+.welcome .ui.search{
   display:inline-block;
 
 }
 
-.ui.input>input{
+.welcome .ui.input>input{
   height: 45px;
   width: 332px;
   border: 2px solid #19C6C7;
@@ -88,15 +89,15 @@ code {
   line-height: 17px;
   margin: 0px auto 10px auto;
 }
-.ui.input>input:focus{
+.welcome .ui.input>input:focus{
   outline: none;
 }
 
-.ui.search>.results{
+.welcome .ui.search>.results{
   width:100%;
   overflow-y: scroll;
   max-height:150px;
 }
-.ui.icon.input>i.icon{
+.welcome .ui.icon.input>i.icon{
   height:45px;
 }
