@@ -1,5 +1,7 @@
+import * as R from 'ramda';
 import {
   ADD_CLAUSE_TEMPLATE,
+  REMOVE_CLAUSE_TEMPLATE,
   EDIT_CLAUSE_GRAMMAR,
   EDIT_CLAUSE_LOGIC,
   EDIT_CLAUSE_MODEL_SUCCESS,
@@ -42,6 +44,13 @@ const reducer = (state = initialState, action) => {
         ...state,
         [action.clauseTemplate.id]: action.clauseTemplate,
       };
+    case REMOVE_CLAUSE_TEMPLATE:
+      return R.omit(
+        (R.slice(0, 1, Object.entries(state).find(
+          ([key, value]) => (value.clauseId === action.clauseId)
+        ) || []) || []),
+        state
+      );
     case EDIT_CLAUSE_GRAMMAR:
       return {
         ...state,

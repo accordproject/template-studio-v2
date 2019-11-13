@@ -1,5 +1,6 @@
 import {
   ADD_CLAUSE_TEMPLATE,
+  REMOVE_CLAUSE_TEMPLATE,
   EDIT_CLAUSE_GRAMMAR,
   EDIT_CLAUSE_LOGIC,
   EDIT_CLAUSE_MODEL,
@@ -11,6 +12,11 @@ import {
 export const addClauseTemplate = clauseTemplate => ({
   type: ADD_CLAUSE_TEMPLATE,
   clauseTemplate,
+});
+
+export const removeClauseTemplate = clauseId => ({
+  type: REMOVE_CLAUSE_TEMPLATE,
+  clauseId
 });
 
 export const editClauseGrammarAction = (clauseTemplateId, grammar) => ({
