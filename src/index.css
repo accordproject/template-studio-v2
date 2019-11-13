@@ -34,7 +34,7 @@ body, html {
 }
 
 h1, h2, h3, h4, h5, h6, p, a, button {
-  font-family: 'Graphik', sans-serif;
+  font-family: 'Graphik', sans-serif !important;
 }
 
 .Site-content, #root {
