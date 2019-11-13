@@ -46,20 +46,25 @@ const editorProps = {
   WIDTH: CONTRACT_EDITOR.WIDTH,
 };
 
-const EditorContainer = props => (
+const EditorContainer = (props) => {
+  const editorRef = React.useRef(null);
+
+  return (
   <EditorWrapper>
     <ContractEditor
+      ref={editorRef}
       clauseProps={clauseProps(props.removeFromContract)}
       loadTemplateObject={props.loadTemplateObject}
       pasteToContract={props.pasteToContract}
-      parseClause={(uri, text, clauseId) => parseClause(props.templateObjs[uri], text, clauseId)}
+      parseClause={(uri, text, clauseId) => parseClause(props.templateObjs[uri], text, clauseId, editorRef, uri)}
       onChange={props.onEditorChange}
       value={props.value}
       lockText={false}
       editorProps={editorProps}
     />
   </EditorWrapper>
-);
+  );
+};
 
 EditorContainer.propTypes = {
   loadTemplateObject: PropTypes.func.isRequired,
