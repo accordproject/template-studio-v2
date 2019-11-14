@@ -74,7 +74,7 @@ class Welcome extends Component{
                       The Accord Project Template Studio allows you to create a template from scratch, or create a 
                       new template based off of any template in the Accord Project Template Library. See what makes 
                       smart legal contracts tick without needing to download any developer tools. <br/>
-                      <WelcomeLink href='https://docs.accordproject.org/docs/accordproject.html'>Learn how to create your own templates</WelcomeLink>
+                      <WelcomeLink href='https://docs.accordproject.org/docs/tutorial-latedelivery.html'>Learn how to create your own templates</WelcomeLink>
                   </WelcomeText>
                   <WelcomeHeaderSecondary>
                       Start from an existing template
