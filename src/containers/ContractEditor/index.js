@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import { connect } from 'react-redux';
 import { ContractEditor } from '@accordproject/cicero-ui';
 import { loadTemplateObjectAction } from '../../actions/templatesActions';
-import parseClause from '../../utilities/parseClause';
+import onClauseUpdated from '../../utilities/onClauseUpdated';
 import { AP_THEME, CONTRACT_EDITOR } from '../App/themeConstants';
 import {
   documentEdited,
@@ -56,7 +56,11 @@ const EditorContainer = (props) => {
       clauseProps={clauseProps(props.removeFromContract)}
       loadTemplateObject={props.loadTemplateObject}
       pasteToContract={props.pasteToContract}
-      parseClause={(uri, text, clauseId) => parseClause(props.templateObjs[uri], text, clauseId, editorRef, uri)}
+      onClauseUpdated={
+        clauseNode => onClauseUpdated(
+          props.templateObjs[clauseNode.data.get('src')], editorRef, clauseNode
+        )
+      }
       onChange={props.onEditorChange}
       value={props.value}
       lockText={false}
