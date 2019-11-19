@@ -58,3 +58,14 @@ code {
   padding: 0.05em;
   border-radius: 0.1em;
 }
+
+.github-link{
+  float:right;
+}
+.github-link:hover{
+  color:rgb(25, 198, 199);
+}
+.github-link i{
+  font-size:27px;
+  margin-right:10px;
+}

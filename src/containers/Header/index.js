@@ -11,6 +11,8 @@ const HeaderWrapper = styled.div`
     width: 100%;
     background-color: ${AP_THEME.DARK_BLUE};
     color: white;
+    justify-content:space-between;
+    padding: 0 15px;
 `;
 
 const HeaderTitle = styled.div`
@@ -21,18 +23,30 @@ const HeaderTitle = styled.div`
     text-align: center;
 `;
 
-const HeaderImage = styled.img`
-    height: 27px;
-    margin-top: 5px;
-    margin-left: 15px;
+const HeaderLeft = styled.div`
+    display: flex;
 `;
 
+const HeaderImage = styled.img`
+    height: 27px;
+`;
+
+
+const HeaderLink = styled.a`
+    display:flex;
+    color: white;
+    align-items: center;
+`;
 const Header = () => (
     <HeaderWrapper>
-            <a href="https://www.accordproject.org">
-                <HeaderImage src={image} alt="Accord Project" />
-            </a>
-        <HeaderTitle>Template Studio</HeaderTitle>
+        <HeaderLeft>
+            <HeaderLink href="https://www.accordproject.org">
+                    <HeaderImage src={image} alt="Accord Project" />
+            </HeaderLink>
+            <HeaderTitle>Template Studio</HeaderTitle> 
+        </HeaderLeft>
+        <HeaderLink href="https://github.com/accordproject/template-studio-v2" className="github-link"><i class="fa fa-github"></i>Contribute on Github</HeaderLink>
+    
     </HeaderWrapper>
 );
 
