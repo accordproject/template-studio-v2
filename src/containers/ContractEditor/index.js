@@ -88,8 +88,8 @@ const mapDispatchToProps = dispatch => ({
   loadTemplateObject: value => dispatch(loadTemplateObjectAction(value)),
   onEditorChange: (value, markdown) => dispatch(documentEdited(value, markdown)),
   removeFromContract: value => dispatch(removeFromContractAction(value)),
-  pasteToContract: (clause, template, text) => dispatch(pasteToContractAction(
-    clause, template, text
+  pasteToContract: (clauseId, templateUri, text) => dispatch(pasteToContractAction(
+    clauseId, templateUri, text
   )),
 });
 
