@@ -52,10 +52,11 @@ export const parseClauseError = (clauseId, error) => ({
   error,
 });
 
-export const pasteToContractAction = (clauseId, clauseTemplateRef) => ({
+export const pasteToContractAction = (clauseId, clauseTemplateRef, text) => ({
   type: PASTE_TO_CONTRACT,
   clauseId,
   clauseTemplateRef,
+  text
 });
 
 export const pasteToContractSuccess = (clauseId, clauseTemplateRef) => ({

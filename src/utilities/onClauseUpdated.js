@@ -1,9 +1,7 @@
-import { Clause, Template } from '@accordproject/cicero-core';
+import { Clause } from '@accordproject/cicero-core';
 import { SlateTransformer } from '@accordproject/markdown-slate';
 import store from '../store';
 import { parseClauseSuccess, parseClauseError } from '../actions/contractActions';
-
-const slateTransformer = new SlateTransformer();
 
 /**
  * Parses user inputted text for a template using Cicero
