@@ -10,35 +10,16 @@ import * as ciceroPackageJson from '@accordproject/cicero-core/package.json';
 import { Search, Label } from 'semantic-ui-react';
 
 import { toggleWelcome, changeWelcomeSearchValue, changeWelcomeSearchResults, toggleWelcomeSearchLoading} from '../../actions/appActions';
+import { getTemplatesAction } from '../../actions/templatesActions';
+import { addToContractAction } from '../../actions/contractActions';
 
 import { WelcomeBlurBackground, WelcomeWrapper, WelcomeHeader, WelcomeText, WelcomeHeaderSecondary, WelcomeButton, WelcomeLink, WelcomeSearch} from './styles';
 
-const ciceroVersion = ciceroPackageJson.version;
-
 class Welcome extends Component{
-    constructor(props){
-        super(props);
-        this.state = {
-            templates: []
-        };
+    componentDidMount(){
+        this.props.fetchAPTemplates();
     }
-    loadTemplateLibrary = () => {
-        const templateLibrary = new TemplateLibrary();
-        const promisedIndex =
-              templateLibrary.getTemplateIndex({ latestVersion: true, ciceroVersion: '0.20.1' });
-        return promisedIndex.then((templateIndex) => {
-          const templates = [];
-          for (const t in templateIndex) {
-            if (Object.prototype.hasOwnProperty.call(templateIndex, t)) {
-              templates.push({ key: t, value: `ap://${t}#hash`, text: t });
-            }
-          }
-          this.setState({
-              templates: templates
-          });
-        });
-    }
-    resultRenderer = ({ text }) => <Label content={text} />
+    resultRenderer = ({ name, version }) => <Label content={`${name}@${version}`} />
     onChangeSearch = (e, {value}) => {
         this.props.changeWelcomeSearchValue(value);
         this.filterResults(value);
@@ -47,9 +28,9 @@ class Welcome extends Component{
         this.props.toggleWelcomeSearchLoading(true);
         setTimeout(() => {
             const re = new RegExp(_.escapeRegExp(filter), 'i');
-            const isMatch = (result) => re.test(result.text);
+            const isMatch = (result) => re.test(result.name);
             this.props.toggleWelcomeSearchLoading(false);
-            this.props.changeWelcomeSearchResults( _.filter(this.state.templates, isMatch));
+            this.props.changeWelcomeSearchResults( _.filter(this.props.templates, isMatch));
         }, 150);
     }
     onBlurSearch = () => {
@@ -58,11 +39,14 @@ class Welcome extends Component{
     onFocusSearch = () => {
         this.filterResults(this.props.searchValue);
     }
-    componentDidMount(){
-        this.loadTemplateLibrary().then(() => {
-            console.log('done');
-        });
-    }
+
+    onSelectSearch = (e, {result}) => {
+        this.props.addToContract(result.uri);
+        setTimeout(() => {
+            this.props.toggleWelcome(false);
+        }, 500);
+        
+    };
     render(){
         return (
             <WelcomeBlurBackground>
@@ -86,8 +70,9 @@ class Welcome extends Component{
                         value={this.props.searchValue}
                         resultRenderer={this.resultRenderer}
                         minCharacters={0}
-                        onBlur={this.onBlurSearch}
+                        //onBlur={this.onBlurSearch}
                         onFocus={this.onFocusSearch}
+                        onResultSelect = {this.onSelectSearch}
                   />
                   <WelcomeHeaderSecondary>
                       Start from scratch
@@ -115,7 +100,8 @@ Welcome.propTypes = {
 const mapStateToProps = state => ({
     searchValue: state.appState.welcome.searchValue,
     isLoading: state.appState.welcome.isLoading,
-    results: state.appState.welcome.results
+    results: state.appState.welcome.results,
+    templates: state.templatesState.templatesAP,
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -123,6 +109,8 @@ const mapDispatchToProps = dispatch => ({
     changeWelcomeSearchValue: value => dispatch(changeWelcomeSearchValue(value)),
     changeWelcomeSearchResults: results => dispatch(changeWelcomeSearchResults(results)),
     toggleWelcomeSearchLoading: loading => dispatch(toggleWelcomeSearchLoading(loading)),
+    addToContract: value => dispatch(addToContractAction(value)),
+    fetchAPTemplates: () => dispatch(getTemplatesAction()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Welcome);

@@ -8,6 +8,7 @@ export const WelcomeBlurBackground = styled.div`
         background: rgba(0,0,0,0.6);
         position:absolute;
         z-index:10;
+        box-sizing:border-box;
 `;
 
 export const WelcomeWrapper = styled.div`
@@ -16,7 +17,8 @@ export const WelcomeWrapper = styled.div`
         background: #ffffff;
         border-radius:10px;
         border: 1px solid rgba(13,28,121,0.1);
-        margin: 105px auto;
+        margin: 0px auto;
+        margin-top:105px;
         padding: 30px 10px;
         text-align:center;
 `;

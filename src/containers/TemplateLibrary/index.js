@@ -62,10 +62,10 @@ export const LibraryComponent = (props) => {
     buttonRef.current.blur();
   };
 
-  const { fetchAPTemplates } = props;
-  useEffect(() => {
-    fetchAPTemplates();
-  }, [fetchAPTemplates]);
+  //const { fetchAPTemplates } = props;
+  //useEffect(() => {
+  //  fetchAPTemplates();
+  //}, [fetchAPTemplates]);
 
   return (
     <RightSidebar>
@@ -106,7 +106,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  fetchAPTemplates: () => dispatch(getTemplatesAction()),
+  //fetchAPTemplates: () => dispatch(getTemplatesAction()),
   addNewTemplate: () => dispatch(addNewTemplateAction()),
   addToContract: value => dispatch(addToContractAction(value)),
 });
