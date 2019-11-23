@@ -3,8 +3,6 @@ import _ from 'lodash';
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { TemplateLibrary } from '@accordproject/cicero-core';
-import * as ciceroPackageJson from '@accordproject/cicero-core/package.json';
 
 
 import { Search, Label } from 'semantic-ui-react';
@@ -20,6 +18,7 @@ class Welcome extends Component{
         this.props.fetchAPTemplates();
     }
     resultRenderer = ({ name, version }) => <Label content={`${name}@${version}`} />
+
     onChangeSearch = (e, {value}) => {
         this.props.changeWelcomeSearchValue(value);
         this.filterResults(value);
@@ -31,15 +30,13 @@ class Welcome extends Component{
             const isMatch = (result) => re.test(result.name);
             this.props.toggleWelcomeSearchLoading(false);
             this.props.changeWelcomeSearchResults( _.filter(this.props.templates, isMatch));
+
         }, 150);
     }
-    onBlurSearch = () => {
-        this.props.changeWelcomeSearchValue('');
-    }
+
     onFocusSearch = () => {
         this.filterResults(this.props.searchValue);
     }
-
     onSelectSearch = (e, {result}) => {
         this.props.addToContract(result.uri);
         setTimeout(() => {
@@ -70,7 +67,6 @@ class Welcome extends Component{
                         value={this.props.searchValue}
                         resultRenderer={this.resultRenderer}
                         minCharacters={0}
-                        //onBlur={this.onBlurSearch}
                         onFocus={this.onFocusSearch}
                         onResultSelect = {this.onSelectSearch}
                   />

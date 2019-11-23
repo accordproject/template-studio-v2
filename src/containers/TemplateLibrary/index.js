@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import { TemplateLibrary } from '@accordproject/cicero-ui';
 import TextButton from '../../components/TextButton';
 
-import { getTemplatesAction, addNewTemplateAction } from '../../actions/templatesActions';
+import { addNewTemplateAction } from '../../actions/templatesActions';
 import { addToContractAction } from '../../actions/contractActions';
 
 import { AP_THEME, TEMPLATE_LIBRARY } from '../App/themeConstants';
@@ -62,11 +62,6 @@ export const LibraryComponent = (props) => {
     buttonRef.current.blur();
   };
 
-  //const { fetchAPTemplates } = props;
-  //useEffect(() => {
-  //  fetchAPTemplates();
-  //}, [fetchAPTemplates]);
-
   return (
     <RightSidebar>
       <FileBar />
@@ -105,8 +100,7 @@ const mapStateToProps = state => ({
   templates: state.templatesState.templatesAP,
 });
 
-const mapDispatchToProps = dispatch => ({
-  //fetchAPTemplates: () => dispatch(getTemplatesAction()),
+const mapDispatchToProps = dispatch => ({ 
   addNewTemplate: () => dispatch(addNewTemplateAction()),
   addToContract: value => dispatch(addToContractAction(value)),
 });
