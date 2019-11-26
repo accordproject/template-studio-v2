@@ -2,13 +2,19 @@ import {
   ADD_APP_ERROR,
   REMOVE_APP_ERROR,
   SET_CURRENT_EDITOR,
+  TOGGLE_WELCOME,
 } from '../actions/constants';
+
+
 
 const initialState = {
   error: null,
   id: null,
   editor: 'contract',
+  welcome: true,
 };
+
+
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
@@ -21,6 +27,11 @@ const reducer = (state = initialState, action) => {
         ...state,
         id: action.id,
         editor: action.editor,
+      };
+    case TOGGLE_WELCOME:
+      return {
+        ...state,
+        welcome: action.toggle
       };
     default:
       return state;

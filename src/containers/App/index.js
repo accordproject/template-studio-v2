@@ -1,6 +1,7 @@
 /* React */
 import React from 'react';
-
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 /* Styling */
 import 'semantic-ui-css/semantic.min.css';
 import styled from 'styled-components';
@@ -13,6 +14,7 @@ import ErrorContainer from '../Error';
 import ErrorModalComponent from '../ErrorModal';
 import LeftNavContainer from '../LeftNav';
 import CurrentEditorContainer from '../CurrentEditor';
+import Welcome from '../Welcome';
 
 const AppWrapper = styled.div`
   height: 100%;
@@ -32,10 +34,11 @@ const ContentWrapper = styled.div`
   overflow-y: hidden;
 `;
 
-export const App = () => (
+export const App = ({welcome}) => (
     <AppWrapper>
       <ErrorModalComponent />
       <MainWrapper>
+        {welcome && <Welcome />}
         <Header />
         <ContentWrapper>
           <LeftNavContainer />
@@ -47,4 +50,9 @@ export const App = () => (
     </AppWrapper>
 );
 
-export default App;
+const mapStateToProps = state => ({
+  welcome: state.appState.welcome
+});
+
+
+export default connect(mapStateToProps)(App);

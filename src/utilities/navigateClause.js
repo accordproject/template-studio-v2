@@ -2,6 +2,7 @@ import * as R from 'ramda';
 
 import store from '../store';
 
+
 /**
  * Functions for navigating the PARSE ERRORS
  * This main function relies upon helper functions

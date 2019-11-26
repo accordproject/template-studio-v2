@@ -42,6 +42,7 @@ h1, h2, h3, h4, h5, h6, p, a, ul, ol, li, button {
   font-size: 1em;
 }
 
+
 blockquote {
   font-size: 1em;
   font-family: 'Graphik', sans-serif;
@@ -59,6 +60,7 @@ code {
   border-radius: 0.1em;
 }
 
+
 .github-link{
   float:right;
 }
@@ -68,4 +70,34 @@ code {
 .github-link i{
   font-size:27px;
   margin-right:10px;
+}
+
+.welcome .ui.search{
+  display:inline-block;
+
+}
+
+.welcome .ui.input>input{
+  height: 45px;
+  width: 332px;
+  border: 2px solid #19C6C7;
+  border-radius: 22.5px;
+  padding:14px 18px;
+  color: rgba(5,12,64,0.6);
+  font-family: Graphik;
+  font-size: 15px;
+  line-height: 17px;
+  margin: 0px auto 10px auto;
+}
+.welcome .ui.input>input:focus{
+  outline: none;
+}
+
+.welcome .ui.search>.results{
+  width:100%;
+  overflow-y: scroll;
+  max-height:150px;
+}
+.welcome .ui.icon.input>i.icon{
+  height:45px;
 }
