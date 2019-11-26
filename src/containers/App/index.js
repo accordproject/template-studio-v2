@@ -51,7 +51,7 @@ export const App = ({welcome}) => (
 );
 
 const mapStateToProps = state => ({
-  welcome: state.appState.welcome.toggle
+  welcome: state.appState.welcome
 });
 
 
