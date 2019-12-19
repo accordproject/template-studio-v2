@@ -1,4 +1,5 @@
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MonacoWebpackPlugin = require('monaco-editor-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
@@ -80,6 +81,7 @@ module.exports = {
       // available options are documented at https://github.com/Microsoft/monaco-editor-webpack-plugin#options
       languages: [],
     }),
+    new webpack.IgnorePlugin(/jsdom$/),
   ],
   node: {
     fs: 'empty',
