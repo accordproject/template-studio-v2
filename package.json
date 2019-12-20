@@ -63,9 +63,9 @@
     "webpack-dev-server": "^3.9.0"
   },
   "dependencies": {
-    "@accordproject/cicero-core": "^0.20.6",
-    "@accordproject/cicero-ui": "^0.3.13",
-    "@accordproject/ergo-compiler": "^0.20.6",
+    "@accordproject/cicero-core": "^0.20.7",
+    "@accordproject/cicero-ui": "^0.4.0",
+    "@accordproject/ergo-compiler": "^0.20.7",
     "@accordproject/markdown-slate": "^0.9.4",
     "@babel/runtime": "^7.7.2",
     "mixin-deep": "^2.0.1",
