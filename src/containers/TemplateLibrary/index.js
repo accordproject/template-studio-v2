@@ -24,7 +24,8 @@ const TLWrapper = styled.div`
   width: 355px;
   position: relative;
   height: inherit;
-  padding-right: 10px;
+  padding-right: 15px;
+  padding-left: 15px;
   scrollbar-color: rgba(0,0,0,.25) rgba(0,0,0,.1);
 
   &::-webkit-scrollbar {
