@@ -1,4 +1,8 @@
 <h1 align="center">
+  NOTE: This repository is archived and will not be worked on. See <a href="https://github.com/accordproject/cicero-vscode-extension">cicero-vscode-extension</a>
+</h1>
+
+<h1 align="center">
   Accord Project Template Studio (v2)
 </h1>
 
