@@ -33,7 +33,7 @@
 
 ## Notes for development:
 
-In order to link another React component to template-studio-v2 for development, following these steps:
+To link another React component to template-studio-v2 for development, following these steps:
 1. Ensure template-studio-v2 is on your local machine.
 2. Ensure your React component has been built - in its root directory, run `npm run build`.
 3. In the root directory of your React component intended to link, run `npm link`.
@@ -61,7 +61,7 @@ You will also see any lint errors in the console.
 #### `npm run test`
 
 Launches JEST over the repository.
-Current snapshot tests require `npm test -- -u` in order to update when all changes are final.
+Current snapshot tests require `npm test -- -u` to update when all changes are final.
 
 #### `npm run lint`
 
@@ -83,7 +83,7 @@ Your app is ready to be deployed!
   </a>
 </p>
 
-Accord Project is an open source, non-profit, initiative working to transform contract management and contract automation by digitizing contracts. Accord Project operates under the umbrella of the [Linux Foundation][linuxfound]. The technical charter for the Accord Project can be found [here][charter].
+Accord Project is an open source, a non-profit, initiative working to transform contract management and contract automation by digitizing contracts. Accord Project operates under the umbrella of the [Linux Foundation][linuxfound]. The technical charter for the Accord Project can be found [here][charter].
 
 ## Learn More About Accord Project
 
